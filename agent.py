@@ -191,7 +191,7 @@ def search_topics(topic: str) -> str:
 
 # ==================== CREWAI CONFIGURATION ====================
 
-gemini_api_key = os.getenv("GEMINI_API_KEY")
+gemini_api_key = os.getenv("GEMINI_KEY_1")
 
 gemini_llm = LLM(
     model="gemini/gemini-2.5-flash",
@@ -338,9 +338,9 @@ if __name__ == "__main__":
             f.write(research_result)
         
         print(f"\nRearch summary saved to: {output_filename}")
-        print(f"\n📄 Preview (first 500 characters):\n{research_result[:500]}...\n")
+        print(f"Preview (first 500 characters):\n{research_result[:500]}...\n")
     
     except Exception as e:
-        print(f"\n❌ Failed to generate research summary: {str(e)}")
+        print(f"Failed to generate research summary: {str(e)}")
         import traceback
         traceback.print_exc()
