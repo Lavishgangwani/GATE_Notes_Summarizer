@@ -25,6 +25,7 @@ def extract_syllabus_tool_func(location: str) -> str:
         "Course Topics": extracted_data,
         "total_sections": len(extracted_data)
     }
+    
     return json.dumps(result, indent=2)
 
 

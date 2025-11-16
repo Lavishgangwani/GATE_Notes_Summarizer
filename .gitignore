@@ -23,7 +23,8 @@ ENV/
 
 
 #enviormental variables
-.env
+/.env
+
 
 
 
