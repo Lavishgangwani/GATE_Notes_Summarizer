@@ -54,20 +54,11 @@ def search_topics(topic: str) -> str:
 
 # ==================== CREWAI CONFIGURATION ====================
 
-gemini_api_key1 = os.getenv("GEMINI_KEY_1")
-gemini_api_key2 = os.getenv("GEMINI_KEY_2")
+gemini_api_key = os.getenv("GEMINI_KEY_1")
 
-gemini_llm1 = LLM(
+gemini_llm = LLM(
     model="gemini/gemini-2.5-flash",
-    api_key=gemini_api_key1,
-    temperature=0.7,
-    top_p=0.9,
-    max_tokens=2048
-)
-
-gemini_llm2 = LLM(
-    model="gemini/gemini-2.5-flash",
-    api_key=gemini_api_key2,
+    api_key=gemini_api_key,
     temperature=0.7,
     top_p=0.9,
     max_tokens=2048
@@ -76,7 +67,7 @@ gemini_llm2 = LLM(
 
 # ==================== AGENTS ====================
 
-research_agent1 = Agent(
+research_agent = Agent(
     role="Research Topics Agent",
     goal="Extract and research all topics from the syllabus PDF. Provide comprehensive summaries with examples and formulas.",
     backstory="""You are an expert researcher in educational topics. 
@@ -84,22 +75,9 @@ research_agent1 = Agent(
     tools=[search_topics, extract_syllabus_tool_func],
     verbose=True,
     allow_delegation=False,
-    llm=gemini_llm1,
+    llm=gemini_llm,
     memory=False
 )
-
-research_agent2 = Agent(
-    role="Research Topics Agent",
-    goal="Extract and research all topics from the syllabus PDF. Provide comprehensive summaries with examples and formulas.",
-    backstory="""You are an expert researcher in educational topics. 
-    You extract topics from syllabi, research them thoroughly, and provide detailed summaries with practical examples and relevant formulas.""",
-    tools=[search_topics, extract_syllabus_tool_func],
-    verbose=True,
-    allow_delegation=False,
-    llm=gemini_llm2,
-    memory=False
-)
-
 
 
 write_agent_1 = Agent(
@@ -107,10 +85,10 @@ write_agent_1 = Agent(
     goal="Create detailed educational content for assigned topics with examples and formulas.",
     backstory="""You are an expert educational content writer specializing in technical topics.
     You create comprehensive explanations with examples, formulas, and proper structure for assigned topics.""",
-    tools=[search_topics, extract_syllabus_tool_func],
+    tools=[search_topics],
     verbose=True,
     allow_delegation=False,
-    llm=gemini_llm1,
+    llm=gemini_llm,
     memory=False
 )
 
@@ -120,17 +98,17 @@ write_agent_2 = Agent(
     goal="Create detailed educational content for assigned topics with examples and formulas.",
     backstory="""You are an expert educational content writer specializing in practical applications.
     You create comprehensive explanations with examples, formulas, and proper structure for assigned topics.""",
-    tools=[search_topics, extract_syllabus_tool_func],
+    tools=[search_topics],
     verbose=True,
     allow_delegation=False,
-    llm=gemini_llm2,
+    llm=gemini_llm,
     memory=False
 )
 
 
 # ==================== TASKS ====================
 
-research_topics_task1 = Task(
+research_topics_task = Task(
     description="""Extract all topics from the syllabus PDF at '{location}'.
     For each topic, provide:
     1. Clear topic name
@@ -141,22 +119,7 @@ research_topics_task1 = Task(
     Output as structured JSON.""",
     expected_output="""JSON object with extracted topics organized by sections.
     Include research summaries, examples, and relevant formulas for each topic.""",
-    agent=research_agent1,
-    async_execution=False
-)
-
-research_topics_task2 = Task(
-    description="""Extract all topics from the syllabus PDF at '{location}'.
-    For each topic, provide:
-    1. Clear topic name
-    2. Related subtopics
-    3. Brief research summary
-    4. Key formulas or concepts where applicable
-    
-    Output as structured JSON.""",
-    expected_output="""JSON object with extracted topics organized by sections.
-    Include research summaries, examples, and relevant formulas for each topic.""",
-    agent=research_agent2,
+    agent=research_agent,
     async_execution=False
 )
 
@@ -194,8 +157,8 @@ write_topics_task_2 = Task(
 # ==================== CREW ====================
 
 research_crew = Crew(
-    agents=[research_agent1, research_agent2, write_agent_1, write_agent_2],
-    tasks=[research_topics_task1, research_topics_task2, write_topics_task_1, write_topics_task_2],
+    agents=[research_agent, write_agent_1, write_agent_2],
+    tasks=[research_topics_task, write_topics_task_1, write_topics_task_2],
     process=Process.sequential,  # Sequential to reduce API calls on free tier
     verbose=True,
     memory=False

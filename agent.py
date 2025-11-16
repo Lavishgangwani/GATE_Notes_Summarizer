@@ -36,6 +36,18 @@ def search_topics(topic: str) -> str:
 
 
 
+gemini_api_key = os.getenv("GEMINI_KEY_1")
+
+gemini_llm = LLM(
+    model="gemini/gemini-2.5-flash",
+    api_key=gemini_api_key,
+    temperature=0.7,
+    top_p=0.9,
+    max_tokens=2048
+)
+
+
+# ==================== AGENTS ====================
 
 research_agent = Agent(
     role="Research Topics Agent",
@@ -122,8 +134,8 @@ if __name__ == "__main__":
         with open(output_filename, "w", encoding="utf-8") as f:
             f.write(research_result)
         
-        print(f"\n Research summary saved to: {output_filename}")
-        print(f"\n Preview:\n{research_result[:500]}...")
+        print(f"\nRearch summary saved to: {output_filename}")
+        print(f"Preview (first 500 characters):\n{research_result[:500]}...\n")
     
     except Exception as e:
         print(f"Failed to generate research summary: {str(e)}")
