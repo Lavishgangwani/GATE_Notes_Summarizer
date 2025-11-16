@@ -1,2417 +1,1690 @@
-# Comprehensive Guide to Data Science Fundamentals
+# Educational Content: Core Concepts in Data Science
 
-This document provides a detailed overview of essential topics in Probability and Statistics, Linear Algebra, Calculus and Optimization, Data Structures and Algorithms, Database Management and Warehousing, Machine Learning, and Artificial Intelligence. Each section is designed to offer a comprehensive explanation, practical examples, relevant formulas, learning objectives, and connections to related concepts.
+This document provides detailed explanations, practical examples, relevant formulas, and learning objectives for fundamental topics across Probability and Statistics, Linear Algebra, Calculus and Optimization, Data Structures and Algorithms, Database Management and Warehousing, Machine Learning (Supervised and Unsupervised Learning), and AI (Search, Logic, and Reasoning under Uncertainty).
 
 ---
 
 ## 1. Probability and Statistics
 
-Probability and Statistics form the bedrock of data science, providing the tools to understand, analyze, and make predictions from data.
+Probability and Statistics form the bedrock of data science, enabling us to understand data, make predictions, and quantify uncertainty.
 
-### 1.1. Counting (Permutation and Combinations)
+### 1.1 Counting (Permutation and Combinations)
 
-**Summary:** Counting techniques, including permutations and combinations, are fundamental in probability to determine the number of possible outcomes or arrangements. Permutations deal with the arrangement of items where order matters, while combinations deal with the selection of items where order does not matter. These techniques are crucial for calculating probabilities of events in finite sample spaces.
-
-**Explanation:**
-*   **Permutations:** A permutation is an arrangement of objects in a specific order. The order of selection or arrangement is important. For example, if we are arranging people in a line, changing their positions creates a new permutation.
-*   **Combinations:** A combination is a selection of objects where the order of selection does not matter. For example, if we are choosing a committee, the order in which members are selected does not change the composition of the committee.
-
-**Practical Examples:**
-*   **Permutation:** How many different ways can 3 students be arranged in a line from a group of 5 students?
-    This is a permutation because the order in which students are arranged in the line matters.
-    P(5,3) = 5! / (5-3)! = 5! / 2! = (5 × 4 × 3 × 2 × 1) / (2 × 1) = 120 / 2 = 60 ways.
-*   **Combination:** How many different ways can a committee of 3 students be chosen from a group of 5 students?
-    This is a combination because the order in which students are chosen for the committee does not matter.
-    C(5,3) = 5! / (3!(5-3)!) = 5! / (3!2!) = (5 × 4 × 3 × 2 × 1) / ((3 × 2 × 1) × (2 × 1)) = 120 / (6 × 2) = 120 / 12 = 10 ways.
-
-**Formulas:**
-*   **Permutation (P(n, k)):** The number of ways to arrange *k* items from a set of *n* distinct items, where order matters.
-    `P(n, k) = n! / (n-k)!`
-    Where:
-    *   `n` is the total number of items.
-    *   `k` is the number of items to arrange.
-    *   `!` denotes the factorial (e.g., 5! = 5 × 4 × 3 × 2 × 1).
-*   **Combination (C(n, k) or (n choose k)):** The number of ways to choose *k* items from a set of *n* distinct items, where order does not matter.
-    `C(n, k) = n! / (k!(n-k)!)`
-    Where:
-    *   `n` is the total number of items.
-    *   `k` is the number of items to choose.
-
-**Learning Objectives:**
+#### Learning Objectives:
 *   Understand the difference between permutations and combinations.
-*   Be able to identify when to use permutations versus combinations in problem-solving.
-*   Calculate permutations and combinations using the respective formulas.
+*   Apply appropriate counting techniques to determine the number of possible arrangements or selections.
+*   Calculate permutations and combinations using their respective formulas.
 
-**Related Concepts:**
-*   Factorials
-*   Basic Probability
-*   Binomial Theorem
+#### Comprehensive Explanation:
+Counting techniques are fundamental in probability to determine the number of possible outcomes. Permutations deal with the arrangement of items where order matters, while combinations deal with the selection of items where order does not matter.
 
-### 1.2. Probability Axioms, Sample Space, Events
+#### Practical Examples:
+*   **Permutation**: Arranging 3 distinct books on a shelf from a set of 5 distinct books (order matters, e.g., ABC is different from ACB).
+    *   Calculation: ₅P₃ = 5! / (5-3)! = 5! / 2! = (5 * 4 * 3 * 2 * 1) / (2 * 1) = 60 ways.
+*   **Combination**: Selecting 3 students for a committee from a class of 10 students (order does not matter, e.g., {Alice, Bob, Carol} is the same as {Bob, Alice, Carol}).
+    *   Calculation: ₁₀C₃ = 10! / (3! * (10-3)!) = 10! / (3! * 7!) = (10 * 9 * 8) / (3 * 2 * 1) = 120 ways.
 
-**Summary:** The sample space (S) is the set of all possible outcomes of a random experiment. An event is a subset of the sample space. Probability axioms are fundamental rules that probabilities must satisfy: non-negativity, normalization (total probability of sample space is 1), and additivity for mutually exclusive events. These axioms form the basis of all probability theory.
+#### Relevant Formulas:
+*   **Permutation (nPr)**: The number of ways to arrange *r* items from a set of *n* distinct items where order matters.
+    `nPr = n! / (n-r)!`
+    *   *Explanation*: `n!` (n factorial) is the product of all positive integers up to n. `r` is the number of items to arrange, `n` is the total number of items.
+*   **Combination (nCr)**: The number of ways to select *r* items from a set of *n* distinct items where order does not matter.
+    `nCr = n! / (r! * (n-r)!)`
+    *   *Explanation*: `r!` accounts for the overcounting that occurs when order doesn't matter, dividing out the permutations of the selected items.
 
-**Explanation:**
-*   **Sample Space (S):** The set of all possible outcomes of a random experiment. It can be finite or infinite, discrete or continuous.
-*   **Event (A):** Any subset of the sample space. An event is a collection of outcomes.
-*   **Probability Axioms:**
-    1.  **Non-negativity:** The probability of any event must be non-negative.
-    2.  **Normalization:** The probability of the entire sample space (i.e., that *some* outcome occurs) is 1.
-    3.  **Additivity (for mutually exclusive events):** If two events cannot occur at the same time (they are mutually exclusive), the probability of either one occurring is the sum of their individual probabilities.
+### 1.2 Probability Axioms, Sample Space, Events
 
-**Practical Examples:**
-*   **Rolling a die:**
-    *   Sample Space (S) = {1, 2, 3, 4, 5, 6} (all possible outcomes when rolling a single fair six-sided die).
-    *   Event 'rolling an even number' (A) = {2, 4, 6}.
-    *   Event 'rolling a number greater than 4' (B) = {5, 6}.
-*   **Applying Axioms:**
-    *   Axiom 1: P(rolling a 3) = 1/6, which is >= 0. P(rolling a 7) = 0, which is also >= 0.
-    *   Axiom 2: P(S) = P({1, 2, 3, 4, 5, 6}) = 1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1.
-    *   Axiom 3: Let A = 'rolling an even number' = {2, 4, 6} and B = 'rolling an odd number' = {1, 3, 5}. A and B are mutually exclusive.
-        P(A U B) = P(A) + P(B) = (3/6) + (3/6) = 1.
-        (A U B is the event of rolling an even or an odd number, which is the entire sample space S).
+#### Learning Objectives:
+*   Define sample space and events in the context of random experiments.
+*   Understand and apply the three fundamental axioms of probability.
+*   Calculate basic probabilities for equally likely outcomes.
 
-**Formulas:**
-*   **Axiom 1 (Non-negativity):** `P(A) >= 0` for any event A.
-*   **Axiom 2 (Normalization):** `P(S) = 1` where S is the sample space.
-*   **Axiom 3 (Additivity for mutually exclusive events):** If A and B are mutually exclusive events (i.e., their intersection is empty, `A ∩ B = ∅`), then `P(A ∪ B) = P(A) + P(B)`.
+#### Comprehensive Explanation:
+Probability axioms are fundamental rules that probabilities must satisfy. A sample space (Ω) is the set of all possible outcomes of a random experiment. An event (E) is any subset of the sample space, representing a specific outcome or a collection of outcomes.
 
-**Learning Objectives:**
-*   Define sample space and event.
-*   State and apply the three fundamental axioms of probability.
-*   Identify mutually exclusive events.
+#### Practical Examples:
+*   **Rolling a die**:
+    *   Sample space Ω = {1, 2, 3, 4, 5, 6} (all possible outcomes).
+    *   Event E = 'rolling an even number' = {2, 4, 6} (a subset of Ω).
+*   **Probability Axioms**:
+    *   **Axiom 1**: P(E) ≥ 0 for any event E. The probability of any event must be non-negative.
+    *   **Axiom 2**: P(Ω) = 1. The probability of the entire sample space (i.e., that some outcome occurs) is 1.
+    *   **Axiom 3**: For mutually exclusive events E₁, E₂, ..., P(E₁ ∪ E₂ ∪ ...) = P(E₁) + P(E₂) + ... . The probability of the union of disjoint (mutually exclusive) events is the sum of their individual probabilities.
 
-**Related Concepts:**
-*   Set Theory (union, intersection, complement)
-*   Conditional Probability
-*   Random Variables
+#### Relevant Formulas:
+*   **Probability of an Event (for equally likely outcomes)**:
+    `P(E) = (Number of favorable outcomes) / (Total number of outcomes)`
+    *   *Explanation*: This formula applies when each outcome in the sample space has an equal chance of occurring.
 
-### 1.3. Independent Events, Mutually Exclusive Events
+### 1.3 Independent and Mutually Exclusive Events
 
-**Summary:** Independent events are those where the occurrence of one does not affect the probability of the other. Mutually exclusive events (or disjoint events) cannot occur at the same time, meaning they have no common outcomes. It's important to distinguish between these two concepts as they have different implications for probability calculations.
+#### Learning Objectives:
+*   Distinguish between independent and mutually exclusive events.
+*   Calculate probabilities involving independent events using the multiplication rule.
+*   Calculate probabilities involving mutually exclusive events using the addition rule.
 
-**Explanation:**
-*   **Independent Events:** Two events A and B are independent if the occurrence of A does not change the probability of B, and vice versa. This means that knowing whether A happened gives no information about whether B happened.
-*   **Mutually Exclusive Events:** Two events A and B are mutually exclusive if they cannot both occur simultaneously. If A occurs, B cannot occur, and if B occurs, A cannot occur. Their intersection is empty (∅).
+#### Comprehensive Explanation:
+Independent events are those where the occurrence of one does not affect the probability of the other. Mutually exclusive (disjoint) events cannot occur at the same time; if one occurs, the other cannot.
 
-**Practical Examples:**
-*   **Independent Events:** Flipping a fair coin twice.
-    *   Let A be the event 'Head on the 1st flip'. P(A) = 0.5.
-    *   Let B be the event 'Head on the 2nd flip'. P(B) = 0.5.
-    *   The outcome of the first flip does not affect the outcome of the second flip.
-    *   P(Head on 1st flip AND Head on 2nd flip) = P(A ∩ B) = P(A) * P(B) = 0.5 * 0.5 = 0.25.
-*   **Mutually Exclusive Events:** Rolling a single fair six-sided die.
-    *   Let A be the event 'rolling a 2'. P(A) = 1/6.
-    *   Let B be the event 'rolling a 3'. P(B) = 1/6.
-    *   You cannot roll both a 2 and a 3 on a single roll.
-    *   P(rolling a 2 AND rolling a 3) = P(A ∩ B) = 0.
-    *   P(rolling a 2 OR rolling a 3) = P(A ∪ B) = P(A) + P(B) = 1/6 + 1/6 = 2/6 = 1/3.
+#### Practical Examples:
+*   **Independent Events**: Flipping a coin twice. The outcome of the first flip (e.g., Heads) does not affect the probability of the second flip (e.g., getting Heads or Tails).
+    *   P(Heads on 1st flip AND Heads on 2nd flip) = P(Heads on 1st) * P(Heads on 2nd) = 0.5 * 0.5 = 0.25.
+*   **Mutually Exclusive Events**: Rolling a 6-sided die. The events 'rolling a 1' and 'rolling a 2' are mutually exclusive because you cannot roll both a 1 and a 2 simultaneously.
+    *   P(rolling a 1 OR rolling a 2) = P(rolling a 1) + P(rolling a 2) = 1/6 + 1/6 = 2/6 = 1/3.
 
-**Important Note:** Independent events cannot be mutually exclusive (unless one of them has a probability of 0). If two events A and B are independent and `P(A) > 0` and `P(B) > 0`, then `P(A ∩ B) = P(A)P(B) > 0`, which means they are not mutually exclusive.
+#### Relevant Formulas:
+*   **Independent Events**:
+    `P(A ∩ B) = P(A)P(B)`
+    *   *Explanation*: The probability of both events A and B occurring is the product of their individual probabilities.
+*   **Mutually Exclusive Events**:
+    `P(A ∩ B) = 0`
+    `P(A ∪ B) = P(A) + P(B)`
+    *   *Explanation*: The probability of both events A and B occurring is 0. The probability of either event A or B occurring is the sum of their individual probabilities.
 
-**Formulas:**
-*   **Independent Events:** `P(A ∩ B) = P(A) * P(B)`
-    Alternatively, `P(A|B) = P(A)` and `P(B|A) = P(B)`.
-*   **Mutually Exclusive Events:** `P(A ∩ B) = 0`
-    If A and B are mutually exclusive, then `P(A ∪ B) = P(A) + P(B)`.
+### 1.4 Marginal, Conditional, and Joint Probability
 
-**Learning Objectives:**
-*   Clearly differentiate between independent and mutually exclusive events.
-*   Apply the correct probability rules for each type of event.
-*   Recognize that independent events with non-zero probabilities cannot be mutually exclusive.
+#### Learning Objectives:
+*   Define and differentiate between marginal, conditional, and joint probabilities.
+*   Calculate each type of probability from given data or other probabilities.
+*   Understand how these probabilities relate to each other.
 
-**Related Concepts:**
-*   Conditional Probability
-*   Union and Intersection of Events
-*   Bayes' Theorem
+#### Comprehensive Explanation:
+Joint probability is the probability of two events occurring together. Marginal probability is the probability of a single event occurring, often calculated by summing joint probabilities over all outcomes of another variable. Conditional probability is the probability of an event occurring given that another event has already occurred.
 
-### 1.4. Marginal, Conditional and Joint Probability
+#### Practical Examples:
+Consider a group of students, where some are female (F) or male (M), and some have a laptop (L) or do not (NL).
+*   **Joint Probability**: P(Student is female AND has a laptop) = P(F ∩ L). If 10% of all students are female and have a laptop, then P(F ∩ L) = 0.10.
+*   **Marginal Probability**: P(Student is female) = P(F). This is the probability of being female, regardless of laptop ownership. It can be calculated as P(F ∩ L) + P(F ∩ NL).
+*   **Conditional Probability**: P(Student has a laptop GIVEN that the student is female) = P(L|F). If 40% of students are female (P(F) = 0.40) and 10% are female and have a laptop (P(F ∩ L) = 0.10), then P(L|F) = 0.10 / 0.40 = 0.25. This means 25% of female students have a laptop.
 
-**Summary:** These are three fundamental types of probabilities used to describe the relationships between events. Joint probability is the probability of two or more events occurring together. Marginal probability is the probability of a single event occurring, irrespective of other events. Conditional probability is the probability of an event occurring given that another event has already occurred.
+#### Relevant Formulas:
+*   **Joint Probability**:
+    `P(A ∩ B)` (read as "Probability of A and B")
+    *   *Explanation*: The probability of both events A and B happening.
+*   **Marginal Probability**:
+    `P(A) = Σ P(A ∩ Bi)` (where Bi are mutually exclusive and exhaustive events for B)
+    *   *Explanation*: The probability of event A occurring, irrespective of other events. It's the sum of joint probabilities of A with all possible outcomes of another variable.
+*   **Conditional Probability**:
+    `P(A|B) = P(A ∩ B) / P(B)` (where P(B) > 0)
+    *   *Explanation*: The probability of event A occurring given that event B has already occurred.
 
-**Explanation:**
-*   **Joint Probability (P(A ∩ B)):** The probability that two or more events occur simultaneously. For example, the probability of a student being both female AND liking mathematics.
-*   **Marginal Probability (P(A)):** The probability of a single event occurring. It is obtained by summing (or integrating for continuous variables) the joint probabilities over all possible outcomes of the other variable(s). For example, the probability of a student being female, regardless of their subject preference.
-*   **Conditional Probability (P(A|B)):** The probability of event A occurring, given that event B has already occurred. It reflects how the knowledge of one event changes the probability of another. For example, the probability that a student likes mathematics, GIVEN that they are female.
+### 1.5 Bayes Theorem
 
-**Practical Examples:**
-*   Consider a population survey where we track gender and preference for a certain product X.
-    |           | Likes X | Doesn't Like X | Total |
-    | :-------- | :------ | :------------- | :---- |
-    | **Female** | 100     | 150            | 250   |
-    | **Male**   | 80      | 170            | 250   |
-    | **Total**  | 180     | 320            | 500   |
-
-    *   **Joint Probability:** P(Female and likes X) = 100/500 = 0.20. (Probability of selecting a person who is female AND likes X).
-    *   **Marginal Probability:** P(Female) = 250/500 = 0.50. (Probability of selecting a person who is female, regardless of product preference).
-    *   **Conditional Probability:** P(likes X | Female) = P(Female and likes X) / P(Female) = (100/500) / (250/500) = 100/250 = 0.40. (Probability that a person likes X, GIVEN that they are female).
-
-*   Another example: If P(A)=0.4, P(B)=0.3, and P(A ∩ B)=0.1.
-    *   P(A|B) = P(A ∩ B) / P(B) = 0.1 / 0.3 = 1/3 ≈ 0.333.
-    *   P(B|A) = P(A ∩ B) / P(A) = 0.1 / 0.4 = 1/4 = 0.25.
-
-**Formulas:**
-*   **Joint Probability:** `P(A ∩ B)` (read as "Probability of A and B").
-*   **Marginal Probability:** For discrete events, `P(A) = Σ P(A ∩ B_i)` over all possible mutually exclusive and exhaustive events `B_i`.
-    For continuous variables, `P(A) = ∫ P(A ∩ B) dB`.
-*   **Conditional Probability:** `P(A|B) = P(A ∩ B) / P(B)` (provided `P(B) > 0`).
-    This can be rearranged to find joint probability: `P(A ∩ B) = P(A|B) * P(B)`.
-    Also, `P(A ∩ B) = P(B|A) * P(A)`.
-
-**Learning Objectives:**
-*   Define and distinguish between joint, marginal, and conditional probabilities.
-*   Calculate these probabilities from contingency tables or given probabilities.
-*   Understand the relationship between these three types of probabilities.
-
-**Related Concepts:**
-*   Bayes' Theorem
-*   Independent Events
-*   Probability Distributions
-
-### 1.5. Bayes' Theorem
-
-**Summary:** Bayes' Theorem describes the probability of an event, based on prior knowledge of conditions that might be related to the event. It is a fundamental concept in probability theory and statistics, crucial for updating beliefs in light of new evidence. It essentially tells us how to reverse conditional probabilities.
-
-**Explanation:**
-Bayes' Theorem provides a way to calculate the posterior probability of a hypothesis (A) given some evidence (B), taking into account the prior probability of the hypothesis and the likelihood of observing the evidence under different hypotheses.
-
-`P(A|B)` is the **posterior probability**: the probability of hypothesis A being true, given that evidence B has been observed.
-`P(B|A)` is the **likelihood**: the probability of observing evidence B, given that hypothesis A is true.
-`P(A)` is the **prior probability**: the initial probability of hypothesis A being true before observing any evidence.
-`P(B)` is the **marginal probability of evidence**: the total probability of observing evidence B, regardless of whether A is true or false. It acts as a normalizing constant.
-
-**Practical Examples:**
-*   **Medical Diagnosis:** Imagine a rare disease (D) that affects 1% of the population, so P(D) = 0.01. There's a test for the disease that is 90% accurate (meaning P(Test Positive | Disease) = 0.90) and has a 5% false positive rate (meaning P(Test Positive | No Disease) = 0.05). If a person tests positive, what is the probability they actually have the disease?
-
-    We want to find P(Disease | Test Positive).
-    Using Bayes' Theorem: `P(D|T+) = [P(T+|D) * P(D)] / P(T+)`
-
-    First, calculate P(T+), the overall probability of testing positive:
-    P(T+) = P(T+|D)P(D) + P(T+|not D)P(not D)
-    P(not D) = 1 - P(D) = 1 - 0.01 = 0.99
-    P(T+) = (0.90 * 0.01) + (0.05 * 0.99)
-    P(T+) = 0.009 + 0.0495 = 0.0585
-
-    Now, apply Bayes' Theorem:
-    P(D|T+) = (0.90 * 0.01) / 0.0585
-    P(D|T+) = 0.009 / 0.0585 ≈ 0.1538
-
-    This means that even with a positive test, there's only about a 15.38% chance the person actually has the disease, due to the rarity of the disease and the false positive rate.
-
-**Formulas:**
-*   **Bayes' Theorem:**
-    `P(A|B) = [P(B|A) * P(A)] / P(B)`
-    Where `P(B)` can be expanded using the law of total probability:
-    `P(B) = P(B|A) * P(A) + P(B|A') * P(A')` (where A' is the complement of A).
-    So, `P(A|B) = [P(B|A) * P(A)] / [P(B|A) * P(A) + P(B|A') * P(A')]`
-
-**Learning Objectives:**
-*   Understand the purpose and components of Bayes' Theorem.
+#### Learning Objectives:
+*   Understand the purpose and application of Bayes' Theorem.
 *   Apply Bayes' Theorem to update probabilities based on new evidence.
-*   Interpret the results of Bayesian calculations, especially in contexts like medical testing or spam filtering.
+*   Interpret the components of the theorem (prior, likelihood, marginal likelihood, posterior).
 
-**Related Concepts:**
-*   Conditional Probability
-*   Prior and Posterior Probabilities
-*   Likelihood
-*   Law of Total Probability
-*   Bayesian Inference (a broader field)
+#### Comprehensive Explanation:
+Bayes' Theorem describes the probability of an event, based on prior knowledge of conditions that might be related to the event. It is used to update the probability of a hypothesis as more evidence or information becomes available, making it a cornerstone of Bayesian inference.
 
-### 1.6. Conditional Expectation and Variance
+#### Practical Examples:
+*   **Medical diagnosis**: Calculating the probability of having a disease (A) given a positive test result (B).
+    *   P(Disease | Positive Test) = [P(Positive Test | Disease) * P(Disease)] / P(Positive Test)
+    *   Here, P(Disease) is the prior probability (prevalence), P(Positive Test | Disease) is the likelihood (test sensitivity), and P(Positive Test) is the marginal likelihood (overall probability of a positive test). The result, P(Disease | Positive Test), is the posterior probability.
 
-**Summary:** Conditional expectation is the expected value of a random variable given that some other random variable takes on a certain value. Conditional variance measures the variability or spread of a random variable given the value of another. These concepts are crucial for understanding how the distribution of one variable changes when we have information about another.
+#### Relevant Formulas:
+*   **Bayes' Theorem**:
+    `P(A|B) = [P(B|A) * P(A)] / P(B)`
+    *   *Explanation*:
+        *   `P(A|B)`: Posterior probability of event A given B.
+        *   `P(B|A)`: Likelihood of event B given A.
+        *   `P(A)`: Prior probability of event A.
+        *   `P(B)`: Marginal likelihood of event B (can be expanded as `P(B|A)P(A) + P(B|¬A)P(¬A)`).
 
-**Explanation:**
-*   **Conditional Expectation (E[Y|X=x]):** This is the average value of a random variable Y, given that another random variable X has taken a specific value `x`. It's a function of `x`. For example, if X is age and Y is height, E[Height|Age=10] would be the average height of individuals who are 10 years old.
-*   **Conditional Variance (Var(Y|X=x)):** This is the variance of a random variable Y, given that another random variable X has taken a specific value `x`. It quantifies the spread of Y's values around its conditional expectation, for a fixed `x`. For example, Var(Height|Age=10) would be the variability in height among 10-year-olds.
+### 1.6 Conditional Expectation and Variance
 
-**Practical Examples:**
-*   **E[Y|X=x]:** Suppose Y represents a student's exam score and X represents the number of hours they studied. E[Exam Score | Study Hours = 5] would be the average exam score for students who studied exactly 5 hours. This value would likely be higher than E[Exam Score | Study Hours = 1].
-*   **Var(Y|X=x):** Following the previous example, Var(Exam Score | Study Hours = 5) would measure how much the exam scores vary among students who studied 5 hours. A smaller conditional variance suggests that studying 5 hours leads to more consistent scores.
-
-**Formulas:**
-*   **Conditional Expectation (Discrete Random Variables):**
-    `E[Y|X=x] = Σ_y y * P(Y=y | X=x)`
-    Where the sum is over all possible values `y` that Y can take.
-*   **Conditional Expectation (Continuous Random Variables):**
-    `E[Y|X=x] = ∫_(-∞)^∞ y * f(y|x) dy`
-    Where `f(y|x)` is the conditional probability density function of Y given X=x.
-*   **Conditional Variance:**
-    `Var(Y|X=x) = E[(Y - E[Y|X=x])^2 | X=x]`
-    This can also be calculated using the computational formula:
-    `Var(Y|X=x) = E[Y^2|X=x] - (E[Y|X=x])^2`
-
-**Learning Objectives:**
+#### Learning Objectives:
 *   Define conditional expectation and conditional variance.
-*   Understand how conditioning on another variable changes the expected value and variability of a random variable.
-*   Be able to apply the formulas for discrete and continuous cases.
+*   Calculate the expected value of a random variable given a specific condition.
+*   Calculate the variance of a random variable given a specific condition.
 
-**Related Concepts:**
-*   Expectation (Mean)
-*   Variance
-*   Conditional Probability
-*   Joint Probability Distributions
-*   Law of Total Expectation: `E[Y] = E[E[Y|X]]`
+#### Comprehensive Explanation:
+Conditional expectation is the expected value (average) of a random variable given that some other random variable takes on a certain value or condition. Conditional variance measures the spread or dispersion of a random variable given a specific condition, providing insight into how much a variable varies under that particular circumstance.
 
-### 1.7. Mean, Median, Mode and Standard Deviation
+#### Practical Examples:
+*   **Conditional Expectation**: Expected score on a test (X) given that a student studied for a certain number of hours (Y=y). E[Score | Hours Studied = 5].
+*   **Conditional Variance**: Variance of stock returns (X) given specific market conditions (Y=bull market). Var(Stock Returns | Market = Bull).
 
-**Summary:** These are fundamental measures used to describe the central tendency and dispersion (spread) of a dataset. Mean is the average, median is the middle value when data is ordered, and mode is the most frequent value. Standard deviation measures the typical distance of data points from the mean.
+#### Relevant Formulas:
+*   **Conditional Expectation (for discrete variables)**:
+    `E[X|Y=y] = Σx * P(X=x|Y=y)`
+    *   *Explanation*: Sum of each possible value of X multiplied by its conditional probability given Y=y.
+*   **Conditional Variance**:
+    `Var(X|Y=y) = E[X^2|Y=y] - (E[X|Y=y])^2`
+    *   *Explanation*: This is analogous to the general variance formula, but all expectations are conditional on Y=y.
 
-**Explanation:**
-*   **Mean (Average):** The sum of all values divided by the number of values. It's sensitive to outliers.
-*   **Median:** The middle value in a dataset when it is ordered from least to greatest. If there's an even number of values, it's the average of the two middle values. It's robust to outliers.
-*   **Mode:** The value that appears most frequently in a dataset. A dataset can have one mode (unimodal), multiple modes (multimodal), or no mode.
-*   **Standard Deviation (σ):** A measure of the amount of variation or dispersion of a set of values. A low standard deviation indicates that the values tend to be close to the mean, while a high standard deviation indicates that the values are spread out over a wider range. It is the square root of the variance.
+### 1.7 Measures of Central Tendency and Dispersion
 
-**Practical Examples:**
-*   **Data Set:** {1, 2, 2, 3, 4, 5, 5, 5, 6} (n = 9 values)
-    *   **Mean (μ):** (1 + 2 + 2 + 3 + 4 + 5 + 5 + 5 + 6) / 9 = 33 / 9 ≈ 3.67
-    *   **Median:** First, order the data: {1, 2, 2, 3, **4**, 5, 5, 5, 6}. The middle value is 4.
-    *   **Mode:** The value 5 appears three times, which is more than any other value. So, Mode = 5.
-*   **Standard Deviation:** For the data set {1, 2, 3}
-    *   Mean (μ) = (1+2+3)/3 = 2
-    *   Deviations from mean: (1-2)=-1, (2-2)=0, (3-2)=1
-    *   Squared deviations: (-1)^2=1, (0)^2=0, (1)^2=1
-    *   Sum of squared deviations = 1+0+1 = 2
-    *   Variance (σ²) = Sum of squared deviations / n = 2 / 3
-    *   Standard Deviation (σ) = sqrt(2/3) ≈ 0.816
+#### Learning Objectives:
+*   Identify and calculate common measures of central tendency (mean, median, mode).
+*   Identify and calculate common measures of dispersion (standard deviation).
+*   Understand the interpretation of these measures in describing a dataset.
 
-**Formulas:**
-*   **Mean (Population Mean μ, Sample Mean x̄):**
-    `μ = Σx_i / N` (for population)
-    `x̄ = Σx_i / n` (for sample)
-    Where `x_i` are the individual data points, `N` is the population size, and `n` is the sample size.
-*   **Median:**
-    *   If `n` is odd, the median is the `(n+1)/2`-th value in the sorted data.
-    *   If `n` is even, the median is the average of the `n/2`-th and `(n/2)+1`-th values in the sorted data.
-*   **Mode:** The value with the highest frequency.
-*   **Standard Deviation (Population Standard Deviation σ, Sample Standard Deviation s):**
-    `σ = sqrt( Σ(x_i - μ)² / N )` (for population)
-    `s = sqrt( Σ(x_i - x̄)² / (n - 1) )` (for sample, using `n-1` for unbiased estimator)
-    Where `Σ` denotes summation.
+#### Comprehensive Explanation:
+Measures of central tendency (mean, median, and mode) describe the central position of a dataset, indicating where most values cluster. Measures of dispersion, such as standard deviation, quantify the amount of variation or spread of a set of data values, showing how far data points are from the center.
 
-**Learning Objectives:**
-*   Calculate mean, median, and mode for a given dataset.
-*   Understand the implications of each measure of central tendency.
-*   Calculate standard deviation and interpret its meaning as a measure of spread.
-*   Distinguish between population and sample standard deviation formulas.
+#### Practical Examples:
+*   **Mean**: Average height of students in a class. If heights are {160, 170, 180}, mean = (160+170+180)/3 = 170 cm.
+*   **Median**: Middle income in a sorted list of incomes. If incomes are {30k, 40k, 50k, 60k, 100k}, median = 50k. If {30k, 40k, 50k, 60k}, median = (40k+50k)/2 = 45k.
+*   **Mode**: Most frequent shoe size sold. If shoe sizes are {7, 8, 8, 9, 10}, mode = 8.
+*   **Standard Deviation**: Variability in test scores among students. A low standard deviation means scores are close to the average; a high standard deviation means scores are widely spread.
 
-**Related Concepts:**
-*   Variance
-*   Range, Interquartile Range (other measures of dispersion)
-*   Skewness, Kurtosis (measures of shape)
-*   Descriptive Statistics
+#### Relevant Formulas:
+*   **Mean (Population μ, Sample x̄)**:
+    `μ = Σxi / N` (for population)
+    `x̄ = Σxi / n` (for sample)
+    *   *Explanation*: Sum of all values divided by the total number of values.
+*   **Median**: The middle value in a sorted dataset. If `n` is odd, it's the `(n+1)/2`-th value. If `n` is even, it's the average of the `n/2`-th and `(n/2)+1`-th values.
+*   **Mode**: The value that appears most frequently in a dataset. A dataset can have one mode (unimodal), multiple modes (multimodal), or no mode.
+*   **Standard Deviation (Population σ, Sample s)**:
+    `σ = √[ Σ(xi - μ)^2 / N ]` (population standard deviation)
+    `s = √[ Σ(xi - x̄)^2 / (n-1) ]` (sample standard deviation)
+    *   *Explanation*: The square root of the variance. It measures the typical distance of data points from the mean. The `(n-1)` in the sample formula is Bessel's correction, used for an unbiased estimate of the population standard deviation.
 
-### 1.8. Correlation and Covariance
+### 1.8 Correlation and Covariance
 
-**Summary:** Covariance measures the directional relationship between two random variables, indicating whether they tend to increase or decrease together. Correlation normalizes covariance to a value between -1 and 1, indicating both the strength and direction of a linear relationship, making it easier to interpret.
+#### Learning Objectives:
+*   Define covariance and correlation and explain their differences.
+*   Interpret the sign and magnitude of covariance and correlation coefficients.
+*   Understand how these measures quantify the relationship between two variables.
 
-**Explanation:**
-*   **Covariance (Cov(X, Y)):** Measures how two variables change together.
-    *   A positive covariance indicates that X and Y tend to move in the same direction (as one increases, the other tends to increase).
-    *   A negative covariance indicates that X and Y tend to move in opposite directions (as one increases, the other tends to decrease).
-    *   A covariance near zero suggests no linear relationship, but it doesn't mean no relationship at all (e.g., a quadratic relationship might have zero covariance).
-    *   The magnitude of covariance is hard to interpret because it depends on the units of the variables.
-*   **Correlation (Corr(X, Y) or ρ):** A standardized version of covariance, which makes it unitless and easier to interpret.
-    *   Ranges from -1 to +1.
-    *   `+1`: Perfect positive linear relationship.
-    *   `-1`: Perfect negative linear relationship.
-    *   `0`: No linear relationship.
-    *   Correlation only measures *linear* relationships.
+#### Comprehensive Explanation:
+Covariance measures the directional relationship between two random variables, indicating whether they tend to increase or decrease together. Correlation normalizes covariance to measure both the strength and direction of a *linear* relationship between two variables, ranging from -1 (perfect negative linear correlation) to 1 (perfect positive linear correlation), with 0 indicating no linear correlation.
 
-**Practical Examples:**
-*   **Positive Covariance/Correlation:**
-    *   As study hours (X) increase, exam scores (Y) tend to increase. `Cov(X,Y) > 0`, `Corr(X,Y) > 0`.
-    *   Height and weight of individuals.
-*   **Negative Covariance/Correlation:**
-    *   As temperature (X) decreases, heating bill (Y) tends to increase. `Cov(X,Y) < 0`, `Corr(X,Y) < 0`.
-    *   Car age and resale value.
-*   **Zero or Near-Zero Correlation:**
-    *   Shoe size and IQ score (likely no linear relationship).
-    *   For a parabolic relationship `Y = X^2`, the covariance and correlation might be near zero, even though there's a strong non-linear relationship.
+#### Practical Examples:
+*   **Covariance**: How height and weight vary together. A positive covariance suggests that as height increases, weight tends to increase.
+*   **Correlation**: Strong positive correlation between study hours and exam scores. A correlation of 0.9 would suggest that more study hours strongly predict higher exam scores. A correlation of -0.7 between exercise and body fat percentage would suggest that more exercise strongly predicts lower body fat.
 
-**Formulas:**
-*   **Covariance (Population):**
+#### Relevant Formulas:
+*   **Covariance (Cov(X, Y))**:
     `Cov(X, Y) = E[(X - E[X])(Y - E[Y])]`
-    For discrete data: `Cov(X, Y) = (1/N) * Σ (x_i - μ_X)(y_i - μ_Y)`
-*   **Covariance (Sample):**
-    `Cov(X, Y) = (1/(n-1)) * Σ (x_i - x̄)(y_i - ȳ)` (using `n-1` for unbiased estimator)
-*   **Correlation (Pearson Correlation Coefficient):**
-    `Corr(X, Y) = Cov(X, Y) / (σ_X * σ_Y)`
-    Where `σ_X` and `σ_Y` are the standard deviations of X and Y, respectively.
+    *   *Explanation*: Expected value of the product of the deviations of X and Y from their respective means. A positive value indicates that X and Y tend to move in the same direction, a negative value indicates they tend to move in opposite directions.
+*   **Correlation (ρ(X, Y))**:
+    `ρ(X, Y) = Cov(X, Y) / (σX * σY)`
+    *   *Explanation*: Covariance divided by the product of the standard deviations of X and Y. This normalizes the covariance, making it a dimensionless quantity between -1 and 1, which is easier to interpret for strength and direction.
 
-**Learning Objectives:**
-*   Define covariance and correlation.
-*   Understand what positive, negative, and zero values of covariance and correlation imply about the relationship between two variables.
-*   Explain why correlation is often preferred over covariance for interpretation.
-*   Calculate covariance and correlation for a given dataset.
+### 1.9 Random Variables and Probability Mass Functions (Discrete)
 
-**Related Concepts:**
-*   Standard Deviation
-*   Linear Regression
-*   Scatter Plots (visualizing correlation)
-*   Independence (uncorrelated variables are not necessarily independent, but independent variables are always uncorrelated).
-
-### 1.9. Random Variables, Discrete Random Variables and Probability Mass Functions
-
-**Summary:** A random variable is a variable whose value is a numerical outcome of a random phenomenon. A discrete random variable can take on a finite or countably infinite number of distinct values. A Probability Mass Function (PMF) gives the probability that a discrete random variable takes on a specific value.
-
-**Explanation:**
-*   **Random Variable (RV):** A function that maps the outcomes of a random experiment to numerical values. Random variables are typically denoted by capital letters (e.g., X, Y).
-*   **Discrete Random Variable (DRV):** A random variable whose possible values are countable. This means it can take on a finite number of values, or an infinite sequence of values (like 0, 1, 2, ...). Examples include the number of heads in coin flips, the number of defects in a sample, or the number of cars passing a point in an hour.
-*   **Probability Mass Function (PMF, P(X=x) or f_X(x)):** A function that assigns probabilities to each possible value of a discrete random variable. The PMF must satisfy two conditions:
-    1.  The probability for each value must be between 0 and 1 (inclusive).
-    2.  The sum of all probabilities for all possible values must equal 1.
-
-**Practical Examples:**
-*   **Random Variable:** Let X be the number of heads obtained when flipping a coin 3 times.
-    *   The possible outcomes are {HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}.
-    *   The values X can take are {3, 2, 2, 2, 1, 1, 1, 0}.
-    *   So, X is a random variable mapping these outcomes to numbers.
-*   **Discrete RV:** Number of cars passing a specific intersection in an hour. The variable can take integer values (0, 1, 2, ...).
-*   **PMF for rolling a fair die:**
-    Let X be the outcome of rolling a fair six-sided die.
-    The possible values for X are {1, 2, 3, 4, 5, 6}.
-    The PMF is:
-    P(X=x) = 1/6 for x ∈ {1, 2, 3, 4, 5, 6}
-    P(X=x) = 0 otherwise.
-    Check properties:
-    1.  P(X=x) = 1/6 >= 0 for all x.
-    2.  Σ P(X=x_i) = P(X=1) + P(X=2) + ... + P(X=6) = 1/6 + 1/6 + ... + 1/6 = 6/6 = 1.
-
-**Formulas:**
-*   **PMF Properties:**
-    1.  `P(X=x_i) >= 0` for all possible values `x_i`.
-    2.  `Σ P(X=x_i) = 1` where the sum is over all possible values of X.
-*   **Probability of an event using PMF:**
-    `P(a ≤ X ≤ b) = Σ_{x_i from a to b} P(X=x_i)`
-
-**Learning Objectives:**
-*   Define a random variable and distinguish between discrete and continuous random variables.
+#### Learning Objectives:
+*   Define a discrete random variable.
 *   Understand the concept of a Probability Mass Function (PMF).
-*   Be able to write a PMF for simple discrete random variables and verify its properties.
+*   Construct and interpret a PMF for a discrete random variable.
 
-**Related Concepts:**
-*   Sample Space
-*   Events
-*   Cumulative Distribution Function (CDF)
-*   Expected Value of a Discrete RV
+#### Comprehensive Explanation:
+A random variable is a variable whose value is subject to variations due to chance, arising from a random experiment. A discrete random variable can take on a finite or countably infinite number of distinct values (e.g., integers). Its probability mass function (PMF) gives the probability that a discrete random variable is exactly equal to some specific value.
 
-### 1.10. Uniform, Bernoulli, Binomial Distribution
+#### Practical Examples:
+*   **Number of heads in two coin flips**: Let X be the random variable representing the number of heads.
+    *   Possible values for X: {0, 1, 2}.
+    *   PMF:
+        *   P(X=0) = P(TT) = 0.25
+        *   P(X=1) = P(HT or TH) = 0.5
+        *   P(X=2) = P(HH) = 0.25
+    *   The sum of probabilities is 0.25 + 0.5 + 0.25 = 1.
 
-**Summary:** These are common discrete probability distributions. The Discrete Uniform distribution assigns equal probability to each outcome in a finite set. The Bernoulli distribution models a single trial with two possible outcomes (success/failure). The Binomial distribution models the number of successes in a fixed number of independent Bernoulli trials.
+#### Relevant Formulas:
+*   **Probability Mass Function (PMF)**:
+    `P(X=x)` for all possible values `x`
+    *   *Properties*:
+        *   `0 ≤ P(X=x) ≤ 1` for all `x`.
+        *   `Σ P(X=x) = 1` (the sum of probabilities for all possible values must be 1).
+    *   *Explanation*: Maps each possible outcome of a discrete random variable to its probability.
 
-**Explanation:**
-*   **Uniform Distribution (Discrete):** Every possible outcome in a finite set has an equal probability of occurring.
-*   **Bernoulli Distribution:** Describes the probability of success or failure in a single trial. It has one parameter, `p`, which is the probability of success.
-    *   Outcome 1 (Success) occurs with probability `p`.
-    *   Outcome 0 (Failure) occurs with probability `1-p`.
-*   **Binomial Distribution:** Describes the number of successes in a fixed number (`n`) of independent Bernoulli trials, each with the same probability of success (`p`). It has two parameters: `n` (number of trials) and `p` (probability of success in a single trial).
+### 1.10 Discrete Probability Distributions (Uniform, Bernoulli, Binomial)
 
-**Practical Examples:**
-*   **Uniform (Discrete):**
-    *   Rolling a fair six-sided die: Each face (1, 2, 3, 4, 5, 6) has a probability of 1/6.
-    *   Drawing a card from a standard deck (assuming each card has equal probability).
-*   **Bernoulli:**
-    *   Flipping a coin once: P(Head) = 0.5 (success), P(Tail) = 0.5 (failure).
-    *   Checking if a customer clicks on an ad (click or no click).
-*   **Binomial:**
-    *   Number of heads in 10 coin flips (n=10, p=0.5).
-    *   Number of defective items in a batch of 20, where each item has a 5% chance of being defective (n=20, p=0.05).
-    *   Number of students passing an exam out of a class of 30, if each student has an 80% chance of passing (n=30, p=0.8).
-
-**Formulas:**
-*   **Uniform Distribution (Discrete) PMF:**
-    `P(X=x) = 1/N` for `x ∈ {x_1, x_2, ..., x_N}`
-    Where `N` is the total number of equally likely outcomes.
-*   **Bernoulli Distribution PMF:**
-    `P(X=1) = p` (probability of success)
-    `P(X=0) = 1-p` (probability of failure)
-    Expected Value: `E[X] = p`
-    Variance: `Var(X) = p(1-p)`
-*   **Binomial Distribution PMF:**
-    `P(X=k) = C(n, k) * p^k * (1-p)^(n-k)`
-    Where:
-    *   `n` is the number of trials.
-    *   `k` is the number of successes (0 ≤ k ≤ n).
-    *   `p` is the probability of success on a single trial.
-    *   `C(n, k)` is the binomial coefficient (n choose k), `n! / (k!(n-k)!)`.
-    Expected Value: `E[X] = np`
-    Variance: `Var(X) = np(1-p)`
-
-**Learning Objectives:**
-*   Identify and define discrete uniform, Bernoulli, and binomial distributions.
-*   Understand the parameters and characteristics of each distribution.
-*   Apply the PMF formulas to calculate probabilities for these distributions.
+#### Learning Objectives:
+*   Identify and describe the characteristics of Uniform, Bernoulli, and Binomial distributions.
+*   Apply the formulas for PMFs and expected values for these distributions.
 *   Recognize real-world scenarios where these distributions are applicable.
 
-**Related Concepts:**
-*   Probability Mass Function (PMF)
-*   Combinations (for Binomial)
-*   Expected Value and Variance of Discrete RVs
-*   Poisson Distribution (related to Binomial for rare events)
+#### Comprehensive Explanation:
+These are common probability distributions for discrete random variables, each modeling different types of random phenomena.
+*   **Uniform Distribution**: All possible outcomes are equally likely.
+*   **Bernoulli Distribution**: Models a single trial with exactly two possible outcomes (success/failure), each with a fixed probability.
+*   **Binomial Distribution**: Models the number of successes in a fixed number of independent Bernoulli trials.
 
-### 1.11. Continuous Random Variables and Probability Distribution Function
+#### Practical Examples:
+*   **Uniform**: Rolling a fair six-sided die. Each outcome {1, 2, 3, 4, 5, 6} has a probability of 1/6.
+    *   P(X=x) = 1/6 for x=1, 2, ..., 6.
+*   **Bernoulli**: Flipping a coin once. Let 'Heads' be a success (X=1) and 'Tails' be a failure (X=0).
+    *   P(X=1) = p (e.g., 0.5 for a fair coin)
+    *   P(X=0) = 1-p
+*   **Binomial**: Number of heads in 10 coin flips. Here, n=10 (number of trials) and p=0.5 (probability of success on each trial).
+    *   P(getting exactly 7 heads in 10 flips) = (₁₀C₇) * (0.5)⁷ * (0.5)³
 
-**Summary:** A continuous random variable can take any value within a given range or interval. Its probability is described by a Probability Density Function (PDF), where the probability of the variable falling within a range is the area under the PDF curve. Unlike discrete variables, the probability of a continuous variable taking an *exact* single value is zero.
+#### Relevant Formulas:
+*   **Discrete Uniform Distribution**:
+    `P(X=x) = 1/n` for `x` in `{x1, x2, ..., xn}`
+    *   *Explanation*: Each of the `n` outcomes has an equal probability.
+*   **Bernoulli Distribution**:
+    `P(X=1) = p` (probability of success)
+    `P(X=0) = 1-p` (probability of failure)
+    *   *Explanation*: Describes the outcome of a single trial with two possible results.
+*   **Binomial Distribution**:
+    `P(X=k) = (nCk) * p^k * (1-p)^(n-k)`
+    *   *Explanation*: `n` is the number of trials, `k` is the number of successes, `p` is the probability of success on a single trial. `nCk` is the binomial coefficient, representing the number of ways to choose `k` successes from `n` trials.
 
-**Explanation:**
-*   **Continuous Random Variable (CRV):** A random variable that can take on any value within a continuous range or interval. Examples include height, weight, temperature, time, or measurements like voltage.
-*   **Probability Density Function (PDF, f(x)):** A function that describes the relative likelihood for a continuous random variable to take on a given value. For a CRV, `f(x)` itself is not a probability; rather, the probability of the variable falling within an interval `[a, b]` is the area under the PDF curve between `a` and `b`.
-    The PDF must satisfy two conditions:
-    1.  `f(x) >= 0` for all `x` (the density cannot be negative).
-    2.  The total area under the curve must equal 1 (`∫_(-∞)^∞ f(x) dx = 1`).
+### 1.11 Continuous Random Variables and Probability Distribution Function (PDF)
 
-**Practical Examples:**
-*   **Continuous RV:**
-    *   The height of a randomly selected person (e.g., between 150 cm and 190 cm).
-    *   The time it takes for a bus to arrive (e.g., between 0 and 30 minutes).
-    *   The temperature in a room.
-*   **PDF:** Consider a continuous uniform distribution over the interval [0, 10].
-    *   The PDF would be `f(x) = 1/10` for `0 <= x <= 10`, and `f(x) = 0` otherwise.
-    *   The probability that X is between 2 and 5: `P(2 ≤ X ≤ 5) = ∫_2^5 (1/10) dx = [x/10]_2^5 = 5/10 - 2/10 = 3/10 = 0.3`. This is the area of a rectangle with base (5-2)=3 and height 1/10.
-    *   The probability of X being exactly 3.5 (P(X=3.5)) is 0, because it corresponds to a line segment with zero width, hence zero area under the curve.
-
-**Formulas:**
-*   **PDF Properties:**
-    1.  `f(x) >= 0` for all `x`.
-    2.  `∫_(-∞)^∞ f(x) dx = 1`.
-*   **Probability for an interval:**
-    `P(a ≤ X ≤ b) = ∫_a^b f(x) dx`
-*   **Relationship with CDF:**
-    `F(x) = ∫_(-∞)^x f(t) dt` (CDF is the integral of PDF)
-    `f(x) = d/dx F(x)` (PDF is the derivative of CDF, where the derivative exists)
-
-**Learning Objectives:**
-*   Define a continuous random variable and understand its key characteristics.
+#### Learning Objectives:
+*   Define a continuous random variable.
 *   Understand the concept of a Probability Density Function (PDF).
-*   Be able to interpret a PDF and calculate probabilities for intervals by finding the area under the curve.
-*   Recognize that the probability of a continuous random variable taking an exact value is zero.
+*   Interpret the PDF and use it to calculate probabilities over intervals.
 
-**Related Concepts:**
-*   Discrete Random Variables
-*   Cumulative Distribution Function (CDF)
-*   Integration (Calculus)
-*   Expected Value and Variance of Continuous RVs
+#### Comprehensive Explanation:
+A continuous random variable can take any value within a given range or interval (e.g., real numbers). Unlike discrete variables, the probability of a continuous random variable being *exactly equal* to a single specific value is zero. Instead, its probability density function (PDF), denoted `f(x)`, describes the *likelihood* of the random variable falling within a particular range of values. The area under the PDF curve over an interval gives the probability for that interval.
 
-### 1.12. Uniform, Exponential, Poisson, Normal, Standard Normal, t-distribution, Chi-squared Distributions
+#### Practical Examples:
+*   **Height of a person**: Can be 170 cm, 170.1 cm, 170.123 cm, etc.
+*   **Temperature**: The temperature outside can take any value within a range.
+*   **Time**: The time it takes for a bus to arrive.
+*   The PDF for a standard normal distribution is the familiar bell curve, where the height of the curve at any point `x` indicates the relative likelihood of `x` occurring.
 
-**Summary:** This section covers several key continuous and discrete (Poisson) probability distributions, each modeling different types of phenomena. They are fundamental in statistics for modeling data, hypothesis testing, and constructing confidence intervals.
+#### Relevant Formulas:
+*   **Properties of a PDF**:
+    *   `f(x) ≥ 0` for all `x`.
+    *   `∫f(x) dx = 1` over the entire range of `X`.
+    *   `P(a ≤ X ≤ b) = ∫[a,b] f(x) dx`
+    *   *Explanation*: The total area under the PDF curve must equal 1. The probability that `X` falls between `a` and `b` is the integral of the PDF from `a` to `b`.
 
-**Explanation:**
+### 1.12 Continuous Probability Distributions (Uniform, Exponential, Poisson, Normal, Standard Normal, t, Chi-squared)
 
-#### 1.12.1. Uniform Distribution (Continuous)
-*   **Description:** All values within a given interval `[a, b]` have an equal probability density. It's often used when there's no reason to believe any value is more likely than another within a specified range.
-*   **Examples:** Random number generation between 0 and 1; the arrival time of a bus that is known to arrive every 15 minutes, uniformly distributed within that interval.
-*   **PDF:** `f(x) = 1/(b-a)` for `a ≤ x ≤ b`, and `0` otherwise.
-*   **Mean:** `(a+b)/2`
-*   **Variance:** `(b-a)^2 / 12`
-
-#### 1.12.2. Exponential Distribution
-*   **Description:** Models the time until an event occurs in a Poisson process (a process where events occur continuously and independently at a constant average rate). It is memoryless, meaning the probability of an event occurring in the future is independent of how much time has already passed.
-*   **Examples:** Time until the next customer arrives at a store; lifetime of a machine; decay of a radioactive particle.
-*   **PDF:** `f(x; λ) = λe^(-λx)` for `x ≥ 0`, where `λ` is the rate parameter (average number of events per unit time).
-*   **Mean:** `1/λ`
-*   **Variance:** `1/λ^2`
-
-#### 1.12.3. Poisson Distribution
-*   **Description:** A discrete distribution that models the number of events occurring in a fixed interval of time or space, given a constant average rate (`λ`) and that these events occur independently. It's often used for rare events.
-*   **Examples:** Number of calls received by a call center in an hour; number of typos on a page; number of accidents at an intersection in a month.
-*   **PMF:** `P(X=k; λ) = (λ^k * e^(-λ)) / k!` for `k = 0, 1, 2, ...`, where `λ` is the average rate of events.
-*   **Mean:** `λ`
-*   **Variance:** `λ`
-
-#### 1.12.4. Normal Distribution (Gaussian Distribution)
-*   **Description:** The most important and widely used continuous distribution, characterized by its symmetric, bell-shaped curve. Many natural phenomena (e.g., heights, blood pressure, measurement errors) follow a normal distribution. It is defined by its mean (μ) and standard deviation (σ).
-*   **Examples:** Heights of adults, IQ scores, measurement errors in scientific experiments.
-*   **PDF:** `f(x; μ, σ²) = (1 / (σ√(2π))) * e^(-(x-μ)² / (2σ²))`
-*   **Mean:** `μ`
-*   **Variance:** `σ²`
-
-#### 1.12.5. Standard Normal Distribution
-*   **Description:** A special case of the normal distribution with a mean of 0 and a standard deviation of 1. Any normal random variable can be transformed into a standard normal random variable (Z-score), which allows for easy comparison and probability calculation using standard normal tables.
-*   **Examples:** Z-scores used in hypothesis testing and confidence intervals.
-*   **PDF:** `f(z; 0, 1) = (1 / √(2π)) * e^(-z² / 2)`
-*   **Z-score Transformation:** `Z = (X - μ) / σ`
-
-#### 1.12.6. t-distribution (Student's t-distribution)
-*   **Description:** A continuous distribution that arises when estimating the mean of a normally distributed population in situations where the sample size is small and the population standard deviation is unknown. It has fatter tails than the normal distribution, reflecting greater uncertainty. It is parameterized by its degrees of freedom (df). As `df` approaches infinity, the t-distribution approaches the standard normal distribution.
-*   **Examples:** Used in t-tests for comparing means of small samples, and in constructing confidence intervals for means when population variance is unknown.
-*   **PDF:** Complex, depends on degrees of freedom (ν).
-*   **Mean:** `0` (for ν > 1)
-*   **Variance:** `ν / (ν - 2)` (for ν > 2)
-
-#### 1.12.7. Chi-squared Distribution (χ²-distribution)
-*   **Description:** A continuous distribution that arises in statistics as the sum of the squares of `k` independent standard normal random variables. It is widely used in hypothesis testing, particularly for goodness-of-fit tests, tests of independence in contingency tables, and confidence intervals for population variance. It is parameterized by its degrees of freedom (k).
-*   **Examples:** Testing if observed frequencies match expected frequencies (goodness-of-fit), testing for association between categorical variables.
-*   **PDF:** Complex, depends on degrees of freedom (k).
-*   **Mean:** `k`
-*   **Variance:** `2k`
-
-**Learning Objectives:**
-*   Identify and define the characteristics of uniform (continuous), exponential, Poisson, normal, standard normal, t-distribution, and chi-squared distributions.
+#### Learning Objectives:
+*   Identify and describe the characteristics of various continuous probability distributions.
 *   Understand the parameters and typical applications of each distribution.
-*   Know how to convert a normal variable to a standard normal (Z-score).
-*   Recognize when to use each distribution in statistical analysis.
+*   Differentiate between Normal, Standard Normal, t, and Chi-squared distributions and their uses in inference.
 
-**Related Concepts:**
-*   Probability Mass Function (PMF) and Probability Density Function (PDF)
-*   Central Limit Theorem
-*   Hypothesis Testing
-*   Confidence Intervals
-*   Expected Value and Variance
+#### Comprehensive Explanation:
+These are key distributions for continuous random variables, each serving different purposes in modeling and statistical inference.
+*   **Uniform**: Constant probability density over a specified interval.
+*   **Exponential**: Models the time until an event occurs in a Poisson process (events occurring continuously and independently at a constant average rate).
+*   **Poisson**: (Often treated as discrete, but for large counts can be approximated by Normal) Models the number of events occurring in a fixed interval of time or space.
+*   **Normal (Gaussian)**: The most common 'bell curve' distribution, characterized by its mean (μ) and standard deviation (σ). Many natural phenomena follow this distribution.
+*   **Standard Normal**: A special case of the Normal distribution with mean 0 and standard deviation 1 (Z-distribution). Used for standardizing normal variables.
+*   **t-distribution (Student's t-distribution)**: Similar to the normal distribution but with heavier tails, used for small sample sizes or when the population standard deviation is unknown, particularly in hypothesis testing and confidence intervals.
+*   **Chi-squared (χ²)**: Arises in statistics as the distribution of a sum of squared standard normal random variables. Primarily used in hypothesis testing for goodness of fit, independence of categorical variables, and confidence intervals for variance.
 
-### 1.13. Cumulative Distribution Function (CDF)
+#### Practical Examples:
+*   **Uniform**: Waiting time for a bus that arrives exactly every 10 minutes. The waiting time could be any value between 0 and 10 minutes with equal probability density.
+*   **Exponential**: Lifespan of an electronic component, time between customer arrivals at a service counter.
+*   **Normal**: Heights or blood pressure measurements in a large population, errors in measurements.
+*   **t-distribution**: Used when constructing a confidence interval for a population mean based on a small sample (e.g., n < 30) where the population standard deviation is unknown.
+*   **Chi-squared**: Testing if observed frequencies of categories in a survey match expected frequencies (goodness of fit) or if two categorical variables are independent (test of independence).
 
-**Summary:** The Cumulative Distribution Function (CDF) gives the probability that a random variable X will take a value less than or equal to `x`. It is defined for both discrete and continuous random variables and provides a complete description of the probability distribution of a random variable.
+#### Relevant Formulas:
+*   **Continuous Uniform PDF**:
+    `f(x) = 1/(b-a)` for `a ≤ x ≤ b`, and `0` otherwise.
+    *   *Explanation*: The probability density is constant over the interval `[a, b]`.
+*   **Exponential PDF**:
+    `f(x) = λe^(-λx)` for `x ≥ 0`, and `0` otherwise.
+    *   *Explanation*: `λ` (lambda) is the rate parameter, representing the average number of events per unit time. `e` is Euler's number.
+*   **Normal PDF**:
+    `f(x) = [1 / (σ√(2π))] * e^[-(x-μ)^2 / (2σ^2)]`
+    *   *Explanation*: `μ` is the mean, `σ` is the standard deviation, `π` is pi, `e` is Euler's number. This formula describes the bell-shaped curve.
+*   **Standard Normal (Z-score)**:
+    `Z = (X - μ) / σ`
+    *   *Explanation*: Transforms any normal random variable `X` into a standard normal random variable `Z`, which has a mean of 0 and a standard deviation of 1.
+*   **t-distribution (t-statistic)**:
+    `t = (x̄ - μ) / (s/√n)`
+    *   *Explanation*: `x̄` is the sample mean, `μ` is the hypothesized population mean, `s` is the sample standard deviation, `n` is the sample size. Used when population standard deviation is unknown.
+*   **Chi-squared Test Statistic**:
+    `χ² = Σ [(Observed - Expected)^2 / Expected]`
+    *   *Explanation*: Sum of squared differences between observed and expected frequencies, divided by expected frequencies. Used to test hypotheses about categorical data.
 
-**Explanation:**
-The CDF, denoted as `F(x)`, is a function that maps a value `x` to the probability that the random variable X will be less than or equal to `x`.
-*   For **discrete random variables**, the CDF is a step function, jumping at each possible value of X.
-*   For **continuous random variables**, the CDF is a continuous, non-decreasing function.
+### 1.13 Cumulative Distribution Function (CDF)
 
-Properties of a CDF:
-1.  `0 ≤ F(x) ≤ 1` for all `x`.
-2.  `lim_(x→-∞) F(x) = 0`.
-3.  `lim_(x→∞) F(x) = 1`.
-4.  `F(x)` is non-decreasing: if `a < b`, then `F(a) ≤ F(b)`.
-
-**Practical Examples:**
-*   **CDF for a fair die (Discrete):** Let X be the outcome of rolling a fair six-sided die.
-    *   P(X=1) = 1/6, P(X=2) = 1/6, ..., P(X=6) = 1/6.
-    *   F(1) = P(X ≤ 1) = P(X=1) = 1/6
-    *   F(2) = P(X ≤ 2) = P(X=1) + P(X=2) = 1/6 + 1/6 = 2/6 = 1/3
-    *   F(3) = P(X ≤ 3) = P(X=1) + P(X=2) + P(X=3) = 3/6 = 0.5
-    *   F(3.5) = P(X ≤ 3.5) = P(X ≤ 3) = 0.5 (since 3.5 is not a possible outcome)
-    *   F(6) = P(X ≤ 6) = 1
-*   **CDF for a continuous variable:** For a continuous variable with PDF `f(t)`, the CDF `F(x)` is the integral of the PDF from `-∞` to `x`. For example, for a standard normal distribution, `F(z)` gives the area under the bell curve to the left of `z`.
-
-**Formulas:**
-*   **Discrete CDF:**
-    `F(x) = P(X ≤ x) = Σ_{t ≤ x} P(X=t)` (sum over all values `t` less than or equal to `x`).
-*   **Continuous CDF:**
-    `F(x) = P(X ≤ x) = ∫_(-∞)^x f(t) dt` (integral of the PDF `f(t)` from negative infinity to `x`).
-*   **Using CDF to find probabilities for intervals:**
-    `P(a < X ≤ b) = F(b) - F(a)`
-    For continuous variables, `P(a < X ≤ b) = P(a ≤ X < b) = P(a ≤ X ≤ b) = F(b) - F(a)`.
-
-**Learning Objectives:**
+#### Learning Objectives:
 *   Define the Cumulative Distribution Function (CDF) for both discrete and continuous random variables.
-*   Understand the properties of a CDF.
-*   Be able to calculate and interpret the CDF for simple distributions.
-*   Use the CDF to find probabilities for intervals.
+*   Calculate and interpret the CDF for a given probability distribution.
+*   Understand the relationship between PDF/PMF and CDF.
 
-**Related Concepts:**
-*   Probability Mass Function (PMF)
-*   Probability Density Function (PDF)
-*   Expected Value
-*   Quantiles and Percentiles (derived from CDF)
+#### Comprehensive Explanation:
+The Cumulative Distribution Function (CDF), denoted `F(x)`, gives the probability that a random variable X will take a value less than or equal to `x`. It is defined for both discrete and continuous random variables and provides a complete description of the probability distribution of a random variable.
 
-### 1.14. Conditional PDF
+#### Practical Examples:
+*   **Discrete (e.g., rolling a die)**:
+    *   F(3) = P(X ≤ 3) = P(X=1) + P(X=2) + P(X=3) = 1/6 + 1/6 + 1/6 = 3/6 = 0.5.
+*   **Continuous (e.g., normal distribution)**: The CDF at a point `x` gives the area under the PDF curve to the left of `x`. For example, `F(0)` for a standard normal distribution is 0.5, meaning there's a 50% chance of a value being less than or equal to 0.
 
-**Summary:** The Conditional Probability Density Function (PDF) describes the probability distribution of a continuous random variable given that another continuous random variable has taken on a specific value. It is the continuous analogue of conditional probability for discrete variables, allowing us to update our beliefs about one variable when we have information about another.
+#### Relevant Formulas:
+*   **CDF for Discrete Random Variables**:
+    `F(x) = P(X ≤ x) = Σ P(X=i)` for all `i ≤ x`
+    *   *Explanation*: Sums the probabilities of all values less than or equal to `x`.
+*   **CDF for Continuous Random Variables**:
+    `F(x) = P(X ≤ x) = ∫[-∞,x] f(t) dt`
+    *   *Explanation*: The integral of the PDF from negative infinity up to `x`.
 
-**Explanation:**
-Just as conditional probability `P(A|B)` tells us the probability of event A given event B for discrete variables, the conditional PDF `f(y|x)` tells us the probability density of a continuous random variable Y given that another continuous random variable X has taken a specific value `x`.
+### 1.14 Conditional PDF
 
-It's derived from the joint PDF of X and Y, `f(x, y)`, and the marginal PDF of X, `f(x)`. The idea is to "slice" the joint distribution at `X=x` and then normalize the resulting slice so that its integral is 1, effectively creating a new PDF for Y under the condition `X=x`.
+#### Learning Objectives:
+*   Define the conditional probability density function (PDF).
+*   Understand its application in describing the distribution of one continuous variable given another.
+*   Apply the formula for conditional PDF.
 
-**Practical Examples:**
-*   If X represents the amount of rainfall (in cm) and Y represents the growth of a plant (in cm), then `f(y|x=5)` would describe the probability density of plant growth given that there were exactly 5 cm of rainfall. This conditional PDF would likely have a higher mean for Y than if `x` were 1 cm.
-*   In finance, if X is the daily return of a stock and Y is the daily return of an index, `f(y|x)` could describe the distribution of the index return given a particular stock return.
+#### Comprehensive Explanation:
+The conditional probability density function (PDF), `f(x|y)`, describes the probability distribution of a continuous random variable X given that another continuous random variable Y has taken a specific value `y`. It allows us to understand how the distribution of one variable changes when we have information about another related variable.
 
-**Formulas:**
-*   **Conditional PDF:**
-    `f(y|x) = f(x, y) / f(x)` (provided `f(x) > 0`)
-    Where:
-    *   `f(x, y)` is the joint PDF of X and Y.
-    *   `f(x)` is the marginal PDF of X, calculated by integrating the joint PDF over all possible values of Y: `f(x) = ∫_(-∞)^∞ f(x, y) dy`.
+#### Practical Examples:
+*   The distribution of a student's exam score (X) given their study hours (Y), where both are continuous variables. `f(score | study_hours=10)` would show the likelihood of different scores for students who studied exactly 10 hours.
 
-*   **Properties of Conditional PDF:**
-    1.  `f(y|x) >= 0` for all `y`.
-    2.  `∫_(-∞)^∞ f(y|x) dy = 1` (for a fixed `x`, it integrates to 1, acting as a valid PDF for Y).
+#### Relevant Formulas:
+*   **Conditional PDF**:
+    `f(x|y) = f(x,y) / f(y)` (where `f(y) > 0`)
+    *   *Explanation*: `f(x,y)` is the joint PDF of X and Y, and `f(y)` is the marginal PDF of Y. This formula is analogous to the conditional probability formula for discrete variables.
 
-**Learning Objectives:**
-*   Define the conditional Probability Density Function (PDF).
-*   Understand its relationship to joint and marginal PDFs.
-*   Be able to interpret `f(y|x)` as the probability density of Y given X=x.
-*   Recognize how conditional PDF is used to model relationships between continuous random variables.
+### 1.15 Central Limit Theorem (CLT)
 
-**Related Concepts:**
-*   Conditional Probability (for discrete variables)
-*   Joint PDF
-*   Marginal PDF
-*   Conditional Expectation
-*   Bayes' Theorem (can be extended to PDFs)
+#### Learning Objectives:
+*   State the Central Limit Theorem and its conditions.
+*   Understand the significance of the CLT in statistical inference.
+*   Explain how the sampling distribution of the mean approaches normality.
 
-### 1.15. Central Limit Theorem (CLT)
+#### Comprehensive Explanation:
+The Central Limit Theorem (CLT) is a cornerstone of statistics. It states that the distribution of sample means of a sufficiently large number of independent, identically distributed random variables will be approximately normal, regardless of the original population's distribution. This theorem is crucial because it allows us to use normal distribution theory to make inferences about population parameters even when the population distribution is unknown or non-normal.
 
-**Summary:** The Central Limit Theorem (CLT) is a cornerstone of statistics. It states that the distribution of sample means (or sums) of a large number of independent, identically distributed random variables will be approximately normal, regardless of the original distribution of the variables, provided the sample size is sufficiently large.
+#### Practical Examples:
+*   If you repeatedly draw samples of 30 students from a university and calculate their average height, the distribution of these sample averages will be approximately normal, even if individual student heights are not normally distributed (e.g., if the university has a mix of very short and very tall students). This allows us to use normal distribution properties to analyze the average height.
 
-**Explanation:**
-The CLT is powerful because it allows us to use normal distribution theory to make inferences about population means, even when the population itself is not normally distributed.
+#### Relevant Formulas:
+*   **Sampling Distribution of the Sample Mean**:
+    `x̄ ~ N(μ, σ^2/n)` for large `n`
+    *   *Explanation*: The sample mean `x̄` is approximately normally distributed with a mean equal to the population mean `μ` and a variance equal to the population variance `σ^2` divided by the sample size `n`. The standard deviation of the sample mean, `σ/√n`, is known as the standard error.
 
-Key implications:
-*   **Shape:** The distribution of sample means will be approximately bell-shaped (normal).
-*   **Center:** The mean of the sample means (E[x̄]) will be equal to the population mean (μ).
-*   **Spread:** The standard deviation of the sample means, known as the **standard error of the mean**, will be `σ / √n`, where `σ` is the population standard deviation and `n` is the sample size. As `n` increases, the standard error decreases, meaning sample means become more concentrated around the population mean.
-*   **Condition:** The "sufficiently large" sample size (`n`) is typically considered to be `n ≥ 30`, though it can be smaller for distributions already close to normal, and larger for highly skewed distributions.
+### 1.16 Confidence Interval
 
-**Practical Examples:**
-*   Imagine you are interested in the average height of all adults in a country. The population distribution of heights might be slightly skewed, but if you take many random samples of, say, 50 adults each, and calculate the mean height for each sample, the distribution of these sample means will be approximately normal.
-*   If you repeatedly roll a single die (which has a uniform distribution) and calculate the average of, say, 30 rolls, and then repeat this process many times, the distribution of these averages will approximate a normal distribution.
-*   In quality control, if you take daily samples of a product's weight, even if individual product weights are not normally distributed, the average weight of the samples over time will tend to follow a normal distribution, allowing for control charts and statistical process control.
+#### Learning Objectives:
+*   Define a confidence interval and its purpose.
+*   Interpret a confidence interval correctly.
+*   Construct confidence intervals for population means using appropriate formulas.
 
-**Formulas:**
-*   **Mean of Sample Means:** `E[x̄] = μ`
-    Where `x̄` is the sample mean and `μ` is the population mean.
-*   **Standard Error of the Mean (Standard Deviation of Sample Means):**
-    `σ_x̄ = σ / √n`
-    Where `σ` is the population standard deviation and `n` is the sample size.
-*   **Z-score for Sample Mean:**
-    `Z = (x̄ - μ) / (σ / √n)`
-    This Z-score allows us to calculate probabilities related to sample means using the standard normal distribution.
+#### Comprehensive Explanation:
+A confidence interval provides a range of values within which the true population parameter (e.g., mean, proportion) is expected to lie with a certain level of confidence. It quantifies the uncertainty associated with estimating a population parameter from sample data. A 95% confidence interval, for instance, means that if we were to take many samples and construct confidence intervals for each, about 95% of these intervals would contain the true population parameter.
 
-**Learning Objectives:**
-*   State the Central Limit Theorem and explain its significance in statistics.
-*   Understand how the distribution of sample means behaves regardless of the original population distribution.
-*   Define and calculate the standard error of the mean.
-*   Apply the CLT to calculate probabilities for sample means using Z-scores.
+#### Practical Examples:
+*   A 95% confidence interval for the average height of adult males might be (170 cm, 175 cm). This means we are 95% confident that the true average height of all adult males falls within this specific range. It does not mean there is a 95% chance the true mean is in *this specific interval*.
 
-**Related Concepts:**
-*   Normal Distribution
-*   Sampling Distributions
-*   Law of Large Numbers (related but distinct)
-*   Hypothesis Testing
-*   Confidence Intervals
+#### Relevant Formulas:
+*   **Confidence Interval for Mean (known population standard deviation σ)**:
+    `x̄ ± Z* (σ/√n)`
+    *   *Explanation*: `x̄` is the sample mean, `Z*` is the critical Z-value corresponding to the desired confidence level (e.g., 1.96 for 95% confidence), `σ` is the population standard deviation, and `n` is the sample size.
+*   **Confidence Interval for Mean (unknown population standard deviation σ, estimated by sample standard deviation s)**:
+    `x̄ ± t* (s/√n)`
+    *   *Explanation*: `t*` is the critical t-value from the t-distribution with `n-1` degrees of freedom, corresponding to the desired confidence level. `s` is the sample standard deviation. Used when `σ` is unknown, especially for smaller sample sizes.
 
-### 1.16. Confidence Interval
+### 1.17 Hypothesis Testing (z-test, t-test, chi-squared test)
 
-**Summary:** A confidence interval provides a range of values, derived from sample data, that is likely to contain the true value of an unknown population parameter (such as the population mean or proportion) with a certain level of confidence. It quantifies the uncertainty associated with estimating a population parameter from a sample.
+#### Learning Objectives:
+*   Understand the fundamental principles of hypothesis testing (null vs. alternative hypothesis, p-value, significance level).
+*   Identify when to use a z-test, t-test, or chi-squared test.
+*   Perform and interpret the results of these common hypothesis tests.
 
-**Explanation:**
-Instead of providing a single point estimate (e.g., sample mean), a confidence interval gives an interval estimate. A 95% confidence interval, for example, means that if we were to take many samples and construct a confidence interval from each, approximately 95% of those intervals would contain the true population parameter. It does *not* mean there is a 95% probability that the true parameter falls within a *specific* calculated interval.
+#### Comprehensive Explanation:
+Hypothesis testing is a statistical method used to make inferences about a population parameter based on sample data. It involves formulating a null hypothesis (H₀, a statement of no effect or no difference) and an alternative hypothesis (H₁, a statement of effect or difference), collecting data, and using statistical tests to determine whether there is enough evidence to reject the null hypothesis.
+*   **z-test**: Used for large samples (typically n ≥ 30) or when the population standard deviation is known.
+*   **t-test**: Used for small samples (typically n < 30) or when the population standard deviation is unknown and estimated from the sample.
+*   **Chi-squared test (χ²-test)**: Used for categorical data to test for independence between two categorical variables or to test the goodness of fit of observed data to an expected distribution.
 
-Key components:
-*   **Point Estimate:** The sample statistic (e.g., sample mean `x̄`).
-*   **Margin of Error:** The amount added to and subtracted from the point estimate to create the interval. It accounts for sampling variability.
-*   **Confidence Level:** The probability that the interval estimate contains the true population parameter (e.g., 90%, 95%, 99%). This level is chosen by the researcher.
-*   **Critical Value:** A value from a standard distribution (Z or t) corresponding to the chosen confidence level.
+#### Practical Examples:
+*   **z-test**: Testing if the average IQ of a large sample of students (n=100) differs significantly from the known population average IQ of 100, assuming the population standard deviation is known.
+*   **t-test**: Testing if a new teaching method significantly improves student scores in a small class (n=25) compared to the old method, where the population standard deviation of scores is unknown.
+*   **Chi-squared test**: Testing if there's a statistically significant relationship between gender (male/female) and preferred type of movie (action/comedy/drama) in a survey.
 
-**Practical Examples:**
-*   **Average Height:** A researcher measures the heights of a sample of 100 students and finds a sample mean of 170 cm. They calculate a 95% confidence interval for the true average height of all students to be (165 cm, 175 cm). This means they are 95% confident that the true average height of all students falls somewhere between 165 cm and 175 cm.
-*   **Election Polls:** A poll reports that 55% of voters support a candidate with a margin of error of ±3% at a 99% confidence level. This implies the 99% confidence interval for the true proportion of voters supporting the candidate is (52%, 58%).
-
-**Formulas:**
-The general form of a confidence interval is:
-`Point Estimate ± (Critical Value * Standard Error)`
-
-*   **Confidence Interval for Mean (Population Standard Deviation σ is known):**
-    `x̄ ± Z_(α/2) * (σ / √n)`
-    Where:
-    *   `x̄` is the sample mean.
-    *   `Z_(α/2)` is the critical Z-value for the desired confidence level (e.g., for 95% CI, `α=0.05`, `α/2=0.025`, `Z_0.025 = 1.96`).
-    *   `σ` is the population standard deviation.
-    *   `n` is the sample size.
-    *   `σ / √n` is the standard error of the mean.
-
-*   **Confidence Interval for Mean (Population Standard Deviation σ is unknown, large sample n ≥ 30):**
-    `x̄ ± Z_(α/2) * (s / √n)`
-    Here, the sample standard deviation `s` is used as an estimate for `σ`. The Central Limit Theorem allows us to still use the Z-distribution for large `n`.
-
-*   **Confidence Interval for Mean (Population Standard Deviation σ is unknown, small sample n < 30):**
-    `x̄ ± t_(α/2, df) * (s / √n)`
-    Where:
-    *   `t_(α/2, df)` is the critical t-value for the desired confidence level and `df = n - 1` degrees of freedom. The t-distribution is used because the sample size is small and `σ` is unknown, introducing more uncertainty.
-
-**Learning Objectives:**
-*   Define a confidence interval and explain its purpose.
-*   Understand the meaning of a confidence level.
-*   Distinguish between point estimates and interval estimates.
-*   Calculate confidence intervals for population means under different scenarios (known/unknown `σ`, large/small `n`).
-
-**Related Concepts:**
-*   Central Limit Theorem
-*   Normal Distribution
-*   t-distribution
-*   Hypothesis Testing
-*   Margin of Error
-
-### 1.17. Z-test, t-test, Chi-squared test
-
-**Summary:** These are statistical hypothesis tests used to make inferences about population parameters based on sample data. The Z-test and t-test are primarily used for testing hypotheses about population means, while the Chi-squared test is used for analyzing categorical data to test goodness-of-fit or independence.
-
-**Explanation:**
-Hypothesis testing involves formulating a null hypothesis (H₀) and an alternative hypothesis (H₁), collecting data, and then using a statistical test to determine whether there is enough evidence to reject H₀ in favor of H₁.
-
-#### 1.17.1. Z-test
-*   **Purpose:** Used to test hypotheses about population means when:
-    1.  The population standard deviation (σ) is known.
-    2.  The sample size (n) is large (typically n ≥ 30), in which case the sample standard deviation (s) can be used as an estimate for σ, and the Central Limit Theorem ensures the sampling distribution of the mean is approximately normal.
-*   **Assumptions:** Data are normally distributed, or sample size is large; observations are independent.
-*   **Examples:** Testing if the average height of a new group of students is significantly different from the known national average height (where national standard deviation is known).
-
-#### 1.17.2. t-test
-*   **Purpose:** Used to test hypotheses about population means when:
-    1.  The population standard deviation (σ) is unknown.
-    2.  The sample size (n) is small (typically n < 30).
-*   **Assumptions:** Data are approximately normally distributed; observations are independent.
-*   **Types:** One-sample t-test (comparing sample mean to a known value), independent samples t-test (comparing means of two independent groups), paired samples t-test (comparing means of two related groups).
-*   **Examples:** Testing if a new teaching method significantly improves test scores in a small class, comparing the average lifespan of two different brands of batteries.
-
-#### 1.17.3. Chi-squared test (χ²-test)
-*   **Purpose:** Used for categorical data to test:
-    1.  **Goodness-of-fit:** Whether an observed frequency distribution matches an expected distribution.
-    2.  **Independence:** Whether there is a significant association between two categorical variables.
-*   **Assumptions:** Data are counts; observations are independent; expected frequencies are sufficiently large (typically ≥ 5).
-*   **Examples:**
-    *   **Goodness-of-fit:** Testing if a die is fair by comparing observed roll frequencies to expected frequencies (1/6 for each face).
-    *   **Independence:** Testing if there is a relationship between gender and preference for a certain type of movie.
-
-**Formulas:**
-*   **Z-statistic (for testing a single population mean):**
-    `Z = (x̄ - μ₀) / (σ / √n)`
-    Where `x̄` is the sample mean, `μ₀` is the hypothesized population mean, `σ` is the population standard deviation, and `n` is the sample size.
-*   **t-statistic (for testing a single population mean):**
-    `t = (x̄ - μ₀) / (s / √n)`
-    Where `s` is the sample standard deviation, and `df = n - 1` degrees of freedom.
-*   **Chi-squared statistic (for goodness-of-fit or independence):**
-    `χ² = Σ [(O_i - E_i)² / E_i]`
-    Where `O_i` is the observed frequency for category `i`, and `E_i` is the expected frequency for category `i`. The degrees of freedom depend on the specific test (e.g., `(rows-1)*(cols-1)` for independence test).
-
-**Learning Objectives:**
-*   Understand the purpose of hypothesis testing and the roles of null and alternative hypotheses.
-*   Identify when to use a Z-test, t-test, or Chi-squared test.
-*   Know the assumptions underlying each test.
-*   Be able to calculate the test statistic for each test and interpret the results.
-
-**Related Concepts:**
-*   Hypothesis Testing
-*   P-value
-*   Degrees of Freedom
-*   Normal Distribution
-*   t-distribution
-*   Chi-squared Distribution
-*   Categorical Data Analysis
+#### Relevant Formulas:
+*   **Z-test statistic (for population mean)**:
+    `Z = (x̄ - μ₀) / (σ/√n)`
+    *   *Explanation*: `x̄` is the sample mean, `μ₀` is the hypothesized population mean under the null hypothesis, `σ` is the population standard deviation, `n` is the sample size.
+*   **T-test statistic (for population mean)**:
+    `t = (x̄ - μ₀) / (s/√n)`
+    *   *Explanation*: `s` is the sample standard deviation. Degrees of freedom = `n-1`.
+*   **Chi-squared test statistic**:
+    `χ² = Σ [(Observed_i - Expected_i)^2 / Expected_i]`
+    *   *Explanation*: Sum over all categories `i`. `Observed_i` is the observed frequency in category `i`, `Expected_i` is the expected frequency under the null hypothesis. Degrees of freedom depend on the specific test (e.g., `(rows-1)*(cols-1)` for independence test).
 
 ---
 
 ## 2. Linear Algebra
 
-Linear Algebra is the study of vectors, vector spaces, linear transformations, and systems of linear equations. It provides powerful tools for modeling, solving, and understanding many problems in data science, physics, engineering, and computer graphics.
+Linear Algebra is the study of vectors, vector spaces, linear transformations, and systems of linear equations. It provides the mathematical language for many data science concepts, including machine learning algorithms, dimensionality reduction, and graph theory.
 
-### 2.1. Vector space, subspaces, linear dependence and independence of vectors
+### 2.1 Vector Space and Subspaces
 
-**Summary:** A vector space is a collection of objects (vectors) that can be added together and multiplied ('scaled') by numbers (scalars), satisfying certain axioms. A subspace is a subset of a vector space that is itself a vector space. Vectors are linearly dependent if one can be written as a linear combination of the others; otherwise, they are linearly independent. These concepts are fundamental to understanding the structure and properties of linear systems.
+#### Learning Objectives:
+*   Define a vector space and identify its key properties (axioms).
+*   Understand the concept of a subspace.
+*   Determine if a given subset is a subspace.
 
-**Explanation:**
-*   **Vector Space (V):** A set of vectors equipped with two operations: vector addition and scalar multiplication. These operations must satisfy ten axioms (e.g., commutativity, associativity, existence of zero vector and additive inverse, distributive properties). Common examples include Rⁿ (the set of all n-tuples of real numbers) and the set of all polynomials of a certain degree.
-*   **Subspaces:** A subset `W` of a vector space `V` is a subspace if `W` itself is a vector space under the same operations defined on `V`. To check if `W` is a subspace, one usually verifies three conditions:
-    1.  The zero vector of `V` is in `W`.
-    2.  `W` is closed under vector addition (if `u, v ∈ W`, then `u + v ∈ W`).
-    3.  `W` is closed under scalar multiplication (if `u ∈ W` and `c` is a scalar, then `c*u ∈ W`).
-*   **Linear Dependence:** A set of vectors `{v₁, v₂, ..., v_k}` is linearly dependent if at least one vector in the set can be expressed as a linear combination of the others. Equivalently, there exist scalars `c₁, c₂, ..., c_k`, not all zero, such that `c₁v₁ + c₂v₂ + ... + c_kv_k = 0`. This means there is some redundancy in the set.
-*   **Linear Independence:** A set of vectors `{v₁, v₂, ..., v_k}` is linearly independent if the only way to form the zero vector from their linear combination is if all the scalar coefficients are zero. That is, `c₁v₁ + c₂v₂ + ... + c_kv_k = 0` implies `c₁ = c₂ = ... = c_k = 0`. Linearly independent vectors carry unique information.
+#### Comprehensive Explanation:
+A vector space is a set of vectors that satisfies certain axioms under two operations: vector addition and scalar multiplication. These axioms ensure that vectors can be added and scaled in a consistent manner, behaving much like geometric vectors. A subspace is a subset of a vector space that is itself a vector space under the same operations, meaning it must contain the zero vector, be closed under vector addition, and be closed under scalar multiplication.
 
-**Practical Examples:**
-*   **Vector Space:**
-    *   `R²`: The set of all 2-dimensional vectors `[x, y]`, where `x, y` are real numbers.
-    *   `P_n`: The set of all polynomials of degree at most `n`.
-*   **Subspace:**
-    *   In `R²`, the set of all vectors of the form `[x, 2x]` (i.e., vectors lying on the line `y=2x`) forms a subspace. It contains the zero vector `[0,0]`, is closed under addition `([x1,2x1]+[x2,2x2] = [x1+x2, 2(x1+x2)])`, and scalar multiplication `(c[x,2x] = [cx, 2cx])`.
-    *   The set of all solutions to a homogeneous system of linear equations `Ax = 0` forms a subspace (the null space of A).
-*   **Linearly Dependent:**
-    *   Vectors `v₁ = [1, 2]` and `v₂ = [2, 4]` in `R²`. They are linearly dependent because `v₂ = 2 * v₁`. So, `2v₁ - v₂ = 0`, with non-zero coefficients.
-    *   Any set of vectors containing the zero vector is linearly dependent.
-    *   Any set of `n` vectors in `R^m` where `n > m` must be linearly dependent.
-*   **Linearly Independent:**
-    *   Vectors `v₁ = [1, 0]` and `v₂ = [0, 1]` in `R²`. If `c₁[1,0] + c₂[0,1] = [0,0]`, then `[c₁, c₂] = [0,0]`, implying `c₁=0` and `c₂=0`.
-    *   The standard basis vectors `e₁, e₂, ..., e_n` in `R^n` are linearly independent.
+#### Practical Examples:
+*   **Vector Space**: The set of all 2D vectors (R²) forms a vector space. Any two vectors in R² can be added to produce another 2D vector, and any 2D vector can be scaled by a real number to produce another 2D vector.
+*   **Subspace**: The line `y=x` in R² is a subspace.
+    *   It contains the zero vector (0,0).
+    *   If you add two vectors on the line (e.g., (1,1) + (2,2) = (3,3)), the result is still on the line.
+    *   If you scale a vector on the line (e.g., 2*(1,1) = (2,2)), the result is still on the line.
+    *   However, a line `y=x+1` is *not* a subspace because it does not contain the zero vector (0,0).
 
-**Formulas:**
-*   **Linear Combination:** A vector `v` is a linear combination of vectors `v₁, ..., v_k` if `v = c₁v₁ + c₂v₂ + ... + c_kv_k` for some scalars `c₁, ..., c_k`.
-*   **Condition for Linear Independence:** The equation `c₁v₁ + c₂v₂ + ... + c_kv_k = 0` implies `c₁ = c₂ = ... = c_k = 0`.
+#### Relevant Formulas:
+*   **Subspace Criteria**: A non-empty subset `W` of a vector space `V` is a subspace if:
+    1.  **Closure under addition**: For any `u, v ∈ W`, `u + v ∈ W`.
+    2.  **Closure under scalar multiplication**: For any `u ∈ W` and any scalar `c`, `c*u ∈ W`.
+    *   *Explanation*: These two conditions (along with `W` being non-empty, which implies it contains the zero vector if the other two hold) are sufficient to prove a subset is a subspace.
 
-**Learning Objectives:**
-*   Define a vector space and understand its axioms.
-*   Identify and verify subspaces.
-*   Distinguish between linearly dependent and linearly independent sets of vectors.
-*   Determine if a set of vectors is linearly dependent or independent using scalar combinations.
+### 2.2 Linear Dependence and Independence of Vectors
 
-**Related Concepts:**
-*   Basis and Dimension of a Vector Space
-*   Span of a Set of Vectors
-*   Null Space (Kernel) and Column Space (Image) of a Matrix
-*   Eigenvalues and Eigenvectors
+#### Learning Objectives:
+*   Define linear dependence and linear independence of a set of vectors.
+*   Determine whether a given set of vectors is linearly dependent or independent.
+*   Understand the geometric interpretation of linear dependence and independence.
 
-### 2.2. Matrices, projection matrix, orthogonal matrix, idempotent matrix, partition matrix and their properties
+#### Comprehensive Explanation:
+A set of vectors is linearly dependent if at least one vector in the set can be written as a linear combination of the others. This essentially means that at least one vector is redundant, adding no new "direction" to the span of the set. Conversely, if no vector in the set can be expressed as a linear combination of the others, the vectors are linearly independent, meaning each vector contributes a unique direction.
 
-**Summary:** Matrices are rectangular arrays of numbers used to represent linear transformations, systems of equations, and data. Specific types of matrices have unique properties and applications: Projection matrices project vectors onto subspaces, orthogonal matrices preserve lengths and angles, idempotent matrices are unchanged when multiplied by themselves, and partition matrices are matrices divided into sub-matrices for easier manipulation.
+#### Practical Examples:
+*   **Linearly Dependent**: Vectors `v₁ = (1,0)` and `v₂ = (2,0)` in R². `v₂` can be written as `2 * v₁`. They lie on the same line, so they don't provide independent directions.
+*   **Linearly Independent**: Vectors `v₁ = (1,0)` and `v₂ = (0,1)` in R². Neither can be written as a scalar multiple of the other. They point in distinct directions and can span R².
+*   Consider `c₁v₁ + c₂v₂ = 0`. If the only solution is `c₁=0, c₂=0`, then `v₁` and `v₂` are linearly independent. If there are non-zero solutions for `c₁` and `c₂`, they are linearly dependent.
 
-**Explanation:**
+#### Relevant Formulas:
+*   **Test for Linear Independence**:
+    For a set of vectors `{v₁, v₂, ..., vk}`, if the equation `c₁v₁ + c₂v₂ + ... + ckvk = 0` has only the trivial solution (`c₁ = c₂ = ... = ck = 0`), then the vectors are linearly independent. Otherwise (if there is at least one non-zero `cᵢ` that satisfies the equation), they are linearly dependent.
+    *   *Explanation*: This equation seeks to express the zero vector as a linear combination of the given vectors. If the only way to do this is by setting all coefficients to zero, then no vector can be formed by the others.
 
-*   **Matrices:** A rectangular array of numbers, symbols, or expressions arranged in rows and columns. Matrices are fundamental for representing linear transformations, solving systems of linear equations, and organizing data in machine learning.
+### 2.3 Matrices and their Properties (Projection, Orthogonal, Idempotent, Partition)
 
-*   **Projection Matrix (P):** A square matrix that projects a vector onto a specific subspace. If `v` is a vector and `P` is a projection matrix, then `Pv` is the projection of `v`. A key property is that applying the projection twice yields the same result: `P² = P` (i.e., it is idempotent).
-    *   If `P` projects onto the column space of matrix `A`, then `P = A(AᵀA)⁻¹Aᵀ`.
+#### Learning Objectives:
+*   Understand matrices as mathematical objects and their basic operations.
+*   Identify and describe the properties of special types of matrices: Projection, Orthogonal, Idempotent, and Partition matrices.
+*   Recognize the applications of these matrix types.
 
-*   **Orthogonal Matrix (Q):** A square matrix whose inverse is equal to its transpose (`Q⁻¹ = Qᵀ`). This implies that `QᵀQ = QQᵀ = I` (identity matrix). Orthogonal matrices represent transformations that preserve lengths of vectors and angles between vectors (rotations and reflections). Their columns (and rows) form an orthonormal basis.
+#### Comprehensive Explanation:
+Matrices are rectangular arrays of numbers, symbols, or expressions arranged in rows and columns. They are fundamental in linear algebra for representing linear transformations, systems of equations, and data. Different types of matrices possess specific properties crucial for various applications:
+*   **Projection Matrices**: Project vectors onto a subspace, finding the closest point in that subspace.
+*   **Orthogonal Matrices**: Square matrices whose columns and rows are orthonormal vectors. Their inverse is simply their transpose, making them easy to invert and useful for rotations and reflections.
+*   **Idempotent Matrices**: Square matrices that, when multiplied by themselves, yield the original matrix (P² = P). They often arise in statistical regression and projection operations.
+*   **Partition Matrices (Block Matrices)**: Matrices divided into smaller rectangular blocks (submatrices). This can simplify computations or highlight structure.
 
-*   **Idempotent Matrix (M):** A square matrix that, when multiplied by itself, yields itself (`M² = M`). Projection matrices are a common example of idempotent matrices. They are important in statistics (e.g., in regression analysis, the hat matrix is idempotent) and linear algebra.
+#### Practical Examples:
+*   **Projection Matrix**: `P = A(A^T A)^-1 A^T` can project any vector onto the column space of matrix `A`. Used in linear regression to find the best-fit line by projecting data points onto the column space spanned by the predictor variables.
+*   **Orthogonal Matrix**: Rotation matrices in 2D or 3D graphics are orthogonal. For example, a 90-degree rotation matrix `[[0, -1], [1, 0]]` is orthogonal.
+*   **Idempotent Matrix**: The Identity matrix `I` is idempotent because `I * I = I`. In regression, the hat matrix `H = X(X^T X)^-1 X^T` is idempotent, used to project the response vector onto the column space of the design matrix `X`.
+*   **Partition Matrix**: A 4x4 matrix can be partitioned into four 2x2 blocks. This is useful for dealing with large systems or when different parts of a matrix have distinct meanings.
 
-*   **Partition Matrix (Block Matrix):** A matrix that is divided into smaller matrices, called blocks or sub-matrices. This technique can simplify calculations and proofs, especially for large matrices, by treating blocks as individual elements.
+#### Relevant Formulas:
+*   **Orthogonal Matrix Property**:
+    `Q^T Q = Q Q^T = I` (where `I` is the identity matrix)
+    `Q^-1 = Q^T`
+    *   *Explanation*: The transpose of an orthogonal matrix is its inverse. Its columns (and rows) form an orthonormal basis.
+*   **Idempotent Matrix Property**:
+    `P^2 = P`
+    *   *Explanation*: Multiplying an idempotent matrix by itself results in the original matrix.
 
-**Practical Examples:**
-*   **Matrices:**
-    `A = [[1, 2], [3, 4]]` (a 2x2 matrix)
-    Representing a system of equations: `x + 2y = 5, 3x + 4y = 11` can be written as `A * [x,y]ᵀ = [5,11]ᵀ`.
-*   **Projection Matrix:**
-    The matrix `P = [[1, 0], [0, 0]]` projects any 2D vector `[x, y]ᵀ` onto the x-axis, resulting in `[x, 0]ᵀ`.
-    `P * P = [[1,0],[0,0]] * [[1,0],[0,0]] = [[1,0],[0,0]] = P`, so it's idempotent.
-*   **Orthogonal Matrix:**
-    A 2D rotation matrix for angle θ: `Q = [[cosθ, -sinθ], [sinθ, cosθ]]`.
-    For θ=90 degrees, `Q = [[0, -1], [1, 0]]`.
-    `Qᵀ = [[0, 1], [-1, 0]]`.
-    `QᵀQ = [[0,1],[-1,0]] * [[0,-1],[1,0]] = [[1,0],[0,1]] = I`.
-*   **Idempotent Matrix:**
-    The identity matrix `I` is idempotent (`I * I = I`).
-*   **Partition Matrix:**
-    `A = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]` can be partitioned as `[[A₁₁, A₁₂], [A₂₁, A₂₂]]` where `A₁₁ = [[1,2],[4,5]]`, `A₁₂ = [[3],[6]]`, etc. This can be useful for block matrix multiplication.
+### 2.4 Quadratic Forms
 
-**Formulas:**
-*   **Orthogonal Matrix:** `QᵀQ = QQᵀ = I` (where `I` is the identity matrix).
-*   **Idempotent Matrix:** `M² = M`
-*   **Projection Matrix (onto column space of A):** `P = A(AᵀA)⁻¹Aᵀ` (assuming `AᵀA` is invertible).
+#### Learning Objectives:
+*   Define a quadratic form and its general structure.
+*   Express a quadratic form using matrix notation.
+*   Understand the connection between quadratic forms and symmetric matrices.
 
-**Learning Objectives:**
-*   Define a matrix and understand its role in linear algebra.
-*   Identify and characterize projection, orthogonal, and idempotent matrices.
-*   Understand the properties and applications of each special matrix type.
-*   Recognize the concept of a partitioned matrix and its utility.
+#### Comprehensive Explanation:
+A quadratic form is a polynomial with terms all of degree two. It is a scalar-valued function of one or more variables. In linear algebra, quadratic forms are often expressed in the form `xᵀAx`, where `A` is a symmetric matrix and `x` is a vector. They are important in optimization, geometry (describing surfaces like ellipsoids), and statistics (e.g., in multivariate normal distributions).
 
-**Related Concepts:**
-*   Linear Transformations
-*   Matrix Inverse and Transpose
-*   Eigenvalues and Eigenvectors
-*   Basis and Orthonormal Basis
-*   Least Squares Approximation (uses projection matrices)
+#### Practical Examples:
+*   **Quadratic form in two variables**: `f(x,y) = ax² + bxy + cy²`.
+    This can be written in matrix form as:
+    `[x y] * [[a, b/2], [b/2, c]] * [x;y]`
+    Here, `x = [x;y]` is the vector, and `A = [[a, b/2], [b/2, c]]` is the symmetric matrix associated with the quadratic form.
+*   Used in optimization to classify critical points (maxima, minima, saddle points) using the Hessian matrix, which is related to quadratic forms.
 
-### 2.3. Quadratic forms
+#### Relevant Formulas:
+*   **General Quadratic Form**:
+    `Q(x) = xᵀAx`
+    *   *Explanation*: `x` is a column vector of variables, `xᵀ` is its transpose (a row vector), and `A` is a symmetric square matrix (meaning `A = Aᵀ`). The result is a scalar value.
 
-**Summary:** A quadratic form is a polynomial with terms all of degree two. In linear algebra, it's typically expressed as `xᵀAx`, where `A` is a symmetric matrix and `x` is a vector. Quadratic forms are crucial in optimization (e.g., convexity), geometry (describing conic sections and quadric surfaces), and statistics (e.g., in multivariate normal distributions and least squares).
+### 2.5 Systems of Linear Equations and Solutions (Gaussian Elimination)
 
-**Explanation:**
-A quadratic form is a scalar-valued function of a vector variable. For a vector `x = [x₁, x₂, ..., x_n]ᵀ` and an `n x n` symmetric matrix `A`, the quadratic form is given by `Q(x) = xᵀAx`.
+#### Learning Objectives:
+*   Represent systems of linear equations in matrix form.
+*   Understand the concept of a solution to a system of linear equations.
+*   Apply Gaussian elimination to solve systems of linear equations and determine the nature of their solutions.
 
-If `A` is not symmetric, it can always be replaced by `(A + Aᵀ)/2`, which is symmetric, without changing the value of the quadratic form.
+#### Comprehensive Explanation:
+A system of linear equations is a collection of two or more linear equations involving the same set of variables. Solutions to such systems are sets of values for the variables that satisfy all equations simultaneously. Gaussian elimination is a systematic algorithm for solving systems of linear equations. It involves performing elementary row operations (swapping rows, multiplying a row by a non-zero scalar, adding a multiple of one row to another) on the augmented matrix of the system to transform it into row echelon form, from which the solution can be easily found.
 
-Quadratic forms are classified based on the properties of the matrix `A`:
-*   **Positive Definite:** `xᵀAx > 0` for all non-zero `x`. (Corresponds to a convex function, eigenvalues are all positive).
-*   **Positive Semi-definite:** `xᵀAx ≥ 0` for all `x`. (Eigenvalues are all non-negative).
-*   **Negative Definite:** `xᵀAx < 0` for all non-zero `x`. (Corresponds to a concave function, eigenvalues are all negative).
-*   **Negative Semi-definite:** `xᵀAx ≤ 0` for all `x`. (Eigenvalues are all non-positive).
-*   **Indefinite:** `xᵀAx` takes both positive and negative values. (Eigenvalues are both positive and negative).
-
-These classifications are vital in optimization to determine if a critical point is a minimum, maximum, or saddle point.
-
-**Practical Examples:**
-*   **2x2 case:** For `x = [x₁, x₂]ᵀ` and `A = [[a, b], [c, d]]`, the quadratic form is:
-    `xᵀAx = [x₁, x₂] * [[a, b], [c, d]] * [x₁, x₂]ᵀ`
-    `= [ax₁+cx₂, bx₁+dx₂] * [x₁, x₂]ᵀ`
-    `= a x₁² + c x₂x₁ + b x₁x₂ + d x₂²`
-    `= a x₁² + (b+c) x₁x₂ + d x₂²`
-    If `A` is symmetric (`b=c`), then `Q(x) = a x₁² + 2b x₁x₂ + d x₂²`.
-*   **Example with a symmetric matrix:** For `x = [x₁, x₂]ᵀ` and `A = [[2, 1], [1, 3]]`, the quadratic form is:
-    `Q(x) = 2x₁² + 2x₁x₂ + 3x₂²`.
-    This quadratic form is positive definite, as its eigenvalues are positive.
-*   **In geometry:** `xᵀAx = k` can describe conic sections (ellipses, hyperbolas) in 2D or quadric surfaces (ellipsoids, hyperboloids) in 3D. For example, `x₁² + x₂² = r²` is a circle, corresponding to `A = [[1,0],[0,1]]`.
-*   **In optimization:** The Hessian matrix (matrix of second partial derivatives) of a multivariable function at a critical point is used to determine if that point is a local minimum (Hessian is positive definite), local maximum (Hessian is negative definite), or saddle point (Hessian is indefinite).
-
-**Formulas:**
-*   **General Quadratic Form:** `Q(x) = xᵀAx = Σ_i Σ_j A_{ij} x_i x_j`
-    Where `x` is a vector and `A` is an `n x n` symmetric matrix.
-
-**Learning Objectives:**
-*   Define a quadratic form and its representation `xᵀAx`.
-*   Understand the relationship between the matrix `A` and the properties of the quadratic form (positive definite, negative definite, etc.).
-*   Recognize the importance of quadratic forms in various fields like optimization and geometry.
-
-**Related Concepts:**
-*   Symmetric Matrices
-*   Eigenvalues and Eigenvectors (used for classification of quadratic forms)
-*   Convexity and Concavity
-*   Hessian Matrix
-*   Multivariate Calculus
-
-### 2.4. Systems of linear equations and solutions, Gaussian elimination
-
-**Summary:** A system of linear equations is a set of equations with the same variables. Such systems can have a unique solution, infinitely many solutions, or no solution. Gaussian elimination is a systematic algorithm for solving systems of linear equations by performing elementary row operations to transform the augmented matrix into row echelon form, which simplifies the system for back-substitution.
-
-**Explanation:**
-A system of `m` linear equations in `n` variables `x₁, ..., x_n` can be written in matrix form as `Ax = b`, where `A` is the `m x n` coefficient matrix, `x` is the `n x 1` vector of variables, and `b` is the `m x 1` constant vector.
-
-Possible types of solutions:
-1.  **Unique Solution:** There is exactly one set of values for the variables that satisfies all equations. This typically occurs when `A` is square and invertible.
-2.  **Infinitely Many Solutions:** There are an infinite number of sets of values for the variables that satisfy all equations. This happens when the system is consistent (no contradictions) but has free variables (more variables than independent equations).
-3.  **No Solution (Inconsistent System):** There is no set of values for the variables that satisfies all equations simultaneously. This indicates a contradiction within the system.
-
-**Gaussian Elimination:** This is an algorithm to solve systems of linear equations. It works by transforming the augmented matrix `[A | b]` into an equivalent row echelon form (or reduced row echelon form) using elementary row operations:
-*   Swapping two rows.
-*   Multiplying a row by a non-zero scalar.
-*   Adding a multiple of one row to another row.
-
-Once in row echelon form, the system can be solved using back-substitution. If a row results in `[0 0 ... 0 | c]` where `c ≠ 0`, the system is inconsistent (no solution). If there are fewer leading ones than variables, and no inconsistencies, there are infinitely many solutions.
-
-**Practical Examples:**
-*   **System with Unique Solution:**
+#### Practical Examples:
+*   **Solving a 2x2 system**:
     `x + y = 3`
     `x - y = 1`
-    Adding the two equations yields `2x = 4`, so `x = 2`. Substituting `x=2` into the first equation gives `2 + y = 3`, so `y = 1`. Unique solution: `(x, y) = (2, 1)`.
-*   **Gaussian Elimination to solve the above system:**
-    Augmented matrix: `[[1, 1, 3], [1, -1, 1]]`
-    1.  `R₂ ← R₂ - R₁`: `[[1, 1, 3], [0, -2, -2]]`
-    2.  `R₂ ← (-1/2)R₂`: `[[1, 1, 3], [0, 1, 1]]` (Row Echelon Form)
-    3.  `R₁ ← R₁ - R₂`: `[[1, 0, 2], [0, 1, 1]]` (Reduced Row Echelon Form)
-    This directly gives `x = 2` and `y = 1`.
-*   **System with Infinitely Many Solutions:**
-    `x + y = 3`
-    `2x + 2y = 6`
-    The second equation is a multiple of the first. There are infinitely many solutions (any `(x, 3-x)`).
-*   **System with No Solution:**
-    `x + y = 3`
-    `x + y = 5`
-    This is a contradiction; `x+y` cannot simultaneously be 3 and 5.
+    *   Solution: `x=2, y=1`.
+*   **Gaussian elimination for a 3x3 system**:
+    Consider the system:
+    `x + 2y - z = 1`
+    `2x + 2y + z = 1`
+    `3x + 5y - 2z = 4`
+    This can be represented by the augmented matrix `[[1, 2, -1 | 1], [2, 2, 1 | 1], [3, 5, -2 | 4]]`. Gaussian elimination would involve a series of row operations to transform this into row echelon form (or reduced row echelon form) to find `x, y, z`.
 
-**Formulas:**
-*   **Matrix form of a system:** `Ax = b`
-*   **Augmented Matrix:** `[A | b]`
+#### Relevant Formulas:
+*   **Augmented Matrix Representation**:
+    A system of `m` linear equations with `n` variables can be written as `Ax = b`, where `A` is the `m x n` coefficient matrix, `x` is the `n x 1` vector of variables, and `b` is the `m x 1` constant vector. The augmented matrix is `[A|b]`.
+*   **Row Echelon Form (REF)**: A matrix is in row echelon form if:
+    1.  All non-zero rows are above any rows of all zeros.
+    2.  The leading entry (pivot) of each non-zero row is in a column to the right of the leading entry of the row above it.
+    3.  All entries in a column below a leading entry are zeros.
+*   **Reduced Row Echelon Form (RREF)**: A matrix in REF is also in RREF if:
+    1.  The leading entry in each non-zero row is 1.
+    2.  Each leading 1 is the only non-zero entry in its column.
+    *   *Explanation*: Gaussian elimination transforms `[A|b]` into REF or RREF to find unique solutions, infinitely many solutions, or no solutions.
 
-**Learning Objectives:**
-*   Represent a system of linear equations in matrix form.
-*   Understand the three possible types of solutions for a system of linear equations.
-*   Master the Gaussian elimination algorithm to solve systems of equations and determine the nature of their solutions.
-*   Interpret row echelon and reduced row echelon forms.
+### 2.6 Eigenvalues and Eigenvectors
 
-**Related Concepts:**
-*   Matrix Inverse
-*   Determinant
-*   Rank of a Matrix
-*   Null Space
-*   Linear Transformations
+#### Learning Objectives:
+*   Define eigenvalues and eigenvectors.
+*   Understand the geometric significance of eigenvectors (invariant directions).
+*   Calculate eigenvalues and eigenvectors for a given matrix.
+*   Recognize the importance of eigenvalues and eigenvectors in applications like PCA.
 
-### 2.5. Eigenvalues and eigenvectors
+#### Comprehensive Explanation:
+Eigenvectors are special non-zero vectors that, when a linear transformation (represented by a matrix `A`) is applied, only change by a scalar factor. They are stretched or compressed, but their direction remains unchanged. The scalar factor by which they are scaled is called the eigenvalue. Eigenvalues and eigenvectors represent the fundamental directions and scaling factors of a linear transformation, revealing inherent properties of the matrix.
 
-**Summary:** Eigenvectors are special non-zero vectors that, when a linear transformation (represented by a matrix) is applied to them, only change by a scalar factor. This scalar factor is called the eigenvalue. Eigenvalues and eigenvectors are crucial for understanding the behavior of linear transformations, analyzing stability, performing dimensionality reduction (e.g., PCA), and solving differential equations.
+#### Practical Examples:
+*   **Principal Component Analysis (PCA)**: Used for dimensionality reduction in machine learning. Eigenvectors of the covariance matrix point in the directions of maximum variance (principal components), and their corresponding eigenvalues indicate the magnitude of that variance.
+*   **Image processing**: Eigenfaces in facial recognition.
+*   **Vibrational analysis**: In engineering, eigenvalues represent natural frequencies of vibration.
 
-**Explanation:**
-For a square matrix `A`, an eigenvector `v` is a non-zero vector such that when `A` multiplies `v`, the result is a scalar multiple of `v`. The scalar `λ` is called the eigenvalue.
-`A v = λ v`
+#### Relevant Formulas:
+*   **Eigenvalue Equation**:
+    `A v = λ v`
+    *   *Explanation*: `A` is a square matrix, `v` is the eigenvector (non-zero vector), and `λ` is the eigenvalue (scalar). This equation states that when `A` acts on `v`, it simply scales `v` by `λ`.
+*   **Characteristic Equation (to find eigenvalues)**:
+    `det(A - λI) = 0`
+    *   *Explanation*: `I` is the identity matrix. Solving this polynomial equation for `λ` yields the eigenvalues. Once `λ` is found, substitute it back into `(A - λI)v = 0` to find the corresponding eigenvectors `v`.
 
-*   **Eigenvectors:** Represent the "directions" or "axes" along which a linear transformation acts by simply stretching or shrinking. They are invariant in their direction under the transformation.
-*   **Eigenvalues:** Represent the "factors" by which the eigenvectors are scaled. A positive eigenvalue means stretching, a negative eigenvalue means flipping direction and stretching, and an eigenvalue of 1 means no change. An eigenvalue of 0 means the vector is mapped to the zero vector (it's in the null space).
+### 2.7 Determinant, Rank, Nullity
 
-The process of finding eigenvalues and eigenvectors is called eigen-decomposition.
+#### Learning Objectives:
+*   Calculate the determinant of a square matrix.
+*   Interpret the determinant's significance (e.g., invertibility, volume scaling).
+*   Define and calculate the rank and nullity of a matrix.
+*   Understand the Rank-Nullity Theorem.
 
-**Practical Examples:**
-*   **Matrix A = [[2, 1], [1, 2]]**
-    *   Consider the vector `v₁ = [1, 1]ᵀ`.
-        `A v₁ = [[2, 1], [1, 2]] * [1, 1]ᵀ = [2*1 + 1*1, 1*1 + 2*1]ᵀ = [3, 3]ᵀ = 3 * [1, 1]ᵀ`.
-        So, `v₁ = [1, 1]ᵀ` is an eigenvector with eigenvalue `λ₁ = 3`.
-    *   Consider the vector `v₂ = [1, -1]ᵀ`.
-        `A v₂ = [[2, 1], [1, 2]] * [1, -1]ᵀ = [2*1 + 1*(-1), 1*1 + 2*(-1)]ᵀ = [1, -1]ᵀ = 1 * [1, -1]ᵀ`.
-        So, `v₂ = [1, -1]ᵀ` is an eigenvector with eigenvalue `λ₂ = 1`.
-*   **Principal Component Analysis (PCA):** In PCA, eigenvectors of the covariance matrix of data represent the principal components (directions of maximum variance), and their corresponding eigenvalues represent the amount of variance explained by each component.
-*   **PageRank Algorithm:** Eigenvalues and eigenvectors are used in Google's PageRank algorithm to determine the importance of web pages.
+#### Comprehensive Explanation:
+*   **Determinant**: A scalar value that can be computed from the elements of a square matrix. It provides crucial information about the matrix's properties, particularly its invertibility (a non-zero determinant means the matrix is invertible) and how it scales areas or volumes under linear transformation.
+*   **Rank**: The dimension of the column space (or equivalently, the row space) of a matrix. It represents the maximum number of linearly independent rows or columns, indicating the "effective" dimension of the transformation performed by the matrix.
+*   **Nullity**: The dimension of the null space (or kernel) of a matrix. The null space consists of all vectors that the matrix maps to the zero vector. Nullity represents the number of "free variables" in the solution to `Ax = 0`.
 
-**Formulas:**
-*   **Eigenvalue Equation:** `A v = λ v`
-    To find eigenvalues, rearrange to `A v - λ v = 0`, which is `(A - λI) v = 0`.
-    For a non-zero eigenvector `v`, the matrix `(A - λI)` must be singular (non-invertible), meaning its determinant is zero.
-*   **Characteristic Equation:** `det(A - λI) = 0`
-    Solving this polynomial equation for `λ` gives the eigenvalues. Once `λ` is found, substitute it back into `(A - λI) v = 0` to find the corresponding eigenvectors `v`.
+#### Practical Examples:
+*   **Determinant of 0**: Indicates a singular (non-invertible) matrix. If `det(A) = 0`, the linear transformation `Ax` collapses space, meaning it maps multiple non-zero vectors to the same output or reduces the dimension of the space.
+*   **Rank**:
+    *   A 3x3 identity matrix `I` has a rank of 3 (all rows/columns are linearly independent).
+    *   A matrix `[[1, 2], [2, 4]]` has a rank of 1 because the second row is a multiple of the first, meaning only one row is linearly independent.
+*   **Nullity**: For the matrix `A = [[1, 2], [2, 4]]`, the null space is the set of vectors `[x;y]` such that `x + 2y = 0`. The solutions are of the form `[-2y; y]`, which is a line. The dimension of this line is 1, so the nullity of `A` is 1.
 
-**Learning Objectives:**
-*   Define eigenvalues and eigenvectors and explain their geometric meaning.
-*   Understand the eigenvalue equation `Av = λv`.
-*   Be able to calculate eigenvalues by solving the characteristic equation.
-*   Be able to find eigenvectors corresponding to given eigenvalues.
-*   Recognize the importance of eigenvalues and eigenvectors in various applications.
+#### Relevant Formulas:
+*   **Determinant of a 2x2 matrix `A = [[a,b],[c,d]]`**:
+    `det(A) = ad - bc`
+    *   *Explanation*: For larger matrices, determinants are computed using cofactor expansion or row operations.
+*   **Rank-Nullity Theorem**:
+    `rank(A) + nullity(A) = number of columns in A`
+    *   *Explanation*: This fundamental theorem relates the dimension of the column space (rank) to the dimension of the null space (nullity) and the total number of input dimensions.
 
-**Related Concepts:**
-*   Linear Transformations
-*   Determinant
-*   Matrix Diagonalization
-*   Principal Component Analysis (PCA)
-*   Singular Value Decomposition (SVD)
+### 2.8 Projections
 
-### 2.6. Determinant, rank, nullity
+#### Learning Objectives:
+*   Define the concept of a projection in linear algebra.
+*   Understand how to project a vector onto a line or a subspace.
+*   Recognize the application of projections in areas like linear regression.
 
-**Summary:** The determinant is a scalar value associated with a square matrix, indicating properties like invertibility and volume scaling. The rank of a matrix is the dimension of its column space (or row space), representing the number of linearly independent rows/columns. Nullity is the dimension of the null space, which contains all vectors that map to the zero vector. These concepts are fundamental to understanding the properties and solvability of linear systems.
+#### Comprehensive Explanation:
+Projection is the operation of mapping a vector onto a subspace (e.g., a line or a plane). It finds the closest point in the subspace to the original vector. This "closest point" is the orthogonal projection, meaning the difference vector between the original vector and its projection is orthogonal to the subspace. Projections are fundamental for decomposing vectors into components and for finding best-fit approximations.
 
-**Explanation:**
+#### Practical Examples:
+*   **Projecting a vector onto a line**: If you have a vector `y` and a line spanned by vector `a`, the projection of `y` onto `a` gives the component of `y` that lies along the direction of `a`.
+*   **Linear Regression**: The least squares solution in linear regression involves projecting the observed response vector onto the column space spanned by the predictor variables. The projected vector represents the predicted values from the regression model.
 
-*   **Determinant (det(A) or |A|):** A scalar value that can be computed from the elements of a square matrix.
-    *   **Invertibility:** A square matrix `A` is invertible (non-singular) if and only if `det(A) ≠ 0`. If `det(A) = 0`, the matrix is singular, meaning it does not have an inverse.
-    *   **Geometric Interpretation:** The absolute value of the determinant represents the scaling factor of the area (in 2D) or volume (in 3D and higher dimensions) when the matrix is applied as a linear transformation. A negative determinant indicates an orientation reversal.
-    *   **Solutions to Systems:** If `det(A) ≠ 0`, the system `Ax = b` has a unique solution. If `det(A) = 0`, the system either has no solution or infinitely many solutions.
+#### Relevant Formulas:
+*   **Projection of vector `y` onto a line spanned by vector `a`**:
+    `proj_a y = [(yᵀa) / (aᵀa)] * a`
+    *   *Explanation*: `yᵀa` is the dot product of `y` and `a`. `aᵀa` is the squared magnitude of `a`. The scalar `(yᵀa) / (aᵀa)` determines how much of `a` is needed to form the projection.
 
-*   **Rank (rank(A)):** The maximum number of linearly independent column vectors (or row vectors) in a matrix.
-    *   It is also the dimension of the column space (image) of the matrix.
-    *   It represents the effective "dimensionality" of the transformation defined by the matrix.
-    *   For an `m x n` matrix, `rank(A) ≤ min(m, n)`.
-    *   A matrix is full rank if `rank(A) = min(m, n)`.
+### 2.9 LU Decomposition
 
-*   **Nullity (nullity(A)):** The dimension of the null space (or kernel) of a matrix `A`. The null space is the set of all vectors `x` such that `Ax = 0`.
-    *   These vectors are "crushed" to the zero vector by the transformation `A`.
-    *   A non-zero nullity indicates that the transformation `A` loses some information.
-
-**Practical Examples:**
-*   **Determinant:**
-    *   For `A = [[a, b], [c, d]]`, `det(A) = ad - bc`.
-    *   If `A = [[1, 2], [3, 4]]`, `det(A) = (1*4) - (2*3) = 4 - 6 = -2`. Since `det(A) ≠ 0`, A is invertible.
-    *   If `A = [[1, 2], [2, 4]]`, `det(A) = (1*4) - (2*2) = 4 - 4 = 0`. A is singular.
-*   **Rank:**
-    *   `A = [[1, 0], [0, 1]]` (Identity matrix): `rank(A) = 2` (both columns are linearly independent). Full rank.
-    *   `A = [[1, 0], [2, 0]]`: `rank(A) = 1` (the second column is a multiple of the first, only one independent column). Not full rank.
-*   **Nullity:**
-    *   For `A = [[1, 1], [1, 1]]`:
-        We need to find `x = [x₁, x₂]ᵀ` such that `A x = 0`.
-        `x₁ + x₂ = 0`
-        `x₁ + x₂ = 0`
-        This implies `x₂ = -x₁`. So, `x = [x₁, -x₁]ᵀ = x₁ * [1, -1]ᵀ`.
-        The null space is `span{[1, -1]ᵀ}`. Its dimension is 1. So, `nullity(A) = 1`.
-        For this matrix, `rank(A) = 1`.
-        Notice `rank(A) + nullity(A) = 1 + 1 = 2` (which is the number of columns).
-
-**Formulas:**
-*   **Determinant (2x2 matrix):** `det([[a,b],[c,d]]) = ad - bc`
-*   **Rank-Nullity Theorem:** For an `m x n` matrix `A`:
-    `rank(A) + nullity(A) = n` (number of columns of A)
-
-**Learning Objectives:**
-*   Define the determinant of a square matrix and understand its significance regarding invertibility and geometric scaling.
-*   Define the rank of a matrix and interpret it as the number of linearly independent columns/rows.
-*   Define the nullity of a matrix and understand its relationship to the null space.
-*   Apply the Rank-Nullity Theorem.
-
-**Related Concepts:**
-*   Linear Independence
-*   Vector Space, Subspace
-*   Basis and Dimension
-*   Matrix Inverse
-*   Systems of Linear Equations
-
-### 2.7. Projections
-
-**Summary:** In linear algebra, a projection is a linear transformation that maps a vector space onto a subspace. It effectively finds the component of a vector that lies within a particular subspace. Projections are fundamental in least squares approximations, geometry, and computer graphics.
-
-**Explanation:**
-A projection essentially "drops" a vector onto a lower-dimensional space. The projected vector is the closest point in the subspace to the original vector. The difference between the original vector and its projection is orthogonal (perpendicular) to the subspace.
-
-*   **Projection onto a Line (or a single vector):** Given a vector `y` and a non-zero vector `a`, the projection of `y` onto `a` is the component of `y` that lies along the direction of `a`.
-*   **Projection onto a Subspace (e.g., a Plane or Column Space):** Given a vector `y` and a subspace `W`, the projection of `y` onto `W` is the vector `p` in `W` such that `y - p` is orthogonal to `W`. This `p` is the best approximation of `y` in the subspace `W`.
-
-Projections are essential for solving inconsistent systems of linear equations (least squares problems), where we seek the best approximate solution.
-
-**Practical Examples:**
-*   **Projecting a vector onto another vector (a line through the origin):**
-    Let `y = [2, 3]ᵀ` and `a = [1, 0]ᵀ` (the x-axis).
-    The projection of `y` onto `a` is `proj_a y = [2, 0]ᵀ`.
-    Using the formula: `proj_a y = ((yᵀa) / (aᵀa)) * a = (([2,3] * [1,0]ᵀ) / ([1,0] * [1,0]ᵀ)) * [1,0]ᵀ = (2/1) * [1,0]ᵀ = [2,0]ᵀ`.
-*   **In 3D geometry:** Projecting a point `(x, y, z)` onto the XY-plane results in `(x, y, 0)`. The projection matrix for this would be `P = [[1,0,0],[0,1,0],[0,0,0]]`.
-*   **Least Squares:** If `Ax = b` has no exact solution, we can find the `x̂` that minimizes `||Ax - b||²`. The solution `A x̂` is the projection of `b` onto the column space of `A`.
-
-**Formulas:**
-*   **Projection of vector `y` onto vector `a`:**
-    `proj_a y = ( (yᵀa) / (aᵀa) ) * a`
-    This can also be written as `proj_a y = ( (y ⋅ a) / ||a||² ) * a`.
-*   **Projection Matrix onto the Column Space of A:**
-    If the columns of `A` are linearly independent, the matrix that projects any vector `y` onto the column space of `A` is:
-    `P = A(AᵀA)⁻¹Aᵀ`
-    Then, the projection of `y` onto the column space of `A` is `p = Py`.
-
-**Learning Objectives:**
-*   Define a linear projection and understand its geometric interpretation.
-*   Be able to calculate the projection of a vector onto another vector (a line).
-*   Understand the concept of a projection matrix and its role in projecting onto a subspace.
-*   Recognize the application of projections in least squares problems.
-
-**Related Concepts:**
-*   Subspaces
-*   Orthogonality
-*   Dot Product
-*   Least Squares Approximation
-*   Projection Matrix (as a type of matrix)
-
-### 2.8. LU decomposition
-
-**Summary:** LU decomposition (or factorization) is a method of decomposing a square matrix `A` into a product of a lower triangular matrix `L` and an upper triangular matrix `U`. This decomposition is primarily used to solve systems of linear equations more efficiently, compute determinants, and find matrix inverses, especially for large systems.
-
-**Explanation:**
-The idea behind LU decomposition is to factorize a matrix `A` into two simpler matrices, `L` and `U`, such that `A = LU`.
-*   **Lower Triangular Matrix (L):** A square matrix where all entries above the main diagonal are zero. Typically, `L` has ones on its main diagonal (unit lower triangular).
-*   **Upper Triangular Matrix (U):** A square matrix where all entries below the main diagonal are zero.
-
-Once `A` is decomposed into `L` and `U`, solving a system `Ax = b` becomes much easier:
-1.  Substitute `LUx = b`.
-2.  Let `Ux = y`.
-3.  First, solve `Ly = b` for `y` using forward substitution (since `L` is triangular).
-4.  Then, solve `Ux = y` for `x` using backward substitution (since `U` is triangular).
-
-This two-step process is computationally more efficient than Gaussian elimination for multiple `b` vectors with the same `A` matrix.
-
-**Practical Examples:**
-*   **Solving a system `Ax = b`:**
-    Suppose `A = [[2, 1], [4, 3]]` and `b = [5, 11]ᵀ`.
-    1.  **Decomposition:** `A` can be decomposed into `L = [[1, 0], [2, 1]]` and `U = [[2, 1], [0, 1]]`.
-        (Check: `L*U = [[1*2+0*0, 1*1+0*1], [2*2+1*0, 2*1+1*1]] = [[2, 1], [4, 3]] = A`).
-    2.  **Solve `Ly = b` for `y`:**
-        `[[1, 0], [2, 1]] * [y₁, y₂]ᵀ = [5, 11]ᵀ`
-        `y₁ = 5`
-        `2y₁ + y₂ = 11 => 2(5) + y₂ = 11 => 10 + y₂ = 11 => y₂ = 1`.
-        So, `y = [5, 1]ᵀ`.
-    3.  **Solve `Ux = y` for `x`:**
-        `[[2, 1], [0, 1]] * [x₁, x₂]ᵀ = [5, 1]ᵀ`
-        `x₂ = 1`
-        `2x₁ + x₂ = 5 => 2x₁ + 1 = 5 => 2x₁ = 4 => x₁ = 2`.
-        So, `x = [2, 1]ᵀ`. This is the same solution found with Gaussian elimination.
-*   **Determinant calculation:** `det(A) = det(L) * det(U)`. For triangular matrices, the determinant is the product of the diagonal elements.
-    `det(L) = 1*1 = 1`. `det(U) = 2*1 = 2`. `det(A) = 1*2 = 2`.
-
-**Formulas:**
-*   **Decomposition:** `A = L U`
-    Where `L` is a lower triangular matrix (often with ones on the diagonal) and `U` is an upper triangular matrix.
-*   **Solving `Ax = b`:**
-    1.  Solve `Ly = b` for `y` (forward substitution).
-    2.  Solve `Ux = y` for `x` (backward substitution).
-
-**Learning Objectives:**
+#### Learning Objectives:
 *   Understand the concept of LU decomposition.
-*   Know the properties of lower and upper triangular matrices.
-*   Explain how LU decomposition can be used to solve systems of linear equations, compute determinants, and find inverses efficiently.
-*   Be able to perform LU decomposition for small matrices.
+*   Explain the purpose and benefits of factorizing a matrix into L and U components.
+*   Recognize applications of LU decomposition in solving linear systems.
 
-**Related Concepts:**
-*   Systems of Linear Equations
-*   Gaussian Elimination
-*   Matrix Inverse
-*   Determinant
-*   Numerical Linear Algebra
+#### Comprehensive Explanation:
+LU decomposition (Lower-Upper decomposition) factorizes a square matrix `A` into the product of a lower triangular matrix `L` and an upper triangular matrix `U` (i.e., `A = LU`). A lower triangular matrix has all its entries above the main diagonal equal to zero, while an upper triangular matrix has all its entries below the main diagonal equal to zero. This decomposition is particularly useful for efficiently solving systems of linear equations, computing determinants, and finding matrix inverses, especially when dealing with multiple systems that share the same coefficient matrix.
 
-### 2.9. Singular value decomposition (SVD)
+#### Practical Examples:
+*   **Solving `Ax=b`**: Instead of directly solving `Ax=b`, one can use `LUx=b`. This is broken down into two simpler steps:
+    1.  Solve `Ly=b` for `y` (forward substitution, as `L` is triangular).
+    2.  Solve `Ux=y` for `x` (backward substitution, as `U` is triangular).
+    This is computationally more efficient than direct inversion of `A` for multiple `b` vectors.
+*   **Calculating Determinants**: `det(A) = det(L) * det(U)`. The determinant of a triangular matrix is the product of its diagonal entries, making calculation straightforward.
 
-**Summary:** Singular Value Decomposition (SVD) is a powerful matrix factorization technique that decomposes any `m × n` matrix `A` into the product of three matrices: `A = U Σ Vᵀ`. `U` and `V` are orthogonal matrices, and `Σ` is a diagonal matrix containing non-negative singular values. SVD is widely used in dimensionality reduction (e.g., PCA), image compression, noise reduction, and recommendation systems.
+#### Relevant Formulas:
+*   **LU Decomposition**:
+    `A = LU`
+    *   *Explanation*: `A` is the original square matrix. `L` is a lower triangular matrix (often with 1s on the diagonal for unique decomposition). `U` is an upper triangular matrix.
 
-**Explanation:**
-SVD is a generalization of eigen-decomposition to any matrix (not just square matrices). It reveals the underlying structure of a matrix.
+### 2.10 Singular Value Decomposition (SVD)
 
-*   **U (Left Singular Vectors):** An `m × m` orthogonal matrix whose columns are the left singular vectors of `A`. These vectors form an orthonormal basis for the column space of `A`.
-*   **Σ (Sigma, Singular Values):** An `m × n` diagonal matrix (with the same dimensions as `A`) with non-negative real numbers called singular values on the diagonal, arranged in decreasing order. The singular values `σ_i` are the square roots of the eigenvalues of `AᵀA` (and `AAᵀ`). They represent the "strength" or "importance" of the corresponding singular vector pairs.
-*   **Vᵀ (Right Singular Vectors):** An `n × n` orthogonal matrix whose rows are the right singular vectors of `A`. These vectors form an orthonormal basis for the row space of `A`.
+#### Learning Objectives:
+*   Understand the concept of Singular Value Decomposition (SVD).
+*   Explain the components (U, Σ, Vᵀ) and their significance.
+*   Recognize the wide range of applications of SVD in data science.
 
-SVD essentially transforms `A` into a coordinate system where its action is simply scaling along the axes defined by the singular vectors.
+#### Comprehensive Explanation:
+Singular Value Decomposition (SVD) is a powerful and widely used matrix factorization technique that decomposes any `m x n` matrix `A` into three matrices: `A = U Σ Vᵀ`.
+*   `U` is an `m x m` orthogonal matrix whose columns are the left singular vectors of `A`.
+*   `Σ` (Sigma) is an `m x n` diagonal matrix containing the singular values of `A` along its diagonal (sorted in descending order). The singular values are non-negative and are the square roots of the eigenvalues of `AᵀA` (or `AAᵀ`).
+*   `Vᵀ` (V transpose) is an `n x n` orthogonal matrix whose rows are the right singular vectors of `A`.
+SVD generalizes the concept of eigenvalues and eigenvectors to non-square matrices and provides a robust way to understand the underlying structure of a matrix.
 
-**Practical Examples:**
-*   **Image Compression:** An image can be represented as a matrix of pixel values. By performing SVD and keeping only the largest singular values and their corresponding singular vectors (low-rank approximation), we can reconstruct a good approximation of the image using much less data.
-*   **Principal Component Analysis (PCA):** SVD is often used as the underlying computational method for PCA. The principal components are the right singular vectors of the centered data matrix, and the singular values are related to the standard deviations of the principal components.
-*   **Recommender Systems:** SVD can be used to find latent factors in user-item interaction matrices (e.g., movie ratings), which helps in recommending items to users.
-*   **Noise Reduction:** Small singular values often correspond to noise in the data. By setting these to zero, we can effectively denoise the data.
+#### Practical Examples:
+*   **Image Compression**: By keeping only the largest singular values and their corresponding singular vectors, an image can be reconstructed with significantly less data, while retaining most of its visual information.
+*   **Dimensionality Reduction**: Similar to PCA, SVD can be used to reduce the number of features in a dataset by selecting the principal components corresponding to the largest singular values.
+*   **Recommender Systems**: Used in collaborative filtering to find latent factors that explain user preferences for items (e.g., Netflix prize).
+*   **Noise Reduction**: Small singular values often correspond to noise, so removing them can denoise data.
 
-**Formulas:**
-*   **SVD Decomposition:** `A = U Σ Vᵀ`
-    Where:
-    *   `U` is an `m × m` orthogonal matrix (`UᵀU = I`).
-    *   `Σ` is an `m × n` diagonal matrix with non-negative singular values `σ₁ ≥ σ₂ ≥ ... ≥ σ_r > 0` (where `r = rank(A)`) on the main diagonal.
-    *   `Vᵀ` is an `n × n` orthogonal matrix (`VᵀV = I`).
-*   **Relationship to Eigenvalues:** The singular values `σ_i` are the square roots of the non-zero eigenvalues of `AᵀA` (or `AAᵀ`). The columns of `U` are the eigenvectors of `AAᵀ`, and the columns of `V` are the eigenvectors of `AᵀA`.
-
-**Learning Objectives:**
-*   Understand the concept of Singular Value Decomposition and its components (`U`, `Σ`, `Vᵀ`).
-*   Explain the significance of singular values and singular vectors.
-*   Recognize the wide range of applications of SVD in data science and related fields.
-*   Understand the relationship between SVD and eigenvalues/eigenvectors.
-
-**Related Concepts:**
-*   Eigenvalues and Eigenvectors
-*   Orthogonal Matrices
-*   Matrix Factorization
-*   Principal Component Analysis (PCA)
-*   Dimensionality Reduction
-*   Rank of a Matrix (number of non-zero singular values)
+#### Relevant Formulas:
+*   **Singular Value Decomposition**:
+    `A = U Σ Vᵀ`
+    *   *Explanation*: `A` is the original matrix. `U` and `V` are orthogonal matrices (meaning `UᵀU = I` and `VᵀV = I`). `Σ` is a diagonal matrix containing the singular values (`σᵢ`) on its diagonal, ordered from largest to smallest.
 
 ---
 
 ## 3. Calculus and Optimization
 
-Calculus and Optimization provide the mathematical framework for understanding change, rates of change, accumulation, and finding optimal solutions. These are indispensable tools in machine learning, economics, physics, and engineering.
+Calculus provides the tools for understanding change, rates of change, and accumulation. Optimization, heavily reliant on calculus, focuses on finding the best possible solutions (maxima or minima) to problems, which is critical in machine learning and scientific modeling.
 
-### 3.1. Functions of a single variable, limit, continuity and differentiability
+### 3.1 Functions of a Single Variable (Limit, Continuity, Differentiability)
 
-**Summary:** This covers the foundational concepts of calculus for functions of a single variable. A function assigns each input to exactly one output. Limits describe the behavior of a function as its input approaches a certain value. Continuity means a function has no breaks or jumps. Differentiability means a function has a well-defined tangent line at every point, implying smoothness. These concepts are prerequisite for understanding derivatives and integrals.
+#### Learning Objectives:
+*   Define the concept of a limit of a function.
+*   Understand and apply the conditions for a function to be continuous.
+*   Define differentiability and explain its geometric interpretation.
+*   Identify the relationship between continuity and differentiability.
 
-**Explanation:**
-*   **Functions of a Single Variable (f(x)):** A rule that assigns to each input value `x` from a domain, exactly one output value `y` (or `f(x)`).
-*   **Limit (lim_(x→c) f(x) = L):** Describes the value that `f(x)` approaches as `x` gets arbitrarily close to some value `c`, without necessarily being equal to `c`. The limit exists if the function approaches the same value from both the left and the right side of `c`.
-*   **Continuity:** A function `f(x)` is continuous at a point `c` if three conditions are met:
-    1.  `f(c)` is defined (the function exists at `c`).
-    2.  `lim_(x→c) f(x)` exists (the limit exists at `c`).
-    3.  `lim_(x→c) f(x) = f(c)` (the limit equals the function's value at `c`).
-    Intuitively, a continuous function can be drawn without lifting the pen from the paper.
-*   **Differentiability:** A function `f(x)` is differentiable at a point `c` if its derivative `f'(c)` exists at that point. Geometrically, this means the function has a unique, non-vertical tangent line at `c`. Differentiability implies continuity, but continuity does not imply differentiability (e.g., `|x|` at `x=0`).
+#### Comprehensive Explanation:
+This topic covers the foundational concepts of calculus for functions of a single variable.
+*   **Limit**: Describes the value a function "approaches" as the input (variable) approaches some specific value. It doesn't necessarily mean the function is defined at that point, but rather what value it tends towards.
+*   **Continuity**: A function is continuous at a point if its graph can be drawn without lifting the pen, meaning there are no breaks, jumps, or holes. Formally, it means the limit of the function at that point exists, the function is defined at that point, and these two values are equal.
+*   **Differentiability**: A function is differentiable at a point if it has a well-defined derivative at that point. Geometrically, this means the function has a unique, non-vertical tangent line at that point, implying the function is smooth and does not have sharp corners or cusps. Differentiability implies continuity, but continuity does not imply differentiability.
 
-**Practical Examples:**
-*   **Function:** `f(x) = x²`. Input `x=2`, output `f(2)=4`.
-*   **Limit:**
-    *   `lim_(x→2) x² = 4`. As `x` gets closer to 2, `x²` gets closer to 4.
-    *   Consider `g(x) = (x² - 4) / (x - 2)`. This function is undefined at `x=2`. However, `lim_(x→2) g(x) = lim_(x→2) (x+2) = 4`. The limit exists even if the function doesn't.
-*   **Continuity:**
-    *   `f(x) = x²` is continuous everywhere.
-    *   `h(x) = 1/x` is continuous on its domain (all real numbers except 0), but it's not continuous at `x=0` because `h(0)` is undefined and the limit does not exist.
-    *   A piecewise function like `f(x) = x` for `x<0` and `f(x) = x+1` for `x>=0` is discontinuous at `x=0` (a jump).
-*   **Differentiability:**
-    *   `f(x) = x²` is differentiable everywhere. `f'(x) = 2x`.
-    *   `f(x) = |x|` is continuous at `x=0` but not differentiable at `x=0` because it has a sharp "corner" there (the left-hand derivative is -1, the right-hand derivative is 1).
+#### Practical Examples:
+*   **Limit**: `lim (x->0) sin(x)/x = 1`. As `x` gets closer to 0, `sin(x)/x` gets closer to 1, even though `sin(0)/0` is undefined.
+*   **Continuity**: `f(x) = x²` is continuous everywhere. Its graph is a smooth parabola with no breaks.
+*   **Differentiability**:
+    *   `f(x) = x²` is differentiable everywhere. Its tangent lines are well-defined at every point.
+    *   `f(x) = |x|` is continuous at `x=0` but not differentiable at `x=0`. The graph has a sharp corner at the origin, meaning there isn't a unique tangent line.
 
-**Formulas:**
-*   **Limit Definition (informal):** `lim_(x→c) f(x) = L` means that for every `ε > 0`, there exists a `δ > 0` such that if `0 < |x - c| < δ`, then `|f(x) - L| < ε`.
-*   **Continuity at `c`:** `lim_(x→c) f(x) = f(c)`
-*   **Derivative Definition:** The derivative of `f(x)` at `x` is:
-    `f'(x) = dy/dx = lim_(h→0) [f(x+h) - f(x)] / h` (if this limit exists).
+#### Relevant Formulas:
+*   **Limit Definition**:
+    For every `ε > 0`, there exists a `δ > 0` such that if `0 < |x - c| < δ`, then `|f(x) - L| < ε`.
+    *   *Explanation*: This formal definition states that `f(x)` can be made arbitrarily close to `L` by making `x` sufficiently close to `c` (but not equal to `c`).
+*   **Conditions for Continuity at a point `c`**:
+    1.  `f(c)` is defined.
+    2.  `lim (x->c) f(x)` exists.
+    3.  `lim (x->c) f(x) = f(c)`.
+*   **Derivative Definition (First Principles)**:
+    `f'(x) = lim (h->0) [f(x+h) - f(x)] / h`
+    *   *Explanation*: The derivative `f'(x)` represents the instantaneous rate of change of `f(x)` with respect to `x`, or the slope of the tangent line to the graph of `f(x)` at point `x`.
 
-**Learning Objectives:**
-*   Define a function of a single variable.
-*   Understand the concept of a limit and how to evaluate it.
-*   Define continuity and identify points of discontinuity.
-*   Define differentiability and understand its relationship to continuity and smoothness.
-*   Calculate derivatives using the limit definition.
+### 3.2 Taylor Series
 
-**Related Concepts:**
-*   Derivatives (rates of change)
-*   Integrals (accumulation)
-*   Taylor Series
-*   Multivariable Calculus (functions of multiple variables)
+#### Learning Objectives:
+*   Define a Taylor series and its purpose.
+*   Understand how to construct a Taylor series expansion for a function around a given point.
+*   Recognize the use of Taylor series for approximating functions.
 
-### 3.2. Taylor series
+#### Comprehensive Explanation:
+A Taylor series is a representation of a function as an infinite sum of terms, where each term is calculated from the values of the function's derivatives at a single point. It is a powerful tool for approximating complex functions with polynomials, which are much easier to manipulate and analyze. The approximation becomes more accurate as more terms are included in the series. A Maclaurin series is a special case of a Taylor series where the expansion point is `a=0`.
 
-**Summary:** A Taylor series is a representation of a function as an infinite sum of terms, calculated from the values of the function's derivatives at a single point. It allows for the approximation of complex functions with polynomials, which is incredibly useful in numerical methods, theoretical analysis, and understanding the local behavior of functions.
+#### Practical Examples:
+*   **Taylor series expansion of `e^x` around `x=0` (Maclaurin series)**:
+    `e^x = 1 + x + x²/2! + x³/3! + ...`
+    This polynomial can approximate `e^x` for values of `x` near 0. For example, `e^0.1 ≈ 1 + 0.1 + (0.1)²/2 = 1.105`.
+*   **Approximating complex functions**: Taylor series are used in numerical methods, physics, and engineering to simplify calculations involving functions like `sin(x)`, `cos(x)`, or `ln(x)`.
 
-**Explanation:**
-The Taylor series expands a function `f(x)` around a point `a` into an infinite polynomial. Each term in the series involves a derivative of `f` evaluated at `a`, divided by a factorial, and multiplied by a power of `(x-a)`.
+#### Relevant Formulas:
+*   **Taylor Series Expansion of `f(x)` around point `a`**:
+    `f(x) = Σ [f^(n)(a) / n!] * (x-a)^n` (from `n=0` to `∞`)
+    *   *Explanation*: `f^(n)(a)` denotes the `n`-th derivative of `f(x)` evaluated at `x=a`. `n!` is `n` factorial. `(x-a)^n` is the power term.
 
-*   **Approximation:** Truncating the infinite series after a finite number of terms provides a polynomial approximation of the function. The more terms included, the better the approximation (within the radius of convergence).
-*   **Maclaurin Series:** A special case of the Taylor series where the expansion point `a = 0`.
-*   **Applications:**
-    *   **Approximating functions:** For example, approximating `sin(x)` for small `x` as `x - x³/6`.
-    *   **Numerical methods:** Used in algorithms for solving differential equations, integration, and root-finding.
-    *   **Error analysis:** The remainder term of a Taylor series provides an estimate of the error in the polynomial approximation.
-    *   **Optimization:** Taylor series are used to derive methods like Newton's method for finding function minima/maxima.
+### 3.3 Maxima and Minima (Optimization involving a single variable)
 
-**Practical Examples:**
-*   **Taylor series for e^x around x=0 (Maclaurin series):**
-    `f(x) = e^x`, `f'(x) = e^x`, `f''(x) = e^x`, ...
-    At `a=0`: `f(0)=1`, `f'(0)=1`, `f''(0)=1`, ...
-    `e^x = f(0)/0! * (x-0)^0 + f'(0)/1! * (x-0)^1 + f''(0)/2! * (x-0)^2 + ...`
-    `e^x = 1/1 * 1 + 1/1 * x + 1/2 * x² + 1/6 * x³ + ...`
-    `e^x = 1 + x + x²/2! + x³/3! + ... = Σ_(n=0)^∞ x^n / n!`
-*   **Approximating sin(x) for small x:** The Maclaurin series for `sin(x)` is `x - x³/3! + x⁵/5! - ...`. For small `x`, `sin(x) ≈ x`. A better approximation is `sin(x) ≈ x - x³/6`.
-
-**Formulas:**
-*   **Taylor Series of f(x) around point a:**
-    `f(x) = Σ_(n=0)^∞ [f^(n)(a) / n!] * (x-a)^n`
-    `f(x) = f(a) + f'(a)(x-a) + f''(a)/2! (x-a)² + f'''(a)/3! (x-a)³ + ...`
-    Where `f^(n)(a)` denotes the `n`-th derivative of `f` evaluated at `a`.
-*   **Maclaurin Series (Taylor series around a=0):**
-    `f(x) = Σ_(n=0)^∞ [f^(n)(0) / n!] * x^n`
-    `f(x) = f(0) + f'(0)x + f''(0)/2! x² + f'''(0)/3! x³ + ...`
-
-**Learning Objectives:**
-*   Define a Taylor series and a Maclaurin series.
-*   Understand how a function can be approximated by a polynomial using its derivatives.
-*   Be able to compute the Taylor series for basic functions.
-*   Recognize the applications of Taylor series in approximation and numerical methods.
-
-**Related Concepts:**
-*   Derivatives
-*   Polynomials
-*   Series Convergence
-*   Approximation Theory
-*   Newton's Method (Optimization)
-
-### 3.3. Maxima and minima, optimization involving a single variable
-
-**Summary:** Finding maxima and minima involves identifying points where a function reaches its highest or lowest values. For functions of a single variable, this is typically done by finding critical points where the first derivative is zero or undefined, and then using the first or second derivative test to classify them. Optimization aims to find the input values that yield the optimal (maximum or minimum) output of a function.
-
-**Explanation:**
-*   **Local Maxima/Minima:** A point `c` is a local maximum if `f(c)` is greater than or equal to `f(x)` for all `x` in an open interval around `c`. Similarly for a local minimum.
-*   **Global Maxima/Minima:** The absolute highest or lowest value of the function over its entire domain.
-*   **Critical Points:** Points where the first derivative `f'(x)` is zero or undefined. Local extrema can only occur at critical points or at the endpoints of a closed interval.
-*   **First Derivative Test:** Examines the sign of `f'(x)` around a critical point `c`.
-    *   If `f'(x)` changes from positive to negative at `c`, `c` is a local maximum.
-    *   If `f'(x)` changes from negative to positive at `c`, `c` is a local minimum.
-*   **Second Derivative Test:** Uses the sign of the second derivative `f''(x)` at a critical point `c` where `f'(c) = 0`.
-    *   If `f''(c) > 0`, `c` is a local minimum.
-    *   If `f''(c) < 0`, `c` is a local maximum.
-    *   If `f''(c) = 0`, the test is inconclusive.
-
-**Optimization:** The process of finding the optimal (maximum or minimum) value of a function, often subject to constraints. For single-variable optimization, this typically involves:
-1.  Finding critical points.
-2.  Using derivative tests to classify them.
-3.  Checking function values at endpoints of the domain (if applicable).
-4.  Comparing values to find global extrema.
-
-**Practical Examples:**
-*   **Finding extrema for `f(x) = x² - 4x + 3`:**
-    1.  Find the first derivative: `f'(x) = 2x - 4`.
-    2.  Set `f'(x) = 0` to find critical points: `2x - 4 = 0 => 2x = 4 => x = 2`.
-    3.  Find the second derivative: `f''(x) = 2`.
-    4.  Apply the Second Derivative Test at `x=2`: `f''(2) = 2`. Since `2 > 0`, `x=2` corresponds to a local minimum.
-    5.  The value of the function at the minimum is `f(2) = 2² - 4(2) + 3 = 4 - 8 + 3 = -1`.
-    Since this is a parabola opening upwards, `x=2` is also the global minimum.
-*   **Optimizing Profit:** A company wants to maximize profit `P(q)` where `q` is the quantity produced. `P(q) = R(q) - C(q)` (Revenue - Cost). They would find `q` such that `P'(q) = 0` and `P''(q) < 0` to ensure a maximum profit.
-
-**Formulas:**
-*   **Condition for Critical Points:** `f'(x) = 0` or `f'(x)` is undefined.
-*   **First Derivative Test:**
-    *   `f'(x)` changes from `+` to `-` at `c` => local maximum.
-    *   `f'(x)` changes from `-` to `+` at `c` => local minimum.
-*   **Second Derivative Test (for `f'(c)=0`):**
-    *   If `f''(c) > 0`, `f(c)` is a local minimum.
-    *   If `f''(c) < 0`, `f(c)` is a local maximum.
-    *   If `f''(c) = 0`, the test is inconclusive (may be an inflection point or an extremum).
-
-**Learning Objectives:**
+#### Learning Objectives:
 *   Define local and global maxima and minima.
-*   Identify critical points of a function.
-*   Apply the first and second derivative tests to classify extrema.
-*   Understand the basic principles of single-variable optimization.
+*   Apply the first derivative test to find critical points and classify them.
+*   Apply the second derivative test to classify critical points.
+*   Solve optimization problems for functions of a single variable.
 
-**Related Concepts:**
-*   Derivatives
-*   Inflection Points
-*   Concavity and Convexity
-*   Multivariable Optimization
-*   Lagrange Multipliers (for constrained optimization)
+#### Comprehensive Explanation:
+Finding the maximum or minimum values of a function is a core problem in optimization. For functions of a single variable, this often involves:
+1.  **Finding Critical Points**: These are points where the first derivative of the function is zero or undefined. These points are candidates for local maxima, local minima, or saddle points (inflection points).
+2.  **Classifying Critical Points**:
+    *   **First Derivative Test**: Examines the sign change of the first derivative around a critical point. If the sign changes from positive to negative, it's a local maximum. If from negative to positive, it's a local minimum.
+    *   **Second Derivative Test**: Uses the sign of the second derivative at a critical point. If `f''(c) < 0`, it's a local maximum. If `f''(c) > 0`, it's a local minimum. If `f''(c) = 0`, the test is inconclusive.
+Global maxima/minima are the absolute highest/lowest values over the entire domain or a specified interval.
+
+#### Practical Examples:
+*   **Maximizing profit**: A company wants to find the production level (x) that maximizes its profit function `P(x)`. This involves finding `x` where `P'(x)=0` and `P''(x)<0`.
+*   **Minimizing cost**: Finding the dimensions of a container that minimize the material cost while holding a fixed volume.
+*   **Finding the maximum height of a projectile**: Given its trajectory function `h(t)`, find the time `t` where `h'(t)=0` and `h''(t)<0`.
+
+#### Relevant Formulas:
+*   **First Derivative Test**:
+    If `f'(c) = 0`:
+    *   If `f'(x)` changes from `+` to `-` at `c`, `c` is a local maximum.
+    *   If `f'(x)` changes from `-` to `+` at `c`, `c` is a local minimum.
+    *   If `f'(x)` does not change sign, `c` is an inflection point.
+*   **Second Derivative Test**:
+    If `f'(c) = 0`:
+    *   If `f''(c) < 0`, `c` is a local maximum.
+    *   If `f''(c) > 0`, `c` is a local minimum.
+    *   If `f''(c) = 0`, the test is inconclusive (may be max, min, or inflection point).
 
 ---
 
 ## 4. Data Structures and Algorithms
 
-Data Structures and Algorithms are foundational for efficient computation and problem-solving in computer science. They dictate how data is organized and manipulated to achieve optimal performance.
+Data Structures and Algorithms are foundational for efficient computation and problem-solving in computer science, including data science. They dictate how data is organized and processed.
 
-### 4.1. Programming in Python
+### 4.1 Programming in Python
 
-**Summary:** Python is a high-level, interpreted programming language known for its readability, extensive libraries, and versatility. It supports multiple programming paradigms, including object-oriented, imperative, and functional programming. Mastery of Python basics is essential for data science and algorithm implementation due to its widespread use in these fields.
+#### Learning Objectives:
+*   Understand basic Python syntax and programming constructs.
+*   Write functions, use control flow statements (if/else, loops).
+*   Apply object-oriented programming principles in Python.
+*   Perform basic file input/output operations.
 
-**Explanation:**
-Python is a dynamically typed language, meaning you don't declare variable types explicitly. Its syntax is designed to be clear and concise, often using indentation to define code blocks. Key features include:
-*   **Readability:** Emphasizes clear and logical code.
-*   **Versatility:** Used for web development, data analysis, AI, scientific computing, automation, and more.
-*   **Large Standard Library:** Provides modules for various tasks, reducing the need to write code from scratch.
-*   **Interpreted:** Code is executed line by line, making it easier for debugging.
-*   **Object-Oriented:** Supports classes and objects, allowing for modular and reusable code.
+#### Comprehensive Explanation:
+Python is a high-level, interpreted programming language widely used for data science, web development, automation, and general-purpose programming. Its popularity stems from its readability, extensive standard library, and a vast ecosystem of third-party packages (like NumPy, Pandas, Scikit-learn) that are crucial for data analysis and machine learning. Mastering Python fundamentals is essential for implementing algorithms and working with data structures.
 
-**Practical Examples:**
-*   **Basic Syntax and Output:**
-    ```python
-    print("Hello World") # Prints a string to the console
-    ```
-*   **Variables and Data Types:**
-    ```python
-    age = 30           # int (integer)
-    name = "Alice"     # str (string)
-    is_student = True  # bool (boolean)
-    height = 1.75      # float (floating-point number)
-    my_list = [1, 2, 3, "four"] # list (ordered, mutable collection)
-    my_tuple = (10, 20)      # tuple (ordered, immutable collection)
-    my_dict = {"city": "New York", "population": 8.4} # dict (key-value pairs)
-    my_set = {1, 2, 3, 3} # set (unordered collection of unique elements) -> {1, 2, 3}
-    ```
-*   **Control Flow (Conditional Statements):**
-    ```python
-    x = 10
-    if x > 5:
-        print("x is greater than 5")
-    elif x == 5:
-        print("x is 5")
-    else:
-        print("x is less than 5")
-    ```
-*   **Control Flow (Loops):**
-    ```python
-    for item in my_list:
-        print(item)
-
-    for i in range(5): # Iterates from 0 to 4
-        print(i)
-
-    count = 0
-    while count < 3:
-        print("Count:", count)
-        count += 1
-    ```
-*   **Functions:**
+#### Practical Examples:
+*   **Writing functions**:
     ```python
     def greet(name):
-        """This function greets the person passed in as a parameter."""
         return f"Hello, {name}!"
-
-    message = greet("Bob")
-    print(message) # Output: Hello, Bob!
+    print(greet("Alice")) # Output: Hello, Alice!
     ```
-*   **Object-Oriented Concepts (Classes and Objects):**
+*   **Using control flow (if/else, loops)**:
+    ```python
+    score = 85
+    if score >= 90:
+        print("Grade A")
+    elif score >= 80:
+        print("Grade B") # Output: Grade B
+    else:
+        print("Grade C")
+
+    for i in range(3):
+        print(i) # Output: 0, 1, 2
+    ```
+*   **Object-oriented programming (classes and objects)**:
     ```python
     class Dog:
         def __init__(self, name, breed):
             self.name = name
             self.breed = breed
-
         def bark(self):
             return f"{self.name} says Woof!"
 
     my_dog = Dog("Buddy", "Golden Retriever")
     print(my_dog.bark()) # Output: Buddy says Woof!
     ```
+*   **File I/O**:
+    ```python
+    # Writing to a file
+    with open("example.txt", "w") as f:
+        f.write("This is a test line.\n")
+        f.write("Another line.")
 
-**Formulas:**
-Python itself doesn't have "formulas" in the mathematical sense, but it provides operators and functions to implement them.
-*   **Arithmetic Operators:** `+`, `-`, `*`, `/`, `//` (floor division), `%` (modulo), `**` (exponentiation).
-*   **Comparison Operators:** `==`, `!=`, `>`, `<`, `>=`, `<=`.
-*   **Logical Operators:** `and`, `or`, `not`.
+    # Reading from a file
+    with open("example.txt", "r") as f:
+        content = f.read()
+    print(content)
+    # Output:
+    # This is a test line.
+    # Another line.
+    ```
 
-**Learning Objectives:**
-*   Write basic Python programs using variables, data types, and operators.
-*   Implement control flow structures (if/elif/else, for loops, while loops).
-*   Define and call functions.
-*   Understand fundamental object-oriented programming concepts in Python (classes, objects, methods).
-*   Utilize Python's standard library for common tasks.
+#### Relevant Formulas:
+*   Python programming primarily involves logical constructs and syntax, rather than mathematical formulas. Performance is often described using **Time Complexity** (Big O notation), which is covered in later algorithm topics.
 
-**Related Concepts:**
-*   Algorithms (implemented in Python)
-*   Data Structures (implemented in Python)
-*   Libraries like NumPy, Pandas, Scikit-learn (for data science)
-*   Debugging and Testing
+### 4.2 Basic Data Structures (Stacks, Queues, Linked Lists, Trees, Hash Tables)
 
-### 4.2. Basic data structures: stacks, queues, linked lists, trees, hash tables
+#### Learning Objectives:
+*   Understand the principles and operations of fundamental data structures.
+*   Choose the appropriate data structure for a given problem based on efficiency requirements.
+*   Implement basic operations for each data structure.
 
-**Summary:** Data structures are ways of organizing and storing data efficiently, enabling effective access and modification. Stacks (LIFO) and queues (FIFO) are linear structures. Linked lists offer dynamic memory allocation and efficient insertions/deletions. Trees are hierarchical structures for representing relationships and enabling efficient searching. Hash tables provide efficient key-value storage using hash functions for fast lookups.
+#### Comprehensive Explanation:
+Data structures are ways of organizing and storing data in a computer so that it can be accessed, managed, and modified efficiently. Each structure has strengths and weaknesses depending on the operations required.
+*   **Stacks**: A Last-In, First-Out (LIFO) data structure. Elements are added (pushed) and removed (popped) from the same end (the "top").
+*   **Queues**: A First-In, First-Out (FIFO) data structure. Elements are added (enqueued) at one end (the "rear") and removed (dequeued) from the other end (the "front").
+*   **Linked Lists**: A linear data structure where elements are stored in nodes, and each node contains data and a pointer (or link) to the next node in the sequence. They can be singly, doubly, or circularly linked.
+*   **Trees**: Hierarchical data structures consisting of nodes connected by edges. The topmost node is the root, and nodes can have child nodes. Used for representing hierarchical relationships (e.g., file systems, decision trees).
+*   **Hash Tables**: Data structures that store key-value pairs. They use a hash function to map keys to array indices, providing very fast average-case lookup, insertion, and deletion times.
 
-**Explanation:**
+#### Practical Examples:
+*   **Stack**:
+    *   Undo/Redo functionality in software (last action is undone first).
+    *   Function call stack in programming.
+*   **Queue**:
+    *   Print spooler (documents are printed in the order they are sent).
+    *   Waiting lines at a service counter.
+*   **Linked List**:
+    *   Implementing dynamic lists where elements need to be frequently inserted or deleted.
+    *   Image viewers (next/previous image).
+*   **Tree**:
+    *   File systems (directories containing files and subdirectories).
+    *   Representing family trees or organizational hierarchies.
+    *   Binary Search Trees for efficient searching and sorting.
+*   **Hash Table**:
+    *   Dictionaries in Python or hash maps in Java.
+    *   Database indexing for quick record retrieval.
+    *   Caching.
 
-#### 4.2.1. Stacks
-*   **Description:** A linear data structure that follows the Last-In, First-Out (LIFO) principle. Elements are added and removed only from one end, called the "top."
-*   **Operations:** `push` (add an element to the top), `pop` (remove the top element), `peek` (view the top element without removing it), `isEmpty`.
-*   **Examples:** Undo/Redo functionality in software, function call stack in programming, browser history.
+#### Relevant Formulas:
+*   **Hash function for Hash Tables (simple example)**:
+    `h(key) = key % array_size`
+    *   *Explanation*: A hash function takes a key and converts it into an index within the hash table's underlying array. The modulo operator ensures the index is within the array bounds. More complex hash functions are used in practice to minimize collisions.
+*   **Time Complexity (Big O notation)**:
+    *   **Stacks/Queues**: Push/Pop, Enqueue/Dequeue: O(1) (constant time)
+    *   **Linked Lists**: Insertion/Deletion (at known position): O(1); Search: O(n) (linear time)
+    *   **Trees (Balanced Binary Search Tree)**: Search/Insertion/Deletion: O(log n) (logarithmic time)
+    *   **Hash Tables**: Average case Search/Insertion/Deletion: O(1); Worst case: O(n) (due to collisions)
 
-#### 4.2.2. Queues
-*   **Description:** A linear data structure that follows the First-In, First-Out (FIFO) principle. Elements are added at one end (the "rear") and removed from the other end (the "front").
-*   **Operations:** `enqueue` (add an element to the rear), `dequeue` (remove the front element), `front` (view the front element), `isEmpty`.
-*   **Examples:** Print spooler, waiting lines (e.g., customer service queue), CPU scheduling.
+### 4.3 Search Algorithms (Linear Search, Binary Search)
 
-#### 4.2.3. Linked Lists
-*   **Description:** A linear data structure where elements (nodes) are not stored in contiguous memory locations. Each node contains data and a pointer (or link) to the next node in the sequence.
-*   **Types:** Singly linked list, doubly linked list (pointers to next and previous), circular linked list.
-*   **Advantages:** Dynamic size, easy insertions and deletions (compared to arrays).
-*   **Disadvantages:** Slower access to elements (sequential traversal), extra memory for pointers.
-*   **Examples:** Implementing dynamic lists, polynomial representation, managing memory.
+#### Learning Objectives:
+*   Understand the mechanics of linear search and binary search.
+*   Analyze the time complexity of both algorithms.
+*   Identify when to use each search algorithm based on data characteristics.
 
-#### 4.2.4. Trees
-*   **Description:** A hierarchical data structure consisting of nodes connected by edges. It has a root node, child nodes, and no cycles.
-*   **Types:** Binary trees (each node has at most two children), Binary Search Trees (BSTs, ordered for efficient searching), AVL trees, Red-Black trees (self-balancing BSTs).
-*   **Applications:** File systems, decision trees in machine learning, parsing expressions, network routing algorithms.
+#### Comprehensive Explanation:
+Search algorithms are procedures for finding a specific item (or checking for its existence) within a data structure.
+*   **Linear Search (Sequential Search)**: The simplest search algorithm. It checks each element in the list sequentially until the target element is found or the end of the list is reached. It works on unsorted lists.
+*   **Binary Search**: A much more efficient search algorithm that works only on *sorted* lists. It repeatedly divides the search interval in half. If the value of the search key is less than the item in the middle of the interval, the algorithm narrows the interval to the lower half. Otherwise, it narrows it to the upper half.
 
-#### 4.2.5. Hash Tables (Hash Maps/Dictionaries)
-*   **Description:** A data structure that implements an associative array (key-value pairs) by mapping keys to array indices using a hash function. Provides very fast average-case time complexity for insertion, deletion, and lookup operations.
-*   **Components:**
-    *   **Hash Function:** Converts a key into an index in the array (hash table).
-    *   **Buckets/Slots:** The array where values are stored.
-    *   **Collision Resolution:** Methods to handle when two different keys hash to the same index (e.g., separate chaining, open addressing).
-*   **Examples:** Dictionaries in Python, `HashMap` in Java, database indexing, caching.
+#### Practical Examples:
+*   **Linear Search**: Finding a specific name in an unsorted list of contacts on your phone.
+*   **Binary Search**:
+    *   Finding a word in a dictionary (you open to the middle, then go to the first or second half).
+    *   Searching for a specific value in a sorted array of numbers.
 
-**Formulas:**
-*   **Hash Function (general concept):** `index = h(key)`
-    A good hash function aims for uniform distribution of keys across the hash table to minimize collisions.
-*   **Collision Resolution (Separate Chaining):** Each bucket is a linked list (or another data structure) storing all elements that hash to that index.
-*   **Collision Resolution (Open Addressing):** If a hash collision occurs, the algorithm probes for an alternative empty slot in the array (e.g., linear probing, quadratic probing, double hashing).
+#### Relevant Formulas:
+*   **Time Complexity**: Describes how the running time of an algorithm grows with the input size `n`.
+    *   **Linear Search**:
+        *   Worst-case: O(n) (target is at the end or not present).
+        *   Average-case: O(n).
+    *   **Binary Search**:
+        *   Worst-case: O(log n) (logarithmic time).
+        *   Average-case: O(log n).
+    *   *Explanation*: Binary search is significantly faster for large datasets because it eliminates half of the remaining elements with each comparison.
 
-**Learning Objectives:**
-*   Understand the principles and characteristics of stacks, queues, linked lists, trees, and hash tables.
-*   Identify appropriate use cases for each data structure.
-*   Know the basic operations associated with each structure.
-*   Understand the concept of a hash function and collision resolution in hash tables.
+### 4.4 Basic Sorting Algorithms (Selection Sort, Bubble Sort, Insertion Sort)
 
-**Related Concepts:**
-*   Algorithms (which operate on these data structures)
-*   Time and Space Complexity Analysis (Big O notation)
-*   Abstract Data Types (ADT)
-*   Recursion (often used with trees)
-*   Graphs (trees are a special type of graph)
+#### Learning Objectives:
+*   Understand the working principles of Selection Sort, Bubble Sort, and Insertion Sort.
+*   Analyze the time complexity of these basic sorting algorithms.
+*   Compare their efficiency and identify scenarios where they might be used (e.g., small datasets).
+
+#### Comprehensive Explanation:
+Sorting algorithms arrange elements of a list or array in a specific order (e.g., ascending or descending). These three are fundamental, comparison-based sorting algorithms, often used for educational purposes or very small datasets due to their simplicity, but generally inefficient for large datasets.
+*   **Selection Sort**: Repeatedly finds the minimum element from the unsorted part of the list and swaps it with the element at the beginning of the unsorted part.
+*   **Bubble Sort**: Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. Passes through the list are repeated until no swaps are needed, indicating the list is sorted.
+*   **Insertion Sort**: Builds the final sorted array (or list) one item at a time. It iterates through the input elements and at each iteration, removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there.
+
+#### Practical Examples:
+*   **Manual Sorting**: These algorithms mimic how one might manually sort a small hand of cards.
+*   **Selection Sort**: Imagine finding the smallest card in your hand and moving it to the leftmost position, then finding the next smallest among the remaining and moving it to the second position, and so on.
+*   **Bubble Sort**: Repeatedly comparing adjacent cards and swapping them if out of order, eventually 'bubbling up' the largest cards to the end.
+*   **Insertion Sort**: Picking up cards one by one and inserting them into their correct sorted position within the cards you've already arranged.
+
+#### Relevant Formulas:
+*   **Time Complexity (Big O notation)**: All three algorithms have similar worst-case and average-case time complexities, making them generally inefficient for large datasets.
+    *   **Selection Sort**:
+        *   Worst-case: O(n²)
+        *   Average-case: O(n²)
+    *   **Bubble Sort**:
+        *   Worst-case: O(n²)
+        *   Average-case: O(n²)
+        *   Best-case: O(n) (if the list is already sorted)
+    *   **Insertion Sort**:
+        *   Worst-case: O(n²)
+        *   Average-case: O(n²)
+        *   Best-case: O(n) (if the list is already sorted or nearly sorted)
+    *   *Explanation*: The `n²` complexity arises because for each of `n` elements, the algorithm might perform operations proportional to `n` (e.g., comparisons, swaps, shifts).
+
+### 4.5 Divide and Conquer (Mergesort, Quicksort)
+
+#### Learning Objectives:
+*   Understand the "Divide and Conquer" algorithmic paradigm.
+*   Explain the working principles of Mergesort and Quicksort.
+*   Analyze the time complexity of these efficient sorting algorithms.
+*   Compare Mergesort and Quicksort in terms of performance and space complexity.
+
+#### Comprehensive Explanation:
+Divide and Conquer is a powerful algorithmic paradigm that recursively breaks down a problem into two or more sub-problems of the same or related type, until these become simple enough to be solved directly. The solutions to the sub-problems are then combined to give a solution to the original problem.
+*   **Mergesort**: A stable, comparison-based sorting algorithm. It divides the unsorted list into `n` sublists, each containing one element (a list of one element is considered sorted). Then, it repeatedly merges sublists to produce new sorted sublists until there is only one sorted list remaining.
+*   **Quicksort**: An efficient, in-place, comparison-based sorting algorithm. It picks an element as a pivot and partitions the array around the pivot, placing all elements smaller than the pivot before it and all elements greater than the pivot after it. The sub-arrays are then recursively sorted.
+
+#### Practical Examples:
+*   **Mergesort**: Efficiently sorting large datasets by dividing them into smaller, manageable chunks that are easier to sort, then combining them. Often used for external sorting (data too large to fit in memory).
+*   **Quicksort**: A widely used general-purpose sorting algorithm due to its good average-case performance. Commonly used in programming languages' standard libraries for sorting arrays.
+
+#### Relevant Formulas:
+*   **Time Complexity (Big O notation)**: These algorithms are significantly more efficient for large datasets than the basic sorting algorithms.
+    *   **Mergesort**:
+        *   Worst-case: O(n log n)
+        *   Average-case: O(n log n)
+        *   Space Complexity: O(n) (requires auxiliary space for merging)
+    *   **Quicksort**:
+        *   Worst-case: O(n²) (occurs with poor pivot selection, e.g., already sorted array)
+        *   Average-case: O(n log n)
+        *   Best-case: O(n log n)
+        *   Space Complexity: O(log n) (for recursion stack, average case), O(n) (worst case)
+    *   *Explanation*: The `log n` factor comes from the repeated division of the problem into sub-problems. `n log n` is generally considered very efficient for sorting.
+
+### 4.6 Graph Theory and Basic Graph Algorithms (Traversals, Shortest Path)
+
+#### Learning Objectives:
+*   Define graphs, vertices, and edges.
+*   Understand graph representations (adjacency matrix, adjacency list).
+*   Implement and apply graph traversal algorithms (BFS, DFS).
+*   Implement and apply shortest path algorithms (e.g., Dijkstra's).
+
+#### Comprehensive Explanation:
+Graph theory studies graphs, which are mathematical structures used to model pairwise relations between objects. A graph consists of a set of vertices (nodes) and a set of edges (connections) that link pairs of vertices. Graphs are extremely versatile for modeling networks, relationships, and processes.
+*   **Graph Traversals**: Algorithms to visit all nodes in a graph systematically.
+    *   **Breadth-First Search (BFS)**: Explores all the neighbor nodes at the present depth level before moving on to the nodes at the next depth level. Uses a queue.
+    *   **Depth-First Search (DFS)**: Explores as far as possible along each branch before backtracking. Uses a stack (or recursion).
+*   **Shortest Path Algorithms**: Algorithms to find a path between two vertices (or from a source to all other vertices) such that the sum of the weights of its constituent edges is minimized.
+    *   **Dijkstra's Algorithm**: Finds the shortest paths from a single source vertex to all other vertices in a graph with non-negative edge weights.
+
+#### Practical Examples:
+*   **Traversals (BFS/DFS)**:
+    *   Finding all connected components in a social network (e.g., finding all friends of friends).
+    *   Web crawlers use BFS to index web pages.
+    *   Finding a path in a maze (DFS can be used).
+*   **Shortest Path (Dijkstra's)**:
+    *   Google Maps navigation (finding the quickest route between two locations).
+    *   Network routing protocols (finding the most efficient path for data packets).
+    *   Finding the minimum cost to travel between cities.
+
+#### Relevant Formulas:
+*   **Time Complexity (Big O notation)**: For a graph with `V` vertices and `E` edges.
+    *   **BFS/DFS**: O(V+E) (when using an adjacency list representation).
+    *   **Dijkstra's Algorithm (with min-priority queue)**: O(E log V) or O((V+E) log V)
+        *   *Explanation*: The efficiency of graph algorithms depends heavily on the graph representation (adjacency matrix vs. adjacency list) and the data structures used (e.g., priority queue for Dijkstra's).
+*   **Adjacency Matrix**: An `V x V` matrix where `A[i][j] = 1` if an edge exists between `i` and `j`, `0` otherwise. Space complexity: O(V²).
+*   **Adjacency List**: An array of lists, where `adj[i]` contains a list of all vertices adjacent to vertex `i`. Space complexity: O(V+E).
 
 ---
 
 ## 5. Database Management and Warehousing
 
-Database Management and Warehousing are critical for storing, organizing, retrieving, and analyzing large volumes of data. They form the backbone of almost all data-driven applications and business intelligence systems.
+Database Management and Warehousing are crucial for storing, organizing, and retrieving large volumes of data, forming the backbone for data analysis and business intelligence.
 
-### 5.1. ER-model, relational model: relational algebra, tuple calculus, SQL
+### 5.1 ER-Model
 
-**Summary:** The Entity-Relationship (ER) model is a high-level conceptual data model used for designing databases. The Relational Model organizes data into tables (relations) with rows and columns. Relational Algebra and Tuple Calculus are formal query languages for relational databases. SQL (Structured Query Language) is the standard language for managing and manipulating relational databases, based on the principles of the relational model.
+#### Learning Objectives:
+*   Define the Entity-Relationship (ER) model and its components.
+*   Identify entities, attributes, and relationships in a given scenario.
+*   Create a basic ER diagram to represent database structure.
 
-**Explanation:**
+#### Comprehensive Explanation:
+The Entity-Relationship (ER) model is a high-level conceptual data model that describes the structure of a database using entities, attributes, and relationships. It is a widely used tool in the design phase of database development to represent real-world objects and their associations in a clear and intuitive graphical format (ER diagram).
 
-#### 5.1.1. ER-Model (Entity-Relationship Model)
-*   **Description:** A high-level conceptual data model that represents the real-world entities and their relationships. It's used during the database design phase to create a blueprint of the database.
-*   **Components:**
-    *   **Entities:** Real-world objects (e.g., Customer, Product, Order). Represented by rectangles.
-    *   **Attributes:** Properties of entities (e.g., CustomerID, Name, Price). Represented by ovals.
-    *   **Relationships:** Associations between entities (e.g., a Customer `places` an Order). Represented by diamonds.
-    *   **Cardinality:** Specifies the number of instances of one entity that can be associated with instances of another entity (e.g., One-to-One, One-to-Many, Many-to-Many).
-*   **Examples:** Designing a database for an online store, mapping out entities like `Customers`, `Products`, and `Orders` and their interactions.
+#### Practical Examples:
+*   **Entities**: Represent real-world objects or concepts (e.g., `Student`, `Course`, `Professor`).
+*   **Attributes**: Properties or characteristics of an entity (e.g., for `Student`: Student ID, Name, Age, Major).
+*   **Relationship**: An association between two or more entities (e.g., a `Student` `enrolls in` a `Course`; a `Professor` `teaches` a `Course`). Relationships can be one-to-one, one-to-many, or many-to-many.
 
-#### 5.1.2. Relational Model
-*   **Description:** A logical data model where data is organized into two-dimensional tables called relations. Each relation has a unique name, and consists of rows (tuples) and columns (attributes).
-*   **Key Concepts:**
-    *   **Relation/Table:** A collection of related data organized in rows and columns.
-    *   **Tuple/Row:** A single record in a table.
-    *   **Attribute/Column:** A specific characteristic or field in a table.
-    *   **Schema:** The logical design of the database (table names, column names, data types).
-    *   **Key:** An attribute or set of attributes that uniquely identifies a tuple (e.g., Primary Key, Foreign Key).
-*   **Examples:** A `Customers` table with columns `CustomerID`, `Name`, `Address`, `Phone`.
+#### Relevant Formulas:
+*   The ER-Model is a conceptual design tool and does not involve mathematical formulas directly. Its "formulas" are the graphical conventions and rules for representing entities, attributes, and relationships.
 
-#### 5.1.3. Relational Algebra
-*   **Description:** A procedural query language that takes relations as input and produces relations as output. It consists of a set of fundamental operators used to manipulate relations. It forms the theoretical basis for SQL.
-*   **Operators:**
-    *   **Selection (σ):** Filters rows based on a condition (like SQL `WHERE`). `σ_condition(R)`
-    *   **Projection (π):** Selects specific columns (like SQL `SELECT` for columns). `π_attributes(R)`
-    *   **Union (∪), Intersection (∩), Difference (-):** Set operations on relations with compatible schemas.
-    *   **Cartesian Product (×):** Combines every row of one relation with every row of another. `R × S`
-    *   **Join (⋈):** Combines rows from two relations based on a common attribute or condition (e.g., `R ⋈_condition S`).
-*   **Examples:**
-    *   `π_Name (σ_City='New York' (Customers))`: Get the names of customers from 'New York'.
+### 5.2 Relational Model (Relational Algebra, Tuple Calculus, SQL, Integrity Constraints, Normal Form)
 
-#### 5.1.4. Tuple Calculus
-*   **Description:** A non-procedural (declarative) query language, meaning it describes *what* to retrieve rather than *how* to retrieve it. It uses predicate logic to specify the properties of the tuples to be retrieved.
-*   **Examples:** `{t | Customers(t) ∧ t.City = 'New York'}`: Selects tuples `t` from the `Customers` relation where the `City` attribute of `t` is 'New York'.
+#### Learning Objectives:
+*   Understand the relational model and its components (tables, rows, columns).
+*   Apply Relational Algebra and Tuple Calculus for formal querying.
+*   Write SQL queries for data definition and manipulation.
+*   Define and apply integrity constraints (primary key, foreign key).
+*   Understand the purpose of database normalization and different normal forms.
 
-#### 5.1.5. SQL (Structured Query Language)
-*   **Description:** The most widely used standard language for managing and manipulating relational databases. It's a declarative language that allows users to query, insert, update, and delete data.
-*   **Components:**
-    *   **DDL (Data Definition Language):** `CREATE`, `ALTER`, `DROP` (for schema definition).
-    *   **DML (Data Manipulation Language):** `SELECT`, `INSERT`, `UPDATE`, `DELETE` (for data manipulation).
-    *   **DCL (Data Control Language):** `GRANT`, `REVOKE` (for permissions).
-    *   **TCL (Transaction Control Language):** `COMMIT`, `ROLLBACK` (for transactions).
-*   **Examples:**
-    *   `SELECT Name, Email FROM Customers WHERE City = 'New York' ORDER BY Name;`
-    *   `INSERT INTO Products (ProductID, Name, Price) VALUES (101, 'Laptop', 1200.00);`
-    *   `UPDATE Orders SET Status = 'Shipped' WHERE OrderID = 5001;`
+#### Comprehensive Explanation:
+The relational model organizes data into tables (relations), where each table consists of rows (tuples) and columns (attributes). It is the most widely used model for databases.
+*   **Relational Algebra & Tuple Calculus**: Formal query languages that provide the theoretical foundation for database operations. Relational Algebra uses a set of operators (select, project, join, etc.) to produce new relations from existing ones. Tuple Calculus is a non-procedural language describing the desired result.
+*   **SQL (Structured Query Language)**: The standard language for managing and querying relational databases. It's used for data definition (creating tables), data manipulation (inserting, updating, deleting data), and data retrieval.
+*   **Integrity Constraints**: Rules enforced on data to ensure its validity and consistency. Common types include primary key constraints (ensuring unique identification for each row) and foreign key constraints (maintaining referential integrity between related tables).
+*   **Normal Forms (1NF, 2NF, 3NF, BCNF)**: Guidelines for database design to reduce data redundancy, eliminate anomalies (insertion, update, deletion), and improve data integrity. Higher normal forms generally imply better design but can sometimes involve more complex queries.
 
-**Formulas:**
-*   **Relational Algebra Operators:**
-    *   Selection: `σ_condition(R)`
-    *   Projection: `π_attributes(R)`
-    *   Union: `R ∪ S`
-    *   Intersection: `R ∩ S`
-    *   Difference: `R - S`
-    *   Cartesian Product: `R × S`
-    *   Natural Join: `R ⋈ S` (joins on common attributes with equal values)
-    *   Theta Join: `R ⋈_condition S` (joins based on a general condition)
+#### Practical Examples:
+*   **SQL**:
+    *   `CREATE TABLE Students (StudentID INT PRIMARY KEY, Name VARCHAR(50), Age INT);` (Data Definition)
+    *   `INSERT INTO Students (StudentID, Name, Age) VALUES (1, 'Alice', 22);` (Data Manipulation)
+    *   `SELECT Name, Age FROM Students WHERE Age > 20;` (Data Retrieval)
+*   **Integrity Constraints**:
+    *   A `StudentID` column as a `PRIMARY KEY` ensures every student has a unique ID.
+    *   A `CourseID` in an `Enrollment` table being a `FOREIGN KEY` referencing the `Courses` table ensures that students can only enroll in existing courses.
+*   **Normalization**: Breaking down a single table `(StudentID, StudentName, CourseID, CourseName, ProfessorName)` (which has redundancy if multiple students take the same course) into `Students (StudentID, StudentName)`, `Courses (CourseID, CourseName, ProfessorName)`, and `Enrollment (StudentID, CourseID)` to reduce redundancy.
 
-**Learning Objectives:**
-*   Understand the conceptual design using the ER-model.
-*   Grasp the principles of the relational model and its components (tables, rows, columns, keys).
-*   Learn the fundamental operations of relational algebra.
-*   Be proficient in writing SQL queries for data retrieval and manipulation.
-*   Differentiate between procedural (Relational Algebra) and declarative (Tuple Calculus, SQL) query languages.
+#### Relevant Formulas:
+*   **Relational Algebra Operations**:
+    *   `SELECT (σ)`: Filters rows based on a condition (e.g., `σ_Age>20(Students)`).
+    *   `PROJECT (π)`: Selects specific columns (e.g., `π_Name,Age(Students)`).
+    *   `JOIN (⋈)`: Combines rows from two or more relations based on a related attribute (e.g., `Students ⋈_StudentID=StudentID Enrollment`).
+    *   `UNION (∪)`, `INTERSECT (∩)`, `DIFFERENCE (-)`: Set operations on relations.
+    *   *Explanation*: These operators form a procedural query language, defining how to derive new relations from existing ones.
 
-**Related Concepts:**
-*   Database Normalization
-*   Integrity Constraints
-*   Indexing
-*   Database Transactions
-*   NoSQL Databases (as an alternative)
+### 5.3 File Organization and Indexing
 
-### 5.2. Integrity constraints, normal form, file organization, indexing
+#### Learning Objectives:
+*   Understand different methods of physically organizing data records in files.
+*   Explain the purpose and benefits of indexing in databases.
+*   Describe common indexing structures (e.g., B-trees, hash tables).
 
-**Summary:** Integrity constraints ensure data accuracy and consistency within a database. Normal forms (1NF, 2NF, 3NF, BCNF) are guidelines for structuring relational databases to reduce data redundancy and improve data integrity. File organization refers to how records are physically stored on disk. Indexing creates data structures to speed up data retrieval operations. These concepts are vital for designing efficient, reliable, and maintainable databases.
+#### Comprehensive Explanation:
+*   **File Organization**: Refers to the physical arrangement of data records in a file on storage devices. The choice of file organization impacts the efficiency of data access and modification. Common types include heap files (unordered), sequential files (ordered), and hashed files.
+*   **Indexing**: Creates data structures to speed up data retrieval operations by providing quick access paths to data records without having to scan the entire file. An index is essentially a sorted list of data values and pointers to the actual data records.
 
-**Explanation:**
+#### Practical Examples:
+*   **File Organization**:
+    *   **Heap files**: Records are stored in any available space. Good for fast insertion, slow for searching.
+    *   **Sequential files**: Records are stored in a sorted order based on a key. Good for sequential access and range queries, but insertion/deletion can be slow.
+*   **Indexing**:
+    *   Creating an index on the `CustomerID` column of a `Customers` table allows the database to quickly locate a specific customer record without scanning the entire table.
+    *   **B-trees**: Widely used for indexing in relational databases, efficient for range queries and maintaining balance during insertions/deletions.
+    *   **Hash tables**: Used for indexing when very fast exact-match lookups are needed.
 
-#### 5.2.1. Integrity Constraints
-*   **Description:** Rules that restrict the data that can be entered into a database, ensuring its accuracy, consistency, and validity.
-*   **Types:**
-    *   **Domain Constraints:** Ensure that attribute values fall within a specified range or type (e.g., age must be an integer > 0).
-    *   **Entity Integrity:** States that the primary key of a relation cannot have null values. This ensures that each tuple can be uniquely identified.
-    *   **Referential Integrity:** Ensures that relationships between tables are maintained. If a foreign key in one table refers to a primary key in another table, then every foreign key value must either be null or match an existing primary key value.
-    *   **Key Constraints:** Ensure that primary keys are unique.
-*   **Examples:**
-    *   `PRIMARY KEY (StudentID)`: Ensures `StudentID` is unique and not null.
-    *   `FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)`: Ensures `CourseID` in the `Enrollment` table refers to an existing `CourseID` in the `Courses` table.
-    *   `CHECK (Age >= 18)`: Ensures age is at least 18.
+#### Relevant Formulas:
+*   File organization and indexing primarily involve data structures and algorithms, whose performance is typically analyzed using **Time Complexity** (Big O notation) for operations like search, insertion, and deletion. There are no specific mathematical formulas associated with the organization methods themselves beyond those for the underlying data structures (e.g., B-tree height, hash function properties).
 
-#### 5.2.2. Normal Forms (Database Normalization)
-*   **Description:** A systematic process of structuring a relational database schema to reduce data redundancy and improve data integrity. It involves decomposing tables into smaller, related tables based on functional dependencies.
-*   **Common Normal Forms:**
-    *   **1NF (First Normal Form):** Each column must contain atomic (indivisible) values, and there are no repeating groups of columns.
-    *   **2NF (Second Normal Form):** Must be in 1NF and all non-key attributes must be fully functionally dependent on the primary key (no partial dependencies).
-    *   **3NF (Third Normal Form):** Must be in 2NF and all non-key attributes must be non-transitively dependent on the primary key (no transitive dependencies).
-    *   **BCNF (Boyce-Codd Normal Form):** A stronger version of 3NF. For every non-trivial functional dependency `X → Y`, `X` must be a superkey.
-*   **Goal:** To eliminate data anomalies (insertion, update, deletion anomalies) and ensure data consistency.
-*   **Examples:** Decomposing a table with `(StudentID, CourseName, CourseCredits, ProfessorName)` into `(StudentID, CourseName)` and `(CourseName, CourseCredits, ProfessorName)` to remove transitive dependency of `ProfessorName` on `StudentID` via `CourseName`.
+### 5.4 Data Types and Data Transformation
 
-#### 5.2.3. File Organization
-*   **Description:** Refers to the physical arrangement of data records on disk. It impacts the efficiency of data retrieval and storage.
-*   **Types:**
-    *   **Heap File (Unordered File):** Records are stored in the order they are inserted, or wherever there is available space. Fast for insertion, slow for searching.
-    *   **Sequential File:** Records are stored in a specific order based on a key field. Good for sequential access, but insertions/deletions can be slow.
-    *   **Hash File:** Records are stored based on a hash function applied to a key, allowing for very fast direct access (average case).
-    *   **Clustered File:** Records with similar key values are stored physically close together.
+#### Learning Objectives:
+*   Understand the importance of data types in database design and data analysis.
+*   Explain the concept of data transformation and its various techniques.
+*   Apply common data transformation methods (normalization, discretization, sampling, compression).
 
-#### 5.2.4. Indexing
-*   **Description:** A data structure (like a B-tree or hash index) that improves the speed of data retrieval operations on a database table. An index creates a sorted pointer to the actual data, much like an index in a book.
-*   **Types:**
-    *   **Primary Index:** Based on the primary key, typically dense and ordered.
-    *   **Secondary Index:** Based on non-primary key attributes, can be dense or sparse.
-    *   **Clustering Index:** The order of data records in the file is the same as the order of the index records. A table can have only one clustering index.
-    *   **B-tree Index:** A balanced tree structure commonly used for general-purpose indexing, efficient for range queries and equality lookups.
-    *   **Hash Index:** Uses a hash function for very fast equality lookups, but not efficient for range queries.
-*   **Examples:** Creating an index on the `LastName` column of a `Customers` table to quickly find customers by their last name.
+#### Comprehensive Explanation:
+*   **Data Types**: Define the kind of values a column can hold in a database (e.g., integer, floating-point number, string/text, date, boolean). Choosing appropriate data types ensures data integrity, optimizes storage, and facilitates correct operations.
+*   **Data Transformation**: The process of converting data from one format or structure into another. This is often a critical step in data preprocessing for analysis, integration, or machine learning, as raw data may not be in a suitable format. Techniques aim to improve data quality, reduce dimensionality, or prepare data for specific algorithms.
 
-**Formulas:**
-*   No specific mathematical formulas are typically associated with these concepts, but their understanding relies on logical rules and algorithmic efficiency considerations.
+#### Practical Examples:
+*   **Data Types**:
+    *   Using `VARCHAR(100)` for names, `INT` for age, `DATE` for birth dates in a `Students` table.
+*   **Data Transformation**:
+    *   **Normalization (Scaling)**: Scaling numerical features (e.g., income, age) to a common range (e.g., 0-1 or z-scores) for machine learning algorithms that are sensitive to feature scales (like kNN, SVMs).
+    *   **Discretization (Binning)**: Grouping continuous numerical data into discrete intervals or bins (e.g., grouping ages into 'young', 'middle-aged', 'senior'). Useful for categorical algorithms or reducing noise.
+    *   **Sampling**: Selecting a representative subset of a large dataset to make computations more feasible or to handle imbalanced datasets.
+    *   **Compression**: Reducing the size of data to save storage space and improve transmission speed.
 
-**Learning Objectives:**
-*   Understand the importance of integrity constraints and be able to define different types.
-*   Explain the purpose of database normalization and describe the first three normal forms and BCNF.
-*   Identify and correct data anomalies through normalization.
-*   Understand different file organization methods and their impact on performance.
-*   Explain the concept of indexing and various types of indexes, recognizing their role in query optimization.
-
-**Related Concepts:**
-*   Relational Model
-*   SQL
-*   Query Optimization
-*   Data Redundancy
-*   Database Design
-
-### 5.3. Data types, data transformation such as normalization, discretization, sampling, compression
-
-**Summary:** Data types define the kind of values a column can hold (e.g., integer, string, date). Data transformation techniques are crucial for data preprocessing, preparing data for analysis or modeling. These include normalization (scaling numerical data), discretization (converting continuous data to discrete intervals), sampling (selecting a subset of data), and compression (reducing data size).
-
-**Explanation:**
-
-#### 5.3.1. Data Types
-*   **Description:** Define the type of values that an attribute (column) can store in a database or a variable can hold in a programming language. Choosing appropriate data types is essential for efficient storage, accurate calculations, and data integrity.
-*   **Common Database Data Types (SQL examples):**
-    *   **Numeric:** `INT`, `SMALLINT`, `BIGINT`, `DECIMAL(p,s)`, `NUMERIC`, `FLOAT`, `REAL`, `DOUBLE PRECISION`.
-    *   **String/Character:** `CHAR(n)`, `VARCHAR(n)`, `TEXT`.
-    *   **Date/Time:** `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`.
-    *   **Boolean:** `BOOLEAN` (or `TINYINT` with 0/1).
-    *   **Binary:** `BLOB`, `VARBINARY`.
-*   **Examples:**
-    *   `CustomerID INT PRIMARY KEY`
-    *   `ProductName VARCHAR(255)`
-    *   `OrderDate DATE`
-    *   `Price DECIMAL(10, 2)`
-
-#### 5.3.2. Data Transformation
-These techniques are part of data preprocessing, a crucial step before data analysis or machine learning model training.
-
-*   **Normalization (Feature Scaling):**
-    *   **Description:** Scaling numerical data to a standard range or distribution. This prevents features with larger values from dominating those with smaller values in certain machine learning algorithms (e.g., K-Means, SVMs, neural networks).
-    *   **Types:**
-        *   **Min-Max Scaling:** Scales values to a fixed range, usually [0, 1].
-        *   **Standardization (Z-score normalization):** Transforms data to have a mean of 0 and a standard deviation of 1.
-    *   **Examples:** Scaling `Age` (0-100) and `Income` (10,000-1,000,000) to a comparable range.
-
-*   **Discretization (Binning):**
-    *   **Description:** Converting continuous numerical data into discrete intervals or bins. This can simplify data, handle outliers, and make data suitable for algorithms that require categorical inputs.
-    *   **Methods:** Equal-width binning, equal-frequency binning, clustering-based binning.
-    *   **Examples:** Grouping `Age` into categories like 'Child' (0-12), 'Teen' (13-19), 'Adult' (20-64), 'Senior' (65+). Converting `Salary` into 'Low', 'Medium', 'High' brackets.
-
-*   **Sampling:**
-    *   **Description:** Selecting a subset of data from a larger dataset. This is done to reduce computational cost, handle imbalanced datasets, or when collecting data from the entire population is impractical.
-    *   **Types:**
-        *   **Simple Random Sampling:** Each item has an equal chance of being selected.
-        *   **Stratified Sampling:** Dividing the population into subgroups (strata) and then randomly sampling from each stratum.
-        *   **Systematic Sampling:** Selecting every k-th item from a sorted list.
-        *   **Cluster Sampling:** Dividing the population into clusters and randomly selecting entire clusters.
-    *   **Examples:** Randomly selecting 10% of customer records for a survey; selecting an equal number of fraud and non-fraud transactions from an imbalanced dataset.
-
-*   **Compression:**
-    *   **Description:** Reducing the size of data to save storage space and/or speed up data transmission.
-    *   **Types:**
-        *   **Lossless Compression:** Allows the original data to be perfectly reconstructed (e.g., ZIP, PNG).
-        *   **Lossy Compression:** Irreversibly removes some information to achieve higher compression ratios (e.g., JPEG, MP3).
-    *   **Examples:** Zipping a large CSV file; compressing images for faster web loading; using a more compact data representation (e.g., storing a small integer as `TINYINT` instead of `INT`).
-
-**Formulas:**
-*   **Min-Max Normalization:**
+#### Relevant Formulas:
+*   **Min-Max Normalization**: Scales data to a range `[0, 1]`.
     `x' = (x - min(x)) / (max(x) - min(x))`
-    This scales `x` to the range [0, 1].
-*   **Z-score Normalization (Standardization):**
+    *   *Explanation*: `x` is the original value, `min(x)` and `max(x)` are the minimum and maximum values of the feature.
+*   **Z-score Normalization (Standardization)**: Scales data to have a mean of 0 and a standard deviation of 1.
     `x' = (x - μ) / σ`
-    Where `μ` is the mean and `σ` is the standard deviation of the feature. This scales `x` to have a mean of 0 and standard deviation of 1.
+    *   *Explanation*: `μ` is the mean of the feature, `σ` is its standard deviation.
 
-**Learning Objectives:**
-*   Understand the importance of choosing appropriate data types in database design.
-*   Explain the purpose and methods of data normalization (scaling).
-*   Describe data discretization techniques and their applications.
-*   Understand different sampling methods and their use cases.
-*   Differentiate between lossless and lossy data compression.
-*   Recognize the role of data transformation in data preprocessing for analysis and machine learning.
+### 5.5 Data Warehouse Modelling (Schema, Concept Hierarchies, Measures)
 
-**Related Concepts:**
-*   Data Preprocessing
-*   Feature Engineering
-*   Machine Learning Algorithms (many require scaled data)
-*   Statistical Measures (mean, standard deviation, min, max)
-*   Data Storage and Retrieval
+#### Learning Objectives:
+*   Understand the purpose of a data warehouse.
+*   Explain common data warehouse schemas (Star, Snowflake).
+*   Define concept hierarchies and their role in OLAP.
+*   Identify measures and their aggregation in data warehousing.
 
-### 5.4. Data warehouse modelling: schema for multidimensional data models, concept hierarchies, measures: categorization and computations
+#### Comprehensive Explanation:
+Data warehousing involves storing large amounts of historical data from various sources in a consolidated, subject-oriented, non-volatile, and time-variant manner, primarily for analytical and reporting purposes (Business Intelligence).
+*   **Data Warehouse Modelling (Schemas)**: Specific designs to organize data for fast querying and analysis, distinct from transactional database designs.
+    *   **Star Schema**: The simplest and most common schema, consisting of a central "fact table" (containing numerical measures) connected to multiple "dimension tables" (containing descriptive attributes).
+    *   **Snowflake Schema**: An extension of the star schema where dimension tables are further normalized into sub-dimension tables, resembling a snowflake pattern. This reduces data redundancy but increases query complexity.
+*   **Concept Hierarchies**: Define a sequence of mappings from a set of low-level concepts to higher-level, more general concepts. They facilitate "drill-down" and "roll-up" operations in Online Analytical Processing (OLAP).
+*   **Measures**: Numerical facts that can be aggregated (summed, averaged, counted) and analyzed. They are the core data stored in fact tables.
 
-**Summary:** Data warehouse modeling focuses on designing databases optimized for analytical reporting and business intelligence. Multidimensional data models (like Star and Snowflake schemas) organize data for efficient querying across different dimensions. Concept hierarchies define levels of abstraction for dimensions (e.g., Day -> Month -> Year). Measures are numerical values that can be aggregated and analyzed (e.g., sales amount, quantity sold), often categorized and computed in various ways.
+#### Practical Examples:
+*   **Star Schema**: A `Sales Fact` table (containing `SalesAmount`, `QuantitySold`) connected to `Time Dimension` (Date, Month, Year), `Product Dimension` (ProductID, ProductName, Category), and `Customer Dimension` (CustomerID, CustomerName, City).
+*   **Concept Hierarchy**: For a `Time Dimension`, a hierarchy might be `Day` -> `Month` -> `Quarter` -> `Year`. For a `Product Dimension`, `Product` -> `Subcategory` -> `Category`.
+*   **Measures**: `Total Sales`, `Quantity Sold`, `Profit`, `Number of Units`. These are typically aggregated (e.g., sum of sales by month, average profit by product category).
 
-**Explanation:**
-Unlike operational databases (OLTP) designed for transactional processing, data warehouses (OLAP) are designed for analytical queries and reporting, often involving large volumes of historical data.
-
-#### 5.4.1. Data Warehouse Modeling
-*   **Description:** The process of designing the logical and physical structure of a data warehouse. The goal is to create a schema that supports fast, flexible, and intuitive querying for business analysis.
-*   **Multidimensional Data Models:** The core of data warehouse design, representing data in terms of facts and dimensions.
-
-    *   **Star Schema:** The simplest and most common multidimensional model. It consists of:
-        *   A central **Fact Table**: Contains quantitative measures (e.g., sales amount, quantity) and foreign keys to dimension tables. It is typically large.
-        *   Multiple **Dimension Tables**: Contain descriptive attributes about the facts (e.g., Time, Product, Customer, Store). They are typically smaller and denormalized.
-        *   **Characteristics:** Simple to understand, fewer joins (faster queries), but can lead to data redundancy in dimensions.
-
-    *   **Snowflake Schema:** An extension of the star schema where dimension tables are further normalized into sub-dimension tables.
-        *   **Characteristics:** Reduces data redundancy in dimensions, but requires more joins (slower queries), and is more complex to manage.
-
-#### 5.4.2. Concept Hierarchies
-*   **Description:** A system of grouping or categorizing data at different levels of abstraction within a dimension. They allow analysts to drill down (go to finer detail) or roll up (go to higher aggregation) through data.
-*   **Levels:** Typically arranged from more general to more specific.
-*   **Examples:**
-    *   **Time Dimension:** Day -> Week -> Month -> Quarter -> Year
-    *   **Location Dimension:** Street -> City -> State/Province -> Country
-    *   **Product Dimension:** Item -> Brand -> Category -> Department
-
-#### 5.4.3. Measures: Categorization and Computations
-*   **Description:** Numerical values that are stored in the fact table and represent the quantitative data to be analyzed. They are the "what" of the analysis.
-*   **Categorization:** Measures can be categorized based on their aggregation behavior:
-    *   **Additive Measures:** Can be summed across all dimensions (e.g., Sales Amount, Quantity Sold).
-    *   **Semi-Additive Measures:** Can be summed across some dimensions but not others (e.g., Account Balance - can sum across customers but not across time).
-    *   **Non-Additive Measures:** Cannot be summed across any dimension (e.g., Ratios, Percentages, Temperature). These often require specific aggregation functions (e.g., average, min, max).
-*   **Computations:** Measures are typically subjected to various aggregate functions during analysis:
-    *   **Sum:** Total sales, total quantity.
-    *   **Average:** Average price, average units per transaction.
-    *   **Count:** Number of transactions, number of unique customers.
-    *   **Min/Max:** Lowest price, highest quantity.
-
-**Formulas:**
-*   No specific mathematical formulas, but the design principles involve logical relationships and aggregation functions.
-
-**Learning Objectives:**
-*   Understand the purpose and characteristics of data warehouse modeling.
-*   Differentiate between Star and Snowflake schemas and their trade-offs.
-*   Explain the concept of concept hierarchies and their use in analytical drilling/rolling.
-*   Categorize measures based on their additivity and understand common computations performed on them.
-*   Recognize the differences between OLTP and OLAP systems.
-
-**Related Concepts:**
-*   Online Analytical Processing (OLAP)
-*   Business Intelligence (BI)
-*   Dimension Tables, Fact Tables
-*   Data Cubes
-*   Extract, Transform, Load (ETL)
+#### Relevant Formulas:
+*   Data warehouse modeling focuses on logical and physical design patterns rather than mathematical formulas. The "formulas" are the design principles for schemas and hierarchies, and the aggregation functions applied to measures (e.g., SUM(), AVG(), COUNT(), MIN(), MAX()).
 
 ---
 
 ## 6. Machine Learning
 
-Machine Learning is a field of artificial intelligence that enables systems to learn from data, identify patterns, and make decisions with minimal human intervention. It is broadly categorized into supervised and unsupervised learning.
-
-### 6.1. Supervised Learning
-
-Supervised learning is a machine learning paradigm where an algorithm learns from labeled training data, which consists of input features and corresponding output labels. The goal is to learn a mapping from inputs to outputs so that the model can predict outputs for new, unseen inputs.
-
-#### 6.1.1. Regression and classification problems
-
-**Summary:** Supervised learning problems are typically divided into two main categories: regression and classification. Regression problems involve predicting a continuous output value (e.g., house price), while classification problems involve predicting a discrete class label (e.g., spam or not spam).
-
-**Explanation:**
-*   **Regression Problems:**
-    *   **Goal:** To predict a continuous numerical value. The output variable is quantitative.
-    *   **Output:** A real number (e.g., 10.5, 1000, 25.7).
-    *   **Evaluation Metrics:** Mean Squared Error (MSE), Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), R-squared.
-    *   **Examples:** Predicting the price of a house, forecasting stock prices, estimating a person's age based on their photo, predicting temperature.
-*   **Classification Problems:**
-    *   **Goal:** To predict a discrete class label or category. The output variable is categorical.
-    *   **Output:** A category (e.g., "spam" or "not spam", "cat", "dog", or "bird", "disease" or "no disease").
-    *   **Types:**
-        *   **Binary Classification:** Two possible output classes.
-        *   **Multi-class Classification:** More than two possible output classes.
-    *   **Evaluation Metrics:** Accuracy, Precision, Recall, F1-score, ROC AUC, Confusion Matrix.
-    *   **Examples:** Identifying if an email is spam, categorizing images (e.g., into different animal species), diagnosing a disease (present/absent), sentiment analysis (positive/negative/neutral).
-
-**Practical Examples:**
-*   **Regression:**
-    *   Predicting the price of a used car based on its mileage, age, and brand.
-    *   Forecasting the demand for a product next month given historical sales data.
-*   **Classification:**
-    *   A bank predicting whether a loan applicant will default (Yes/No).
-    *   A medical system classifying a tumor as benign or malignant.
-    *   An email client categorizing incoming emails into "Primary", "Social", "Promotions".
-
-**Formulas:**
-These are problem types, not algorithms, so they don't have specific formulas. However, the evaluation metrics for each type involve formulas:
-*   **Mean Squared Error (MSE) for Regression:** `MSE = (1/n) Σ (y_i - ŷ_i)²`
-*   **Accuracy for Classification:** `Accuracy = (Number of Correct Predictions) / (Total Number of Predictions)`
-
-**Learning Objectives:**
-*   Clearly differentiate between regression and classification problems in supervised learning.
-*   Identify real-world scenarios that fall into each category.
-*   Understand the types of outputs and common evaluation metrics for each problem type.
-
-**Related Concepts:**
-*   Supervised Learning
-*   Training Data, Test Data
-*   Features, Labels
-*   Evaluation Metrics (MSE, R-squared, Accuracy, Precision, Recall)
-*   Specific Regression Algorithms (Linear Regression, Ridge Regression)
-*   Specific Classification Algorithms (Logistic Regression, SVM, Decision Trees)
-
-#### 6.1.2. Simple linear regression, multiple linear regression, ridge regression, logistic regression
-
-**Summary:** These are common regression models used in supervised learning. Simple linear regression models the linear relationship between one independent and one dependent variable. Multiple linear regression extends this to multiple independent variables. Ridge regression is a regularization technique for linear regression to prevent overfitting. Logistic regression is used for binary classification, modeling the probability of an event.
-
-**Explanation:**
-
-##### 6.1.2.1. Simple Linear Regression
-*   **Description:** Models the linear relationship between a single independent variable (predictor, `X`) and a continuous dependent variable (response, `Y`). It tries to find the best-fitting straight line through the data.
-*   **Goal:** Predict `Y` based on `X`.
-*   **Method:** Typically uses Ordinary Least Squares (OLS) to minimize the sum of squared residuals.
-*   **Assumptions:** Linearity, independence of errors, homoscedasticity (constant variance of errors), normality of errors.
-*   **Formula:** `y = β₀ + β₁x + ε`
-    *   `y`: Dependent variable.
-    *   `x`: Independent variable.
-    *   `β₀`: Y-intercept (value of Y when X is 0).
-    *   `β₁`: Slope (change in Y for a one-unit change in X).
-    *   `ε`: Error term (residuals).
-
-##### 6.1.2.2. Multiple Linear Regression
-*   **Description:** Extends simple linear regression to model the linear relationship between two or more independent variables and a single continuous dependent variable.
-*   **Goal:** Predict `Y` based on `X₁, X₂, ..., X_n`.
-*   **Method:** Also typically uses OLS.
-*   **Assumptions:** Same as simple linear regression, plus no multicollinearity (independent variables should not be highly correlated with each other).
-*   **Formula:** `y = β₀ + β₁x₁ + β₂x₂ + ... + β_nx_n + ε`
-    *   `x₁, ..., x_n`: Independent variables.
-    *   `β₁, ..., β_n`: Coefficients representing the change in Y for a one-unit change in the respective X, holding other X's constant.
-
-##### 6.1.2.3. Ridge Regression
-*   **Description:** A regularization technique for multiple linear regression that addresses issues like multicollinearity and overfitting. It adds a penalty term (L2 regularization) to the OLS cost function, shrinking the regression coefficients towards zero.
-*   **Goal:** Improve model generalization by reducing variance, especially when there are many correlated features.
-*   **Mechanism:** Penalizes the sum of squared magnitudes of the coefficients. A hyperparameter `λ` (lambda) controls the strength of the penalty.
-*   **Formula (Cost Function):** `J(β) = MSE(β) + λ Σ_(j=1)^p β_j²`
-    *   `MSE(β)`: Mean Squared Error of the standard linear regression.
-    *   `λ`: Tuning parameter (λ ≥ 0). Larger λ means more shrinkage.
-    *   `Σ β_j²`: Sum of squared coefficients (excluding the intercept `β₀`).
-
-##### 6.1.2.4. Logistic Regression
-*   **Description:** Despite its name, logistic regression is a **binary classification algorithm**, not a regression algorithm in the sense of predicting a continuous output. It models the probability that a given input belongs to a particular class. It uses the logistic (sigmoid) function to map the linear combination of features to a probability between 0 and 1.
-*   **Goal:** Predict the probability of a binary outcome (e.g., 0 or 1).
-*   **Method:** Uses maximum likelihood estimation to find the optimal coefficients.
-*   **Formula (Sigmoid Function):** `P(Y=1|X) = 1 / (1 + e^(-(β₀ + β₁x₁ + ... + β_nx_n)))`
-    *   The term `(β₀ + β₁x₁ + ... + β_nx_n)` is the linear combination of features, similar to linear regression.
-    *   The sigmoid function transforms this linear output into a probability.
-*   **Decision Boundary:** A threshold (usually 0.5) is applied to the predicted probability to classify the outcome.
-
-**Practical Examples:**
-*   **Simple Linear Regression:** Predicting a student's final exam score based on the number of hours they studied for the exam.
-*   **Multiple Linear Regression:** Predicting the price of a house based on its size, number of bedrooms, location, and age.
-*   **Ridge Regression:** Predicting house prices with many potentially correlated features (e.g., number of windows, distance to park, crime rate) to prevent coefficients from becoming too large and making the model unstable.
-*   **Logistic Regression:** Predicting whether a customer will churn (Yes/No) based on their usage patterns, demographics, and past interactions. Classifying an email as spam or not spam.
-
-**Learning Objectives:**
-*   Understand the principles of simple and multiple linear regression for continuous target variables.
-*   Explain the purpose of Ridge Regression and how it addresses overfitting and multicollinearity.
-*   Understand that Logistic Regression is a classification algorithm and how it uses the sigmoid function to predict probabilities for binary outcomes.
-*   Identify appropriate use cases for each regression/classification model.
-
-**Related Concepts:**
-*   Ordinary Least Squares (OLS)
-*   Overfitting and Underfitting
-*   Regularization (L1/Lasso, L2/Ridge)
-*   Cost Functions (MSE, Cross-Entropy)
-*   Gradient Descent
-*   Hypothesis Testing (for coefficients)
-
-#### 6.1.3. k-nearest neighbour, naive Bayes classifier, linear discriminant analysis, support vector machine, decision trees
-
-**Summary:** These are various classification algorithms used in supervised learning. K-Nearest Neighbor (KNN) classifies a point based on the majority class of its 'k' nearest neighbors. Naive Bayes is a probabilistic classifier based on Bayes' Theorem with a strong independence assumption. Linear Discriminant Analysis (LDA) finds a linear combination of features that best separates classes. Support Vector Machine (SVM) finds an optimal hyperplane to separate classes. Decision trees classify by partitioning the data based on feature values.
-
-**Explanation:**
-
-##### 6.1.3.1. K-Nearest Neighbor (KNN)
-*   **Description:** A non-parametric, instance-based learning algorithm used for both classification and regression. For classification, a new data point is classified by a majority vote of its `k` nearest neighbors in the training data. The "distance" between points is typically Euclidean distance.
-*   **Characteristics:** Simple to understand and implement, lazy learner (no explicit training phase, just stores data), sensitive to the choice of `k` and distance metric, can be computationally expensive for large datasets.
-*   **Examples:** Classifying a new fruit by comparing its features (color, size) to `k` known fruits; recommending products based on similar users.
-
-##### 6.1.3.2. Naive Bayes Classifier
-*   **Description:** A probabilistic classification algorithm based on Bayes' Theorem with a "naive" assumption of conditional independence between features given the class label. Despite this strong assumption, it often performs surprisingly well, especially for text classification.
-*   **Characteristics:** Fast, simple, performs well with high-dimensional data, works well with small training datasets.
-*   **Examples:** Spam detection, sentiment analysis, document classification.
-*   **Formula (Simplified):** `P(Class|Features) ∝ P(Features|Class) * P(Class)`
-    *   `P(Class|Features)`: Posterior probability of the class given the features.
-    *   `P(Features|Class)`: Likelihood of observing features given the class (calculated by multiplying individual feature probabilities due to independence assumption).
-    *   `P(Class)`: Prior probability of the class.
-
-##### 6.1.3.3. Linear Discriminant Analysis (LDA)
-*   **Description:** A dimensionality reduction and classification algorithm that projects high-dimensional data onto a lower-dimensional space while maximizing the separability between classes. It finds linear combinations of features that characterize or separate two or more classes.
-*   **Characteristics:** Assumes normally distributed data and equal class covariance matrices.
-*   **Examples:** Facial recognition, medical diagnosis, customer segmentation.
-
-##### 6.1.3.4. Support Vector Machine (SVM)
-*   **Description:** A powerful supervised learning algorithm used for classification (and regression). It finds the optimal hyperplane that best separates data points of different classes in a high-dimensional space, maximizing the margin between the closest points (support vectors) of different classes.
-*   **Characteristics:** Effective in high-dimensional spaces, uses kernel trick for non-linear separation, robust to overfitting with good regularization.
-*   **Examples:** Image classification, handwriting recognition, bioinformatics.
-*   **Formula (Hyperplane for binary classification):** `w ⋅ x - b = 0`
-    *   `w`: Weight vector (normal to the hyperplane).
-    *   `x`: Input feature vector.
-    *   `b`: Bias term.
-
-##### 6.1.3.5. Decision Trees
-*   **Description:** A non-parametric supervised learning algorithm that builds a tree-like model of decisions and their possible consequences. It splits the data based on features to create branches, leading to leaf nodes that represent class labels.
-*   **Characteristics:** Easy to understand and interpret (white-box model), handles both numerical and categorical data, prone to overfitting (can be mitigated with pruning or ensemble methods).
-*   **Examples:** Deciding whether to grant a loan based on credit score, income, and employment status; medical diagnosis; customer churn prediction.
-*   **Splitting Criteria:** Gini impurity, entropy (information gain).
-
-**Learning Objectives:**
-*   Understand the core principles and working mechanisms of KNN, Naive Bayes, LDA, SVM, and Decision Trees.
-*   Identify the strengths and weaknesses of each algorithm.
-*   Recognize appropriate use cases for each classification method.
-*   Understand key concepts like conditional independence (Naive Bayes), hyperplanes and support vectors (SVM), and splitting criteria (Decision Trees).
-
-**Related Concepts:**
-*   Classification (problem type)
-*   Bayes' Theorem
-*   Distance Metrics (Euclidean, Manhattan)
-*   Dimensionality Reduction
-*   Kernel Trick
-*   Ensemble Methods (Random Forest, Gradient Boosting, which use decision trees)
-
-#### 6.1.4. Bias-variance trade-off, cross-validation methods such as leave-one-out (LOO) cross-validation, k-folds cross-validation
-
-**Summary:** The bias-variance trade-off describes the balance between a model's tendency to underfit (high bias) and overfit (high variance). Cross-validation techniques are used to assess a model's performance and generalization ability on unseen data, providing a more robust estimate than a single train-test split. LOOCV and K-folds cross-validation are common methods.
-
-**Explanation:**
-
-##### 6.1.4.1. Bias-Variance Trade-off
-*   **Description:** A fundamental concept in machine learning that describes the relationship between a model's complexity and its ability to generalize to new data.
-    *   **Bias:** The error introduced by approximating a real-world problem, which may be complex, by a simplified model. High bias leads to **underfitting** (the model is too simple to capture the underlying patterns in the data).
-    *   **Variance:** The amount that the estimate of the target function will change if different training data were used. High variance leads to **overfitting** (the model is too complex and learns the noise in the training data, performing poorly on unseen data).
-*   **Goal:** To find a model that has a good balance between bias and variance, achieving low overall prediction error.
-*   **Expected Test Error:** `E[Error] = Bias² + Variance + Irreducible Error`
-    *   `Irreducible Error`: Noise inherent in the data that cannot be reduced by any model.
-
-**Practical Examples:**
-*   **High Bias (Underfitting):** Using a simple linear regression model to fit data that has a clearly non-linear, parabolic relationship. The model will consistently make errors because it's too rigid.
-*   **High Variance (Overfitting):** Using a very complex decision tree with many deep branches on a small dataset. The tree might perfectly classify all training examples but perform poorly on new data because it has memorized the training data's noise.
-
-##### 6.1.4.2. Cross-validation
-*   **Description:** A resampling procedure used to evaluate machine learning models on a limited data sample. It helps in assessing how well a model will generalize to an independent dataset and to prevent overfitting to the training data.
-
-##### 6.1.4.3. Leave-One-Out Cross-validation (LOOCV)
-*   **Description:** A special case of k-folds cross-validation where `k` is equal to the number of data points (`n`). In each iteration, one data point is used as the test set, and the remaining `n-1` points are used as the training set. This process is repeated `n` times.
-*   **Characteristics:** Provides a nearly unbiased estimate of the test error, but is computationally very expensive for large datasets. High variance in the error estimate.
-
-##### 6.1.4.4. K-Folds Cross-validation
-*   **Description:** The most common form of cross-validation. The dataset is randomly divided into `k` equally sized folds (subsets). The model is trained `k` times. In each iteration, one fold is used as the test set, and the remaining `k-1` folds are used as the training set. The performance metrics are then averaged across all `k` runs.
-*   **Characteristics:** A good balance between bias and variance in the error estimate. `k=5` or `k=10` are common choices.
-*   **Examples:** Training a model 5 times, each time on 80% of the data and testing on the remaining 20%.
-
-**Formulas:**
-*   **Expected Test Error Decomposition:**
-    `E[Error] = Bias² + Variance + Irreducible Error`
-    This formula illustrates the trade-off: reducing bias often increases variance, and vice versa.
-
-**Learning Objectives:**
-*   Understand the concepts of bias and variance and their relationship to underfitting and overfitting.
-*   Explain the bias-variance trade-off and its importance in model selection.
-*   Understand the purpose of cross-validation techniques.
-*   Describe the procedures for Leave-One-Out Cross-validation and K-Folds Cross-validation.
-*   Recognize the advantages and disadvantages of each cross-validation method.
-
-**Related Concepts:**
-*   Overfitting and Underfitting
-*   Model Selection
-*   Hyperparameter Tuning
-*   Generalization Error
-*   Regularization
-
-#### 6.1.5. Multi-layer perceptron, feed-forward neural network
-
-**Summary:** A Multi-Layer Perceptron (MLP) is a class of feed-forward artificial neural networks. A feed-forward neural network is an artificial neural network wherein connections between the nodes (neurons) do not form a cycle. It's the simplest type of neural network, where information moves in only one direction—forward—from the input nodes, through the hidden layers (if any), and to the output nodes.
-
-**Explanation:**
-
-##### 6.1.5.1. Feed-Forward Neural Network (FFNN)
-*   **Description:** The most basic type of artificial neural network. It consists of an input layer, one or more hidden layers, and an output layer. Information flows only in one direction, from input to output, without loops or cycles.
-*   **Structure:**
-    *   **Input Layer:** Receives the raw input features.
-    *   **Hidden Layers:** One or more layers between the input and output layers, where computations are performed. Each neuron in a hidden layer typically takes inputs from all neurons in the previous layer, applies weights, sums them, adds a bias, and then passes the result through an activation function.
-    *   **Output Layer:** Produces the final prediction. The number of neurons here depends on the task (e.g., 1 for binary classification/regression, multiple for multi-class classification).
-*   **Working:** Each connection between neurons has a weight, and each neuron has a bias. The network learns these weights and biases during training to map inputs to desired outputs.
-
-##### 6.1.5.2. Multi-Layer Perceptron (MLP)
-*   **Description:** An MLP is a class of feed-forward neural networks that has at least three layers: an input layer, at least one hidden layer, and an output layer. Unlike a single-layer perceptron, MLPs can learn non-linear relationships due to the presence of non-linear activation functions in their hidden layers.
-*   **Training:** MLPs are typically trained using the backpropagation algorithm, which is a method for efficiently calculating the gradients of the loss function with respect to the network's weights. These gradients are then used by optimization algorithms (e.g., gradient descent) to update the weights.
-*   **Activation Functions:** Non-linear functions (e.g., sigmoid, tanh, ReLU) applied to the weighted sum of inputs in each neuron. They introduce non-linearity, allowing the network to learn complex patterns.
-
-**Practical Examples:**
-*   **MLP for image classification:** Recognizing handwritten digits (e.g., MNIST dataset), where each pixel is an input, and the output is the digit (0-9).
-*   **Feed-forward network for predicting stock prices:** Input features could be historical prices, trading volumes, and economic indicators; output is the predicted stock price.
-*   **Customer churn prediction:** Input features describe customer behavior; output is whether the customer will churn.
-
-**Formulas:**
-*   **Weighted Sum of Inputs for a Neuron:**
-    `z = Σ_i (w_i * x_i) + b`
-    Where `x_i` are inputs, `w_i` are weights, and `b` is the bias.
-*   **Output of a Neuron (after activation):**
-    `a = f(z)`
-    Where `f` is an **activation function**.
-*   **Common Activation Functions:**
-    *   **Sigmoid:** `σ(z) = 1 / (1 + e^(-z))` (Outputs values between 0 and 1, often used in output layer for binary classification).
-    *   **ReLU (Rectified Linear Unit):** `f(z) = max(0, z)` (Popular in hidden layers).
-    *   **Tanh (Hyperbolic Tangent):** `f(z) = (e^z - e^-z) / (e^z + e^-z)` (Outputs values between -1 and 1).
-
-**Learning Objectives:**
-*   Define a feed-forward neural network and its basic architecture (input, hidden, output layers).
-*   Understand what a Multi-Layer Perceptron (MLP) is and how it differs from a single-layer perceptron.
-*   Explain the role of weights, biases, and activation functions in neural networks.
-*   Understand the concept of backpropagation as the training algorithm for MLPs.
-*   Recognize applications of MLPs in supervised learning tasks.
-
-**Related Concepts:**
-*   Artificial Neural Networks (ANNs)
-*   Deep Learning (MLPs are a type of deep learning model when they have many hidden layers)
-*   Backpropagation
-*   Gradient Descent
-*   Activation Functions
-*   Supervised Learning
-
-### 6.2. Unsupervised Learning
-
-Unsupervised learning is a machine learning paradigm that deals with unlabeled data. The goal is to discover hidden patterns, structures, or relationships within the data without any explicit guidance from output labels.
-
-#### 6.2.1. Clustering algorithms, k-means/k-medoid, hierarchical clustering, top-down, bottom-up: single-linkage, multiple-linkage
-
-**Summary:** Unsupervised learning focuses on finding patterns in unlabeled data. Clustering algorithms group similar data points together. K-Means partitions data into K clusters based on mean centroids. K-Medoids uses actual data points as medoids. Hierarchical clustering builds a hierarchy of clusters, either agglomerative (bottom-up, starting with individual points) or divisive (top-down, starting with one large cluster). Linkage methods (single, multiple) define how distances between clusters are measured in hierarchical clustering.
-
-**Explanation:**
-
-##### 6.2.1.1. Clustering Algorithms
-*   **Description:** The task of grouping a set of objects in such a way that objects in the same group (a cluster) are more similar to each other than to those in other groups.
-
-##### 6.2.1.2. K-Means
-*   **Description:** A centroid-based clustering algorithm that partitions `n` observations into `k` clusters.
-*   **Algorithm:**
-    1.  Initialize `k` centroids randomly.
-    2.  Assign each data point to the closest centroid.
-    3.  Recalculate the centroids as the mean of all points assigned to that cluster.
-    4.  Repeat steps 2 and 3 until the centroids no longer change significantly or a maximum number of iterations is reached.
-*   **Characteristics:** Fast and efficient for large datasets, sensitive to initial centroid placement, requires specifying `k` beforehand, assumes spherical clusters of similar size.
-*   **Examples:** Customer segmentation based on purchasing behavior, image compression (color quantization), grouping documents by topic.
-*   **Formula (Objective Function - Within-Cluster Sum of Squares, WCSS):**
-    `J = Σ_(i=1)^k Σ_(x ∈ C_i) ||x - μ_i||²`
-    Where `C_i` is the `i`-th cluster and `μ_i` is its centroid. K-Means aims to minimize this objective.
-
-##### 6.2.1.3. K-Medoids (PAM - Partitioning Around Medoids)
-*   **Description:** Similar to K-Means, but instead of using the mean as the cluster center, it uses an actual data point from the cluster, called a "medoid."
-*   **Characteristics:** More robust to outliers than K-Means (as medoids are actual data points), but typically slower because it needs to compare all data points to find the best medoid.
-*   **Examples:** Similar to K-Means, but preferred when outliers are a concern.
-
-##### 6.2.1.4. Hierarchical Clustering
-*   **Description:** Builds a hierarchy of clusters, represented as a dendrogram (tree-like diagram). It does not require specifying the number of clusters `k` in advance.
-*   **Types:**
-    *   **Agglomerative (Bottom-Up):** Starts with each data point as its own cluster, then iteratively merges the closest pairs of clusters until all points are in a single cluster or a stopping criterion is met.
-    *   **Divisive (Top-Down):** Starts with all data points in one large cluster and recursively splits clusters until each point is in its own cluster or a stopping criterion is met.
-
-##### 6.2.1.5. Linkage Methods (for Hierarchical Clustering)
-*   **Description:** Determine how the "distance" between two clusters is calculated.
-    *   **Single-Linkage:** The distance between two clusters is the minimum distance between any single data point in the first cluster and any single data point in the second cluster. (Tends to form long, "straggly" clusters).
-    *   **Complete-Linkage:** The distance between two clusters is the maximum distance between any single data point in the first cluster and any single data point in the second cluster. (Tends to form compact, spherical clusters).
-    *   **Average-Linkage:** The distance between two clusters is the average distance between all pairs of data points from the two clusters.
-    *   **Ward's Method:** Merges clusters to minimize the increase in total within-cluster variance.
-
-**Practical Examples:**
-*   **K-Means:** Segmenting a customer base into distinct groups for targeted marketing.
-*   **Hierarchical Clustering:** Grouping genes with similar expression patterns in bioinformatics; building taxonomies or classification systems.
-
-**Formulas:**
-*   **K-Means Objective (Within-Cluster Sum of Squares):** `J = Σ_(i=1)^k Σ_(x ∈ C_i) ||x - μ_i||²`
-*   **Euclidean Distance (common distance metric):** `d(p,q) = √[Σ_(i=1)^n (q_i - p_i)²]`
-    Where `p` and `q` are two data points (vectors) and `n` is the number of features.
-
-**Learning Objectives:**
-*   Understand the concept of clustering and its role in unsupervised learning.
-*   Explain the K-Means algorithm, its objective, and its characteristics.
-*   Differentiate K-Means from K-Medoids.
-*   Describe agglomerative and divisive hierarchical clustering.
-*   Understand different linkage methods (single, complete, average, Ward's) and their impact on cluster formation.
-*   Identify appropriate clustering algorithms for different data characteristics.
-
-**Related Concepts:**
-*   Unsupervised Learning
-*   Distance Metrics
-*   Dendrograms
-*   Elbow Method, Silhouette Score (for determining optimal `k`)
-*   Dimensionality Reduction
-
-#### 6.2.2. Dimensionality reduction, principal component analysis
-
-**Summary:** Dimensionality reduction techniques reduce the number of random variables under consideration, often by transforming the data into a lower-dimensional space while retaining most of the important information. Principal Component Analysis (PCA) is a widely used linear dimensionality reduction technique that transforms data into a new set of orthogonal variables called principal components, which capture the most variance in the data.
-
-**Explanation:**
-
-##### 6.2.2.1. Dimensionality Reduction
-*   **Description:** The process of reducing the number of input features (dimensions) in a dataset. High-dimensional data can suffer from the "curse of dimensionality," leading to increased computational cost, difficulty in visualization, and potential overfitting.
-*   **Goals:**
-    *   **Reduce Redundancy:** Eliminate highly correlated features.
-    *   **Improve Model Performance:** Simplify the model, reduce overfitting, speed up training.
-    *   **Enhance Visualization:** Project data into 2 or 3 dimensions for plotting.
-    *   **Noise Reduction:** Filter out irrelevant features or noise.
-*   **Types:**
-    *   **Feature Selection:** Selecting a subset of the original features.
-    *   **Feature Extraction:** Transforming data from a high-dimensional space to a space of fewer dimensions (e.g., PCA, LDA).
-
-##### 6.2.2.2. Principal Component Analysis (PCA)
-*   **Description:** A linear dimensionality reduction technique that identifies the directions (principal components) along which the data varies most. It projects the data onto these new orthogonal axes.
-*   **Algorithm Steps (Conceptual):**
-    1.  **Standardize the Data:** Scale features to have zero mean and unit variance (important if features have different scales).
-    2.  **Compute Covariance Matrix:** Calculate the covariance matrix of the scaled data.
-    3.  **Calculate Eigenvalues and Eigenvectors:** Find the eigenvalues and eigenvectors of the covariance matrix.
-    4.  **Select Principal Components:** Sort eigenvalues in descending order and choose the top `k` eigenvectors corresponding to the largest eigenvalues. These `k` eigenvectors are the principal components.
-    5.  **Project Data:** Transform the original data onto the new `k`-dimensional subspace defined by the selected principal components.
-*   **Characteristics:** Unsupervised (does not use class labels), linear transformation, orthogonal components, captures maximum variance.
-*   **Examples:**
-    *   **Image Compression:** Reducing the number of dimensions of image features while retaining visual quality.
-    *   **Data Visualization:** Projecting high-dimensional data (e.g., 10 features) down to 2 or 3 dimensions for plotting.
-    *   **Noise Reduction:** Principal components with small eigenvalues often correspond to noise; removing them can denoise the data.
-    *   **Preprocessing for other ML algorithms:** Reducing feature space before training a classifier.
-
-**Formulas:**
-*   **PCA (informal):** The principal components are the eigenvectors of the covariance matrix `C` of the data. The corresponding eigenvalues `λ_i` represent the variance along each principal component.
-    `C v_i = λ_i v_i`
-    Where `v_i` are the eigenvectors (principal components) and `λ_i` are the eigenvalues.
-*   **Projection:** If `W` is the matrix whose columns are the top `k` principal components, then the projected data `Y` from original data `X` (centered) is `Y = X W`.
-
-**Learning Objectives:**
-*   Understand the concept and importance of dimensionality reduction.
-*   Explain the "curse of dimensionality."
-*   Describe the Principal Component Analysis (PCA) algorithm conceptually.
-*   Understand the role of eigenvalues and eigenvectors in PCA.
-*   Recognize common applications of PCA in data analysis and machine learning.
-
-**Related Concepts:**
-*   Unsupervised Learning
-*   Eigenvalues and Eigenvectors
-*   Covariance Matrix
-*   Singular Value Decomposition (SVD) (often used for PCA computation)
-*   Feature Engineering
-*   Curse of Dimensionality
+Machine Learning is a field of artificial intelligence that enables systems to learn from data, identify patterns, and make decisions with minimal human intervention.
+
+### 6.1 Supervised Learning
+
+Supervised learning involves training a model on labeled data (input-output pairs) to make predictions on unseen data.
+
+#### 6.1.1 Regression and Classification Problems
+
+#### Learning Objectives:
+*   Differentiate between regression and classification problems.
+*   Identify real-world scenarios suitable for each type of problem.
+*   Understand the type of output predicted by each.
+
+#### Comprehensive Explanation:
+Supervised learning involves training a model on labeled data to make predictions.
+*   **Regression problems**: Aim to predict a continuous output value. The model learns the relationship between input features and a continuous target variable.
+*   **Classification problems**: Aim to predict a categorical output label (class). The model learns to assign input data points to one of several predefined categories or classes.
+
+#### Practical Examples:
+*   **Regression**:
+    *   Predicting house prices based on features like size, number of bedrooms, and location.
+    *   Forecasting stock prices or temperature.
+*   **Classification**:
+    *   Classifying emails as spam or not spam (binary classification).
+    *   Identifying handwritten digits (0-9) (multi-class classification).
+    *   Diagnosing whether a patient has a particular disease (yes/no).
+
+#### Relevant Formulas:
+*   This topic introduces problem types, not specific algorithms or formulas. The performance of these models is evaluated using various metrics (e.g., R-squared for regression, accuracy/precision/recall for classification).
+
+#### 6.1.2 Simple Linear Regression
+
+#### Learning Objectives:
+*   Understand the concept of a linear relationship between two variables.
+*   Explain the goal of simple linear regression (finding the best-fit line).
+*   Calculate the coefficients of a simple linear regression model using the least squares method.
+
+#### Comprehensive Explanation:
+Simple linear regression is a linear model that assumes a linear relationship between a single independent variable (predictor, `x`) and a dependent variable (response, `y`). Its goal is to find the "best-fit" straight line through the data points that minimizes the sum of the squared differences between the observed `y` values and the `y` values predicted by the line (residuals). This method is known as Ordinary Least Squares (OLS).
+
+#### Practical Examples:
+*   Predicting a student's final exam score (`y`) based on their hours studied (`x`).
+*   Estimating a person's weight (`y`) based on their height (`x`).
+
+#### Relevant Formulas:
+*   **Simple Linear Regression Model**:
+    `y = β₀ + β₁x + ε`
+    *   *Explanation*: `y` is the dependent variable, `x` is the independent variable. `β₀` is the y-intercept (value of `y` when `x=0`), `β₁` is the slope of the line (change in `y` for a one-unit change in `x`). `ε` represents the error term, accounting for variability not explained by the model.
+*   **Least Squares Estimates for Coefficients**:
+    `β₁ = Σ[(xi - x̄)(yi - ȳ)] / Σ[(xi - x̄)²]`
+    `β₀ = ȳ - β₁x̄`
+    *   *Explanation*: `x̄` and `ȳ` are the means of the independent and dependent variables, respectively. These formulas are derived by minimizing the sum of squared residuals `Σ(yi - ŷi)²`, where `ŷi = β₀ + β₁xi`.
+
+#### 6.1.3 Multiple Linear Regression
+
+#### Learning Objectives:
+*   Extend the concept of simple linear regression to multiple independent variables.
+*   Understand how multiple predictors contribute to the dependent variable.
+*   Interpret the coefficients in a multiple linear regression model.
+
+#### Comprehensive Explanation:
+Multiple linear regression is an extension of simple linear regression to multiple independent variables. It models the linear relationship between a dependent variable (`y`) and two or more independent variables (`x₁, x₂, ..., xp`). The goal is still to find the best-fit linear equation that minimizes the sum of squared residuals, but now in a higher-dimensional space (a hyperplane).
+
+#### Practical Examples:
+*   Predicting house prices (`y`) based on multiple features like size (`x₁`), number of bedrooms (`x₂`), and location score (`x₃`).
+*   Predicting crop yield (`y`) based on rainfall (`x₁`), fertilizer amount (`x₂`), and temperature (`x₃`).
+
+#### Relevant Formulas:
+*   **Multiple Linear Regression Model**:
+    `y = β₀ + β₁x₁ + β₂x₂ + ... + βpxp + ε`
+    *   *Explanation*: `β₀` is the intercept. `β₁, β₂, ..., βp` are the partial regression coefficients, where `βj` represents the change in `y` for a one-unit increase in `xj`, holding all other predictors constant.
+*   **Matrix Form**:
+    `Y = Xβ + ε`
+    *   *Explanation*: `Y` is the vector of dependent variable observations, `X` is the design matrix (containing a column of ones for the intercept and columns for each independent variable), `β` is the vector of coefficients, and `ε` is the vector of error terms. The least squares solution for `β` in matrix form is `β̂ = (XᵀX)⁻¹XᵀY`.
+
+#### 6.1.4 Ridge Regression
+
+#### Learning Objectives:
+*   Understand the concept of regularization in linear regression.
+*   Explain how Ridge Regression addresses multicollinearity and overfitting.
+*   Recognize the role of the regularization parameter (λ).
+
+#### Comprehensive Explanation:
+Ridge Regression is a regularized version of linear regression that adds a penalty term (L2 regularization) to the ordinary least squares (OLS) loss function. This penalty term is proportional to the square of the magnitude of the regression coefficients. Its primary purpose is to prevent overfitting, especially when multicollinearity (high correlation between independent variables) is present in the dataset, by shrinking the regression coefficients towards zero. This makes the model less sensitive to fluctuations in the training data.
+
+#### Practical Examples:
+*   Used when dealing with datasets where predictors are highly correlated (e.g., predicting patient outcome based on various highly related medical test results).
+*   In financial modeling, where many economic indicators might move together.
+
+#### Relevant Formulas:
+*   **Ridge Regression Loss Function (Objective Function to Minimize)**:
+    `Loss = Σ(yi - ŷi)² + λ * Σ(βj)²`
+    *   *Explanation*: The first term is the standard sum of squared residuals (OLS loss). The second term is the L2 regularization penalty, where `λ` (lambda) is the tuning parameter (hyperparameter) that controls the strength of the regularization. `βj` are the regression coefficients (excluding the intercept). A larger `λ` leads to greater shrinkage of coefficients.
+*   **Ridge Regression Coefficients (Matrix Form)**:
+    `β̂_ridge = (XᵀX + λI)⁻¹XᵀY`
+    *   *Explanation*: `I` is the identity matrix. Comparing this to the OLS solution `β̂ = (XᵀX)⁻¹XᵀY`, the `λI` term added to `XᵀX` makes the matrix invertible even if `XᵀX` is singular (due to multicollinearity), thus stabilizing the solution.
+
+#### 6.1.5 Logistic Regression
+
+#### Learning Objectives:
+*   Understand that Logistic Regression is a classification algorithm, despite its name.
+*   Explain how the logistic (sigmoid) function is used to model probabilities.
+*   Apply Logistic Regression for binary classification problems.
+
+#### Comprehensive Explanation:
+Despite its name, logistic regression is a widely used classification algorithm, not a regression algorithm in the traditional sense. It is used to model the probability of a binary outcome (e.g., 0 or 1, true or false). It works by applying a logistic (sigmoid) function to a linear combination of input features. The sigmoid function squashes any real-valued input into a value between 0 and 1, which can be interpreted as a probability.
+
+#### Practical Examples:
+*   Predicting whether a customer will churn (yes/no) based on their usage patterns and demographics.
+*   Classifying if an email is spam or not spam.
+*   Predicting whether a loan applicant will default (yes/no).
+
+#### Relevant Formulas:
+*   **Logistic (Sigmoid) Function**:
+    `σ(z) = 1 / (1 + e⁻ᶻ)`
+    *   *Explanation*: `z` is a linear combination of input features and coefficients (`z = β₀ + β₁x₁ + ... + βpxp`). The sigmoid function transforms `z` into a probability `P(Y=1|X)` between 0 and 1.
+*   **Probability of the Positive Class**:
+    `P(Y=1|X) = 1 / (1 + e^(-(β₀ + β₁x₁ + ... + βpxp)))`
+    *   *Explanation*: This gives the probability that the dependent variable `Y` is 1 (the positive class) given the input features `X`. The coefficients `β` are typically found using maximum likelihood estimation.
+*   **Log-odds (Logit function)**:
+    `log[P(Y=1|X) / (1 - P(Y=1|X))] = β₀ + β₁x₁ + ... + βpxp`
+    *   *Explanation*: The log-odds (logit) of the probability is a linear function of the predictors, which is why it's called "regression."
+
+#### 6.1.6 k-Nearest Neighbour (kNN)
+
+#### Learning Objectives:
+*   Understand kNN as a non-parametric, lazy learning algorithm.
+*   Explain how kNN makes predictions for both classification and regression.
+*   Identify the importance of distance metrics and the choice of 'k'.
+
+#### Comprehensive Explanation:
+k-Nearest Neighbour (kNN) is a simple, non-parametric, and lazy learning algorithm used for both classification and regression. "Non-parametric" means it makes no assumptions about the underlying data distribution. "Lazy" means it does not build an explicit model during the training phase; instead, it memorizes the training data and performs computations only when a prediction is requested. For a new data point, kNN classifies it (or predicts its value) based on the majority class (or average value) of its 'k' nearest neighbors in the feature space.
+
+#### Practical Examples:
+*   **Classification**: Classifying a new fruit based on the characteristics (color, size, sweetness) of its `k` nearest known fruits. If 3 out of 5 nearest fruits are apples, classify it as an apple.
+*   **Regression**: Predicting the price of a new house based on the average price of its `k` nearest houses (similar in size, location, etc.).
+
+#### Relevant Formulas:
+*   **Distance Metrics**: Used to determine the "nearest" neighbors.
+    *   **Euclidean Distance (most common)**: For two points `p = (p₁, p₂, ..., pn)` and `q = (q₁, q₂, ..., qn)`:
+        `d(p,q) = √[Σ(pi - qi)²]` (from `i=1` to `n`)
+    *   **Manhattan Distance (L1 norm)**:
+        `d(p,q) = Σ|pi - qi|` (from `i=1` to `n`)
+    *   *Explanation*: These formulas calculate the "closeness" between data points in a multi-dimensional feature space. The choice of distance metric can significantly impact kNN performance.
+*   **Prediction Rule**:
+    *   **Classification**: The new data point is assigned the class label most frequent among its `k` nearest neighbors (majority vote).
+    *   **Regression**: The new data point is assigned the average (or weighted average) of the values of its `k` nearest neighbors.
+    *   *Explanation*: The parameter `k` is a crucial hyperparameter; a small `k` can lead to sensitivity to noise (high variance), while a large `k` can smooth out local patterns (high bias).
+
+#### 6.1.7 Naive Bayes Classifier
+
+#### Learning Objectives:
+*   Understand the probabilistic foundation of the Naive Bayes classifier (Bayes' Theorem).
+*   Explain the "naive" conditional independence assumption.
+*   Recognize applications of Naive Bayes, especially in text classification.
+
+#### Comprehensive Explanation:
+The Naive Bayes classifier is a probabilistic classifier based on Bayes' Theorem. It makes a "naive" assumption of conditional independence between features given the class label. This means it assumes that the presence or absence of a particular feature does not affect the presence or absence of any other feature, given the class variable. Despite this often unrealistic assumption, Naive Bayes is simple, fast, and often performs surprisingly well, especially in text classification and spam filtering.
+
+#### Practical Examples:
+*   **Spam Filtering**: Classifying an email as spam or not spam based on the presence of certain words (features). The presence of "Viagra" is assumed to be independent of the presence of "discount" given that the email is spam.
+*   **Document Classification**: Categorizing news articles into topics (e.g., sports, politics, technology) based on the words they contain.
+
+#### Relevant Formulas:
+*   **Bayes' Theorem for Classification**:
+    `P(Class|Features) = [P(Features|Class) * P(Class)] / P(Features)`
+    *   *Explanation*: We want to find the probability of a class given the observed features.
+*   **Naive Bayes Assumption**:
+    `P(Features|Class) = P(f₁|Class) * P(f₂|Class) * ... * P(fn|Class)`
+    *   *Explanation*: This is the core "naive" assumption. It simplifies the calculation of the likelihood `P(Features|Class)` by multiplying the individual conditional probabilities of each feature `fᵢ` given the `Class`.
+*   **Classification Rule**:
+    `Class = argmax_c [P(c) * Π P(fᵢ|c)]`
+    *   *Explanation*: The classifier assigns the class `c` that maximizes the posterior probability, often simplified by ignoring the `P(Features)` term in the denominator (since it's constant for all classes).
+
+#### 6.1.8 Linear Discriminant Analysis (LDA)
+
+#### Learning Objectives:
+*   Understand LDA as both a dimensionality reduction technique and a classifier.
+*   Explain how LDA finds a linear combination of features for class separation.
+*   Differentiate LDA from PCA.
+
+#### Comprehensive Explanation:
+Linear Discriminant Analysis (LDA) is a supervised learning method used for both dimensionality reduction and classification. Its primary goal is to find a linear combination of features that best separates two or more classes. LDA works by projecting the data onto a lower-dimensional space such that the separation between classes is maximized, while the variance within each class is minimized. This makes it effective for distinguishing between groups.
+
+#### Practical Examples:
+*   **Facial Recognition**: Projecting high-dimensional facial image data onto a lower-dimensional space where different individuals' faces are better separated.
+*   **Customer Segmentation**: Identifying key linear combinations of purchasing behaviors that best distinguish different customer segments.
+*   **Medical Diagnosis**: Differentiating between patients with and without a disease based on a set of clinical measurements.
+
+#### Relevant Formulas:
+*   **LDA Objective**: Maximizes the ratio of between-class variance to within-class variance.
+    `J(w) = (wᵀS_B w) / (wᵀS_W w)`
+    *   *Explanation*: `w` is the projection vector. `S_B` is the between-class scatter matrix (measures separation between class means). `S_W` is the within-class scatter matrix (measures variance within classes). LDA seeks `w` that maximizes `J(w)`.
+*   **Optimal Projection Vector**:
+    `S_W⁻¹(μ₁ - μ₂)` (for two classes)
+    *   *Explanation*: The optimal projection direction is proportional to the difference between the class means, weighted by the inverse of the within-class covariance.
+
+#### 6.1.9 Support Vector Machine (SVM)
+
+#### Learning Objectives:
+*   Understand the concept of a hyperplane and margin in SVM.
+*   Explain how SVM finds an optimal separating hyperplane.
+*   Recognize the role of kernel tricks for non-linearly separable data.
+
+#### Comprehensive Explanation:
+A Support Vector Machine (SVM) is a powerful supervised learning model primarily used for classification (though adaptable for regression). Its core idea is to find an optimal hyperplane that best separates data points of different classes in a high-dimensional feature space. The "optimal" hyperplane is the one that has the largest margin (the maximum distance) to the nearest training data point of any class. These nearest points are called "support vectors." SVMs can handle non-linearly separable data by using "kernel tricks" to implicitly map the input data into a higher-dimensional feature space where it might become linearly separable.
+
+#### Practical Examples:
+*   **Image Classification**: Distinguishing between images of cats and dogs.
+*   **Text Categorization**: Classifying documents into predefined categories.
+*   **Handwriting Recognition**: Identifying handwritten characters.
+
+#### Relevant Formulas:
+*   **Decision Boundary (Hyperplane)**:
+    `wᵀx + b = 0`
+    *   *Explanation*: `w` is the normal vector to the hyperplane, `x` is a data point, `b` is the bias term.
+*   **Margin**: The distance between the hyperplane and the nearest data point from either class. SVM aims to maximize this margin.
+    *   The support vectors lie on the hyperplanes `wᵀx + b = 1` and `wᵀx + b = -1`. The margin width is `2/||w||`.
+*   **Objective Function (Primal Form for linearly separable data)**: Minimize `(1/2) ||w||²` subject to `yi(wᵀxi + b) ≥ 1` for all `i`.
+    *   *Explanation*: Minimizing `||w||²` is equivalent to maximizing the margin `2/||w||`. The constraint ensures all data points are correctly classified and lie outside the margin. For non-linearly separable data or soft margins, slack variables and a penalty parameter `C` are introduced.
+*   **Kernel Trick**: Functions like Polynomial Kernel, Radial Basis Function (RBF) Kernel.
+    `K(xᵢ, xⱼ) = φ(xᵢ)ᵀφ(xⱼ)`
+    *   *Explanation*: The kernel function `K` computes the dot product of data points in a higher-dimensional feature space (`φ(x)`) without explicitly transforming the data, allowing SVMs to find non-linear decision boundaries.
+
+#### 6.1.10 Decision Trees
+
+#### Learning Objectives:
+*   Understand the tree-like structure of Decision Trees.
+*   Explain how Decision Trees make decisions based on feature tests.
+*   Recognize the concepts of impurity measures (Gini, Entropy) and information gain.
+
+#### Comprehensive Explanation:
+A Decision Tree is a non-parametric supervised learning method used for both classification and regression. It builds a tree-like model of decisions, where each internal node represents a test on an attribute (feature), each branch represents an outcome of the test, and each leaf node represents a class label (for classification) or a predicted value (for regression). The goal is to create a tree that minimizes impurity at the leaf nodes, effectively partitioning the data into homogeneous groups.
+
+#### Practical Examples:
+*   **Credit Risk Assessment**: Predicting whether a loan applicant is creditworthy based on their income, age, and credit history.
+*   **Medical Diagnosis**: Helping doctors diagnose diseases based on patient symptoms.
+*   **Customer Churn Prediction**: Identifying customers likely to leave a service.
+
+#### Relevant Formulas:
+*   **Impurity Measures (for Classification Trees)**: Used to determine the "best" split at each node.
+    *   **Gini Impurity**: Measures the probability of incorrectly classifying a randomly chosen element if it were randomly labeled according to the distribution of labels in the subset.
+        `Gini = 1 - Σ (pi)²` (from `i=1` to `C` classes)
+    *   **Entropy**: Measures the disorder or uncertainty in a set of data.
+        `Entropy = - Σ pi * log₂(pi)` (from `i=1` to `C` classes)
+    *   *Explanation*: `pi` is the proportion of samples belonging to class `i` in the node. A Gini or Entropy of 0 means the node is pure (all samples belong to the same class).
+*   **Information Gain**: The reduction in entropy (or Gini impurity) achieved by a split. Decision trees aim to maximize information gain.
+    `Information Gain = Entropy(Parent) - Σ [(Weighted Average) * Entropy(Child)]`
+    *   *Explanation*: The algorithm greedily chooses the feature split that results in the highest information gain.
+
+#### 6.1.11 Bias-Variance Trade-off
+
+#### Learning Objectives:
+*   Define bias, variance, and irreducible error.
+*   Explain the bias-variance trade-off in machine learning.
+*   Understand how high bias leads to underfitting and high variance leads to overfitting.
+*   Identify strategies to manage the trade-off.
+
+#### Comprehensive Explanation:
+The Bias-Variance Trade-off is a fundamental concept in machine learning that describes the conflict between a model's ability to fit the training data (low bias) and its ability to generalize to unseen data (low variance).
+*   **Bias**: Error due to overly simplistic assumptions in the learning algorithm. High bias can cause a model to miss relevant relations between features and target outputs (underfitting).
+*   **Variance**: Error due to a model's excessive sensitivity to small fluctuations in the training data. High variance can cause a model to model the random noise in the training data, rather than the intended outputs (overfitting).
+*   **Irreducible Error**: The inherent noise in the data itself that cannot be reduced by any model.
+
+The trade-off implies that reducing bias often increases variance, and vice versa. The goal is to find a balance that minimizes the total expected test error.
+
+#### Practical Examples:
+*   **High Bias (Underfitting)**: Using a simple linear model to predict house prices when the true relationship between features and price is highly non-linear. The model is too simple to capture the complexity of the data, resulting in poor performance on both training and test data.
+*   **High Variance (Overfitting)**: Training a very complex decision tree (deep tree) on a small dataset. The tree might perfectly fit the training data, including its noise, but will perform poorly on new, unseen data because it has learned specific patterns that don't generalize.
+
+#### Relevant Formulas:
+*   **Expected Test Error Decomposition**:
+    `Expected Test Error = Bias² + Variance + Irreducible Error`
+    *   *Explanation*: This formula mathematically shows that the total expected error of a model on unseen data can be decomposed into three parts: squared bias, variance, and irreducible error. Minimizing the total error requires balancing bias and variance.
+
+#### 6.1.12 Cross-validation Methods (LOO, k-folds)
+
+#### Learning Objectives:
+*   Understand the purpose of cross-validation in model evaluation.
+*   Explain the mechanics of Leave-One-Out (LOO) and k-folds cross-validation.
+*   Identify the advantages and disadvantages of each method.
+
+#### Comprehensive Explanation:
+Cross-validation methods are techniques for evaluating a model's performance and generalization ability by partitioning the data into multiple subsets. This helps to get a more reliable estimate of a model's performance on unseen data, reducing the risk of overfitting to a specific training-test split.
+*   **Leave-One-Out (LOO) Cross-validation**: A special case of k-folds where `k` equals `n` (the number of data points). Each data point is used as a test set once, and the remaining `n-1` points are used as the training set. This provides a nearly unbiased estimate of performance but is computationally very expensive for large datasets.
+*   **k-folds Cross-validation**: The most common cross-validation technique. The data is divided into `k` equally sized subsets (folds). The model is trained `k` times; in each iteration, one fold is used as the test set, and the remaining `k-1` folds are used as the training set. The performance metrics are then averaged across all `k` iterations.
+
+#### Practical Examples:
+*   **LOO**: Useful for very small datasets where every data point is valuable for training and a robust estimate of performance is needed, despite the computational cost.
+*   **k-folds**: Commonly used for robust model evaluation, e.g., 5-fold or 10-fold cross-validation. If you have 1000 data points, 10-fold cross-validation would train the model 10 times, each time on 900 points and testing on 100. This provides a good balance between bias and variance in performance estimation.
+
+#### Relevant Formulas:
+*   Cross-validation methods are procedural techniques for evaluation, so they do not have specific mathematical formulas beyond the calculation of performance metrics (e.g., average accuracy, mean squared error) across the folds.
+
+#### 6.1.13 Multi-layer Perceptron (MLP) and Feed-forward Neural Network
+
+#### Learning Objectives:
+*   Understand the basic structure of a Multi-layer Perceptron (MLP).
+*   Explain the concept of a feed-forward neural network.
+*   Describe the role of layers, neurons, weights, biases, and activation functions.
+
+#### Comprehensive Explanation:
+*   **Multi-layer Perceptron (MLP)**: A class of feedforward artificial neural networks. It consists of at least three layers of nodes: an input layer, one or more hidden layers, and an output layer. Each node (neuron) in one layer is connected to every node in the subsequent layer, with associated weights and biases.
+*   **Feed-forward Neural Network**: A type of artificial neural network where connections between the nodes do not form a cycle; information flows in only one direction, from the input layer, through the hidden layers (if any), to the output layer. There are no loops or back-connections. This architecture is fundamental for many deep learning applications.
+*   **Neurons and Activation Functions**: Each neuron in a hidden or output layer computes a weighted sum of its inputs, adds a bias, and then passes this result through a non-linear activation function (e.g., sigmoid, ReLU) to produce its output. This non-linearity allows neural networks to learn complex, non-linear relationships in data.
+
+#### Practical Examples:
+*   **Image Recognition**: Classifying images (e.g., identifying objects in photos).
+*   **Natural Language Processing**: Sentiment analysis, language translation.
+*   **Complex Pattern Recognition**: Any task where intricate, non-linear relationships exist between inputs and outputs, such as financial forecasting or medical image analysis.
+
+#### Relevant Formulas:
+*   **Weighted Sum of Inputs for a Neuron**:
+    `z = Σ (wi * xi) + b`
+    *   *Explanation*: `wi` are the weights connecting inputs `xi` to the neuron, `b` is the bias term.
+*   **Activation Function (Example: Sigmoid)**:
+    `a(z) = 1 / (1 + e⁻ᶻ)`
+    *   *Explanation*: The output `a(z)` of a neuron is the result of applying an activation function to the weighted sum `z`. Other common activation functions include ReLU (`max(0, z)`) and Tanh.
+*   **Forward Propagation**: The process of passing inputs through the network layers to produce an output.
+*   **Backpropagation**: The algorithm used to train MLPs by iteratively adjusting the weights and biases to minimize the difference between predicted and actual outputs, using gradient descent. This involves calculating the gradient of the loss function with respect to each weight and bias, propagating the error backward through the network.
+
+### 6.2 Unsupervised Learning
+
+Unsupervised learning deals with unlabeled data, aiming to find hidden patterns, structures, or representations within the data without explicit guidance.
+
+#### 6.2.1 Clustering Algorithms (k-means/k-medoid, Hierarchical Clustering)
+
+#### Learning Objectives:
+*   Define unsupervised learning and its goal in clustering.
+*   Understand the working principles of k-means and k-medoid clustering.
+*   Explain hierarchical clustering, including agglomerative/divisive approaches and linkage methods (single-linkage, multiple-linkage).
+*   Evaluate the appropriate use cases for different clustering algorithms.
+
+#### Comprehensive Explanation:
+Unsupervised learning deals with unlabeled data, aiming to find hidden patterns or structures. **Clustering** is a core unsupervised task that groups data points such that points in the same group (cluster) are more similar to each other than to those in other groups.
+*   **k-means Clustering**: A partitioning method that divides `n` data points into `k` pre-defined clusters. It iteratively assigns each data point to the cluster whose centroid (mean) is closest and then re-calculates the centroids based on the new assignments. The goal is to minimize the sum of squared distances between data points and their assigned cluster centroids.
+*   **k-medoid Clustering**: Similar to k-means, but instead of using the mean of the cluster as the centroid, it uses an actual data point from the cluster (the medoid) as the representative. This makes k-medoids more robust to outliers than k-means.
+*   **Hierarchical Clustering**: Builds a hierarchy of clusters.
+    *   **Agglomerative (Bottom-Up)**: Starts with each data point as its own cluster and iteratively merges the closest pairs of clusters until all points are in a single cluster or a stopping criterion is met.
+    *   **Divisive (Top-Down)**: Starts with all data points in one large cluster and recursively splits clusters until each point is in its own cluster or a stopping criterion is met.
+    *   **Linkage Methods**: Define how the "distance" between two clusters is measured in hierarchical clustering.
+        *   **Single-linkage (Nearest Neighbor)**: The distance between two clusters is defined as the minimum distance between any single data point in the first cluster and any single data point in the second cluster. Tends to form long, "chain-like" clusters.
+        *   **Complete-linkage (Furthest Neighbor)**: The distance between two clusters is defined as the maximum distance between any single data point in the first cluster and any single data point in the second cluster. Tends to form compact, spherical clusters.
+        *   **Average-linkage**: The distance between two clusters is defined as the average distance between all pairs of data points in the two clusters. Provides a balance between single and complete linkage.
+
+#### Practical Examples:
+*   **k-means/k-medoid**:
+    *   Customer segmentation based on purchasing behavior or demographics to tailor marketing strategies.
+    *   Image compression by grouping similar colors.
+*   **Hierarchical Clustering**:
+    *   Grouping similar documents or genes in bioinformatics to discover relationships.
+    *   Creating taxonomies or organizational structures.
+    *   Using single-linkage to identify natural elongated clusters (e.g., geological fault lines).
+    *   Using complete-linkage to find compact, well-separated groups.
+
+#### Relevant Formulas:
+*   **k-means Objective Function**: Minimize the sum of squared errors (SSE) or within-cluster sum of squares (WCSS).
+    `Minimize Σ (from j=1 to k) Σ (for x in Cj) ||x - μj||²`
+    *   *Explanation*: `k` is the number of clusters, `Cj` is the `j`-th cluster, `x` is a data point, and `μj` is the centroid (mean) of cluster `Cj`. This is the metric k-means tries to optimize.
+*   **Distance Metrics (for k-means, k-medoids, and hierarchical clustering)**:
+    *   **Euclidean Distance**: `d(p,q) = √[Σ(pi - qi)²]` (most common for continuous data).
+    *   **Manhattan Distance**: `d(p,q) = Σ|pi - qi|`.
+*   **Hierarchical Linkage Methods (Distance between clusters Cᵢ and Cⱼ)**:
+    *   **Single-linkage**: `D(Cᵢ, Cⱼ) = min(dist(x,y))` for `x ∈ Cᵢ, y ∈ Cⱼ`
+    *   **Complete-linkage**: `D(Cᵢ, Cⱼ) = max(dist(x,y))` for `x ∈ Cᵢ, y ∈ Cⱼ`
+    *   **Average-linkage**: `D(Cᵢ, Cⱼ) = (1 / (|Cᵢ| * |Cⱼ|)) * Σ (for x ∈ Cᵢ, y ∈ Cⱼ) dist(x,y)`
+    *   *Explanation*: These formulas define how the "closeness" between two entire clusters is measured, guiding the merging (agglomerative) or splitting (divisive) process.
+
+#### 6.2.2 Dimensionality Reduction (Principal Component Analysis - PCA)
+
+#### Learning Objectives:
+*   Define dimensionality reduction and its benefits.
+*   Understand the core idea of Principal Component Analysis (PCA).
+*   Explain how PCA transforms data into principal components.
+*   Recognize applications of PCA in data science.
+
+#### Comprehensive Explanation:
+Dimensionality reduction techniques reduce the number of random variables (features) under consideration in a dataset, while trying to retain as much of the essential information as possible. This is beneficial for:
+*   Reducing storage space and computation time.
+*   Removing redundant or noisy features.
+*   Improving model performance by reducing the curse of dimensionality.
+*   Facilitating data visualization.
+**Principal Component Analysis (PCA)** is a linear dimensionality reduction technique. It transforms data into a new coordinate system such that the greatest variance by some projection comes to lie on the first coordinate (called the first principal component), the second greatest variance on the second coordinate, and so on. These principal components are orthogonal (uncorrelated) and capture the directions of maximum variance in the data.
+
+#### Practical Examples:
+*   **Feature Engineering**: Reducing the number of features in a high-dimensional dataset (e.g., genetic data, sensor readings) for visualization or to speed up machine learning algorithms.
+*   **Noise Reduction**: Principal components with small variances often correspond to noise, so removing them can effectively denoise data while preserving important patterns.
+*   **Image Processing**: Compressing images by retaining only the most significant principal components.
+
+#### Relevant Formulas:
+*   **PCA Steps (Conceptual)**:
+    1.  **Standardize the Data**: Center the data by subtracting the mean of each feature.
+    2.  **Compute the Covariance Matrix**: Calculate the covariance matrix of the standardized data.
+    3.  **Calculate Eigenvalues and Eigenvectors**: Find the eigenvalues and corresponding eigenvectors of the covariance matrix.
+    4.  **Select Principal Components**: Order the eigenvectors by their corresponding eigenvalues in descending order. The eigenvectors with the largest eigenvalues are the principal components, as they capture the most variance.
+    5.  **Project Data**: Transform the original data onto the new subspace defined by the selected principal components.
+*   **Transformation**:
+    `Y = X W`
+    *   *Explanation*: `X` is the original data matrix, `W` is the matrix of selected eigenvectors (principal components), and `Y` is the transformed data in the lower-dimensional space.
+*   *Further explanation*: The `i`-th principal component is the eigenvector corresponding to the `i`-th largest eigenvalue of the covariance matrix (or correlation matrix). The eigenvalue itself represents the amount of variance explained by that principal component.
 
 ---
 
 ## 7. AI
 
-Artificial Intelligence (AI) is a broad field dedicated to creating intelligent agents that can reason, learn, perceive, and act autonomously. Key areas include search, logic, and reasoning under uncertainty.
+Artificial Intelligence (AI) encompasses methods and theories for developing intelligent agents capable of perceiving their environment, reasoning, learning, and acting to achieve goals.
 
-### 7.1. Search
+### 7.1 Search Algorithms (AI)
 
-Search algorithms are fundamental in AI for problem-solving, enabling agents to navigate state spaces to find solutions. They can be categorized based on whether they use domain-specific knowledge to guide the search.
+Search algorithms are fundamental to AI for problem-solving, enabling intelligent agents to explore possible actions and states to reach a desired goal.
 
-#### 7.1.1. Informed, uninformed, adversarial
+#### 7.1.1 Informed, Uninformed, Adversarial Search
 
-**Summary:** Search algorithms are fundamental in AI for problem-solving. Uninformed search (e.g., BFS, DFS) explores states without domain-specific knowledge. Informed search (e.g., A*, Greedy Best-First) uses heuristic functions to guide the search. Adversarial search (e.g., Minimax) is used in game playing where agents compete against each other.
+#### Learning Objectives:
+*   Differentiate between uninformed, informed, and adversarial search strategies.
+*   Understand the characteristics and use cases of various search algorithms within each category.
+*   Explain the role of heuristics in informed search.
 
-**Explanation:**
+#### Comprehensive Explanation:
+Search algorithms are fundamental to AI for problem-solving. They enable an AI agent to navigate a state space (all possible configurations or situations) to find a path from an initial state to a goal state.
+*   **Uninformed (Blind) Search**: These algorithms explore possibilities without any knowledge or hints about the location of the goal. They systematically search the state space. Examples include:
+    *   **Breadth-First Search (BFS)**: Explores all nodes at the current depth level before moving to the next level. (Optimal for shortest path on unweighted graphs).
+    *   **Depth-First Search (DFS)**: Explores as far as possible along each branch before backtracking.
+*   **Informed (Heuristic) Search**: These algorithms use problem-specific knowledge (heuristics) to guide the search towards the goal, making them more efficient than uninformed search for large state spaces.
+    *   **A* Search**: A popular and optimal informed search algorithm that uses both the cost from the start node (`g(n)`) and a heuristic estimate of the cost to the goal (`h(n)`) to prioritize nodes.
+    *   **Greedy Best-First Search**: Always expands the node that appears to be closest to the goal, based solely on the heuristic function `h(n)`.
+*   **Adversarial Search**: Used in multi-agent environments where agents compete against each other, typically in games. These algorithms consider the actions of an opponent who is also trying to optimize their own outcome.
+    *   **Minimax Algorithm**: A decision-making algorithm for two-player games, which aims to minimize the possible loss for a worst-case (maximum loss) scenario. It assumes the opponent plays optimally.
+    *   **Alpha-Beta Pruning**: An optimization technique for minimax that reduces the number of nodes evaluated in the search tree without changing the final result.
 
-##### 7.1.1.1. Uninformed Search (Blind Search)
-*   **Description:** These algorithms do not use any domain-specific knowledge (heuristics) about the problem beyond the structure of the search space. They explore the search space systematically until a solution is found.
-*   **Characteristics:** Guaranteed to find a solution if one exists (completeness), but can be very inefficient for large search spaces.
-*   **Algorithms:**
-    *   **Breadth-First Search (BFS):** Explores all nodes at the current depth level before moving on to nodes at the next depth level. Optimal for finding the shortest path in unweighted graphs.
-    *   **Depth-First Search (DFS):** Explores as far as possible along each branch before backtracking. Can get stuck in infinite loops in graphs without cycle detection.
-    *   **Uniform-Cost Search:** Expands the node with the lowest path cost from the start node. Optimal for finding the cheapest path in weighted graphs.
+#### Practical Examples:
+*   **Uninformed Search**:
+    *   BFS: Finding the shortest path in an unweighted maze.
+    *   DFS: Solving a maze by always trying to go forward until a dead end, then backtracking.
+*   **Informed Search**:
+    *   A* Search: Pathfinding in video games, GPS navigation systems (finding the quickest route).
+    *   Greedy Best-First Search: Quickly finding *a* path, though not necessarily the optimal one.
+*   **Adversarial Search**:
+    *   Chess AI or Tic-Tac-Toe AI using Minimax to determine the best move, considering all possible opponent responses.
+    *   Alpha-Beta Pruning is used to make these game-playing AIs computationally feasible for games with large search spaces.
 
-**Practical Examples:**
-*   **BFS:** Finding the shortest path in an unweighted maze, web crawling (exploring all immediate links before going deeper).
-*   **DFS:** Detecting cycles in a graph, topological sorting.
-
-##### 7.1.1.2. Informed Search (Heuristic Search)
-*   **Description:** These algorithms use domain-specific knowledge (heuristic functions) to estimate the cost from the current state to the goal state, guiding the search more efficiently.
-*   **Characteristics:** Generally much faster than uninformed search, but completeness and optimality depend on the quality of the heuristic.
-*   **Algorithms:**
-    *   **Greedy Best-First Search:** Expands the node that appears to be closest to the goal (based on the heuristic function `h(n)`). Not optimal, can get stuck in local minima.
-    *   **A* Search:** Combines Uniform-Cost Search and Greedy Best-First Search. It expands the node with the lowest value of `f(n) = g(n) + h(n)`, where `g(n)` is the cost from the start node to node `n`, and `h(n)` is the estimated cost from node `n` to the goal. Optimal if `h(n)` is admissible (never overestimates the true cost).
-
-**Practical Examples:**
-*   **A* Search:** Finding the shortest path on a map (e.g., GPS navigation) using straight-line distance to the destination as a heuristic.
-*   **Greedy Best-First Search:** Often used in pathfinding where a quick, but not necessarily optimal, solution is acceptable.
-
-##### 7.1.1.3. Adversarial Search (Game Theory Search)
-*   **Description:** Used in multi-agent environments where agents compete against each other (e.g., games like chess, checkers). The goal is to find the optimal move assuming the opponent also plays optimally.
-*   **Characteristics:** Involves exploring a game tree, considering opponent's possible moves.
-*   **Algorithms:**
-    *   **Minimax:** A recursive algorithm that chooses the move that minimizes the maximum possible loss (or maximizes the minimum possible gain) for the player, assuming the opponent plays optimally.
-    *   **Alpha-Beta Pruning:** An optimization for Minimax that eliminates branches of the game tree that do not need to be explored, significantly speeding up the search.
-
-**Practical Examples:**
-*   **Minimax:** Chess-playing AI, tic-tac-toe.
-*   **Alpha-Beta Pruning:** Enhancing the performance of game-playing AI in more complex games.
-
-**Formulas:**
-*   **A* Search Evaluation Function:**
+#### Relevant Formulas:
+*   **A* Search Evaluation Function**:
     `f(n) = g(n) + h(n)`
-    Where:
-    *   `f(n)` is the estimated total cost of the path through node `n`.
-    *   `g(n)` is the actual cost from the start node to node `n`.
-    *   `h(n)` is the heuristic estimate of the cost from node `n` to the goal.
+    *   *Explanation*: `f(n)` is the estimated total cost of the path through node `n` to the goal. `g(n)` is the actual cost from the start node to `n`. `h(n)` is the heuristic estimate of the cost from `n` to the goal. For A* to be optimal, `h(n)` must be admissible (never overestimates the true cost to the goal) and consistent.
 
-**Learning Objectives:**
-*   Differentiate between uninformed, informed, and adversarial search algorithms.
-*   Understand the basic principles and examples of BFS, DFS, A* search, and Minimax.
-*   Explain the role of heuristic functions in informed search.
-*   Recognize the applications of each search type in AI problem-solving and game playing.
+### 7.2 Logic (Propositional, Predicate)
 
-**Related Concepts:**
-*   Graph Theory
-*   Heuristic Functions
-*   State Space Search
-*   Game Theory
-*   Optimality and Completeness of Algorithms
+#### Learning Objectives:
+*   Understand the role of logic in AI for knowledge representation and reasoning.
+*   Define propositional logic and its components (propositions, connectives).
+*   Define predicate (First-Order) logic and its extensions (quantifiers, predicates, functions).
+*   Apply logical inference rules.
 
-### 7.2. Logic
+#### Comprehensive Explanation:
+Logic provides a formal language and a system of rules for representing knowledge and performing rigorous reasoning. It is a foundational area in AI for building intelligent systems that can deduce conclusions from a set of premises.
+*   **Propositional Logic (Sentential Logic)**: Deals with propositions (statements that are either true or false) and logical connectives (AND, OR, NOT, IMPLIES, EQUIVALENCE) to form complex sentences. It's relatively simple but limited in expressiveness, as it cannot represent relationships between objects or quantify over variables.
+*   **Predicate Logic (First-Order Logic - FOL)**: An extension of propositional logic that allows for more expressive knowledge representation. It introduces:
+    *   **Predicates**: Properties or relations between objects (e.g., `Man(x)`, `Loves(x,y)`).
+    *   **Constants**: Specific objects (e.g., `Socrates`, `Plato`).
+    *   **Variables**: Placeholders for objects (e.g., `x`, `y`).
+    *   **Functions**: Map objects to other objects (e.g., `father_of(x)`).
+    *   **Quantifiers**: `∀` (for all/universal quantifier) and `∃` (there exists/existential quantifier), allowing statements about collections of objects.
 
-Logic provides a formal language for representing knowledge and reasoning, enabling AI systems to draw conclusions and make decisions based on rules and facts. It's a foundational area of AI, particularly for symbolic AI and knowledge representation.
+#### Practical Examples:
+*   **Propositional Logic**:
+    *   `P`: "It is raining."
+    *   `Q`: "I have an umbrella."
+    *   `P ∧ Q`: "It is raining AND I have an umbrella."
+    *   `P → Q`: "If it is raining, then I have an umbrella."
+    *   Used in simple expert systems or for designing logic gates in circuits.
+*   **Predicate Logic**:
+    *   "All men are mortal." `∀x (Man(x) → Mortal(x))`
+    *   "Socrates is a man." `Man(Socrates)`
+    *   From these, we can infer `Mortal(Socrates)`.
+    *   Used in more complex knowledge-based systems, theorem proving, and natural language understanding.
 
-#### 7.2.1. Propositional, predicate
+#### Relevant Formulas:
+*   **Propositional Logic Connectives**:
+    *   `P ∧ Q` (Conjunction / AND)
+    *   `P ∨ Q` (Disjunction / OR)
+    *   `¬P` (Negation / NOT)
+    *   `P → Q` (Implication / IF-THEN)
+    *   `P ↔ Q` (Biconditional / IF AND ONLY IF)
+*   **Predicate Logic Quantifiers**:
+    *   `∀x P(x)` (For all `x`, `P(x)` is true)
+    *   `∃x P(x)` (There exists an `x` such that `P(x)` is true)
+    *   *Explanation*: These symbols form the syntax of logical languages, enabling precise and unambiguous representation of knowledge and rules for inference.
 
-**Summary:** Logic provides a formal language for representing knowledge and reasoning. Propositional logic deals with propositions (statements that are true or false) and logical connectives. Predicate logic (or first-order logic) extends this by introducing predicates, quantifiers, and variables, allowing for more expressive statements about objects and their properties.
+### 7.3 Reasoning under Uncertainty (Conditional Independence, Exact Inference, Approximate Inference)
 
-**Explanation:**
+#### Learning Objectives:
+*   Understand why AI systems need to reason under uncertainty.
+*   Define conditional independence and its role in simplifying probabilistic models.
+*   Differentiate between exact and approximate inference methods.
+*   Recognize common techniques for exact and approximate inference.
 
-##### 7.2.1.1. Propositional Logic (Sentential Logic)
-*   **Description:** The simplest form of logic. It deals with propositions (declarative statements that are either true or false) and logical connectives that combine these propositions. It does not deal with the internal structure of propositions.
-*   **Components:**
-    *   **Propositions (Atomic Sentences):** Basic statements (e.g., "It is raining," "The sky is blue"). Usually represented by capital letters (P, Q, R).
-    *   **Logical Connectives:**
-        *   **AND (∧):** Conjunction (P ∧ Q is true if both P and Q are true).
-        *   **OR (∨):** Disjunction (P ∨ Q is true if P, Q, or both are true).
-        *   **NOT (¬):** Negation (¬P is true if P is false).
-        *   **IMPLIES (→):** Conditional (P → Q means "If P, then Q"). It's false only if P is true and Q is false.
-        *   **EQUIVALENCE (↔):** Biconditional (P ↔ Q means "P if and only if Q"). It's true if P and Q have the same truth value.
-*   **Limitations:** Cannot express relationships between objects or quantify over variables (e.g., "All birds can fly").
+#### Comprehensive Explanation:
+AI systems often operate in environments where information is incomplete, noisy, or uncertain. Reasoning under uncertainty involves using probability theory to make decisions and draw conclusions when outcomes are not guaranteed.
+*   **Conditional Independence**: A crucial concept that simplifies probabilistic models. Two events A and B are conditionally independent given a third event C if the occurrence of A does not affect the probability of B, once C is known (and vice versa). This allows for modularity in constructing probabilistic graphical models like Bayesian networks.
+*   **Exact Inference**: Methods that compute posterior probabilities (or other probabilistic queries) precisely in probabilistic graphical models. These methods provide accurate results but can become computationally intractable for very large or complex models.
+    *   **Variable Elimination**: An algorithm that computes marginal probabilities by summing out (eliminating) variables one by one.
+    *   **Junction Tree Algorithm**: A more general exact inference algorithm that works on arbitrary Bayesian networks.
+*   **Approximate Inference**: Methods that estimate posterior probabilities when exact computation is too complex or time-consuming. These methods sacrifice some accuracy for computational feasibility and are widely used in large-scale AI systems.
+    *   **Sampling Methods (Monte Carlo Methods)**: Generate a large number of random samples from the probability distribution and use these samples to estimate probabilities.
+        *   **Markov Chain Monte Carlo (MCMC)**: A class of sampling algorithms that construct a Markov chain whose stationary distribution is the target distribution.
+        *   **Gibbs Sampling**: A specific type of MCMC that samples each variable conditioned on the current values of all other variables.
 
-**Practical Examples:**
-*   P: "It is raining."
-*   Q: "I have an umbrella."
-*   `P ∧ Q`: "It is raining AND I have an umbrella."
-*   `P → Q`: "If it is raining, then I have an umbrella."
-*   `¬P`: "It is not raining."
+#### Practical Examples:
+*   **Conditional Independence**: In a medical diagnosis system, the probability of having a fever given a flu infection might be conditionally independent of having a cough, given the flu. `P(Fever | Flu, Cough) = P(Fever | Flu)`. This simplifies the model.
+*   **Exact Inference**:
+    *   Calculating the probability of a specific outcome (e.g., `P(Disease=True | Symptom1=True, Symptom2=False)`) in a small Bayesian network used for a simple diagnostic system.
+*   **Approximate Inference**:
+    *   Simulating complex systems like climate models or financial markets to estimate probabilities of future states.
+    *   In large Bayesian networks for advanced medical diagnosis or autonomous driving, where exact inference is too slow, sampling methods provide practical estimates.
 
-##### 7.2.1.2. Predicate Logic (First-Order Logic, FOL)
-*   **Description:** An extension of propositional logic that allows for more expressive statements by introducing predicates, variables, functions, and quantifiers. It can represent relationships between objects and quantify over collections of objects.
-*   **Components:**
-    *   **Predicates:** Properties or relations involving objects (e.g., `Man(x)`, `Loves(x, y)`).
-    *   **Variables:** Symbols that stand for objects (e.g., `x`, `y`).
-    *   **Constants:** Specific objects (e.g., `Socrates`, `Plato`).
-    *   **Functions:** Map objects to objects (e.g., `father_of(x)`).
-    *   **Quantifiers:**
-        *   **Universal Quantifier (∀):** "For all" or "for every" (e.g., `∀x (Man(x) → Mortal(x))` means "For all x, if x is a man, then x is mortal").
-        *   **Existential Quantifier (∃):** "There exists" or "for some" (e.g., `∃x (Man(x) ∧ Mortal(x))` means "There exists an x such that x is a man AND x is mortal").
-    *   **Logical Connectives:** Same as propositional logic.
-*   **Power:** Can express complex facts, rules, and relationships, making it suitable for knowledge representation in AI.
-
-**Practical Examples:**
-*   `Man(Socrates)`: "Socrates is a man."
-*   `∀x (Man(x) → Mortal(x))`: "All men are mortal."
-*   `∃y (Loves(John, y))`: "John loves someone."
-*   `∀x (Dog(x) → Mammal(x))`: "All dogs are mammals."
-
-**Formulas:**
-*   **Propositional Connectives:**
-    *   Conjunction: `P ∧ Q`
-    *   Disjunction: `P ∨ Q`
-    *   Negation: `¬P`
-    *   Implication: `P → Q` (equivalent to `¬P ∨ Q`)
-    *   Biconditional: `P ↔ Q` (equivalent to `(P → Q) ∧ (Q → P)`)
-*   **Predicate Quantifiers:**
-    *   Universal: `∀x P(x)`
-    *   Existential: `∃x P(x)`
-
-**Learning Objectives:**
-*   Understand the fundamental concepts of propositional logic, including propositions and logical connectives.
-*   Be able to translate simple English statements into propositional logic.
-*   Understand the extensions of predicate logic, including predicates, variables, and quantifiers.
-*   Be able to translate more complex statements into predicate logic.
-*   Recognize the strengths and limitations of each logical system for knowledge representation.
-
-**Related Concepts:**
-*   Truth Tables
-*   Inference Rules (Modus Ponens, Resolution)
-*   Knowledge Representation
-*   Automated Reasoning
-*   Logic Programming (e.g., Prolog)
-
-### 7.3. Reasoning under uncertainty topics — conditional independence representation, exact inference through variable elimination, and approximate inference through sampling
-
-**Summary:** Reasoning under uncertainty in AI deals with situations where knowledge is incomplete or noisy, which is common in real-world applications. Conditional independence simplifies probabilistic models by stating that certain events are independent given the occurrence of others. Exact inference (e.g., variable elimination) computes exact probabilities in probabilistic graphical models like Bayesian networks. Approximate inference (e.g., sampling methods like MCMC) estimates probabilities when exact computation is intractable due to complexity.
-
-**Explanation:**
-
-#### 7.3.1. Reasoning Under Uncertainty
-*   **Description:** AI systems often operate in environments where information is uncertain, incomplete, or noisy. Probabilistic reasoning provides a robust framework to handle such situations, allowing agents to make decisions based on probabilities rather than absolute truths. Bayesian networks are a popular tool for this.
-
-#### 7.3.2. Conditional Independence
-*   **Description:** A key concept for simplifying probabilistic models. Two events (or random variables) A and B are conditionally independent given a third event (or variable) C if the probability of A occurring is independent of the probability of B occurring, once C is known.
-*   **Significance:** It allows for the factorization of joint probability distributions into simpler products, greatly reducing the number of probabilities that need to be stored and computed in complex models like Bayesian networks.
-*   **Examples:**
-    *   "Toothache" and "Catch" (a probe catching on a tooth) are conditionally independent given "Cavity". If you know whether a patient has a cavity, then knowing about their toothache doesn't change the probability of the probe catching, and vice versa.
-    *   `P(Toothache, Catch | Cavity) = P(Toothache | Cavity) * P(Catch | Cavity)`
-
-#### 7.3.3. Exact Inference through Variable Elimination
-*   **Description:** A method for computing exact posterior probabilities in Bayesian networks (and other graphical models). It works by systematically summing out (eliminating) non-query, non-evidence variables from the joint probability distribution.
-*   **Mechanism:** It iteratively combines factors (conditional probability tables) and eliminates variables by summing over their possible values, effectively performing dynamic programming on the network.
-*   **Characteristics:** Guaranteed to be exact, but can be computationally expensive (exponential in the treewidth of the network), making it intractable for very large and complex networks.
-*   **Examples:** Calculating `P(Burglary | Alarm=true)` in a small Bayesian network involving Burglary, Earthquake, Alarm, JohnCalls, MaryCalls.
-
-#### 7.3.4. Approximate Inference through Sampling
-*   **Description:** When exact inference is too computationally intensive, approximate inference methods are used to estimate probabilities. Sampling (or Monte Carlo methods) involves drawing a large number of random samples from the probabilistic model and then using these samples to estimate the desired probabilities.
-*   **Mechanism:**
-    *   **Direct Sampling:** Generate samples from the network according to its defined probabilities.
-    *   **Rejection Sampling:** Sample from the prior, but only keep samples that are consistent with the evidence. Inefficient for rare evidence.
-    *   **Likelihood Weighting:** Samples from the prior, but weights each sample by how likely the evidence is given the sample.
-    *   **Markov Chain Monte Carlo (MCMC):** A class of algorithms that construct a Markov chain whose stationary distribution is the target posterior distribution. It moves from state to state, eventually converging to a distribution that can be used to estimate probabilities. Gibbs sampling is a common MCMC variant.
-*   **Characteristics:** Computationally feasible for large networks, but provides estimates rather than exact values. Accuracy improves with more samples.
-
-**Formulas:**
-*   **Conditional Independence:**
-    `P(A, B | C) = P(A | C) * P(B | C)`
-    Equivalently: `P(A | B, C) = P(A | C)` and `P(B | A, C) = P(B | C)`.
-*   **Bayesian Network Joint Probability Factorization:**
-    `P(X_1, ..., X_n) = Π_(i=1)^n P(X_i | Parents(X_i))`
-    This formula is directly enabled by conditional independence assumptions inherent in the network structure.
-
-**Learning Objectives:**
-*   Understand the challenges of reasoning under uncertainty in AI.
-*   Define conditional independence and explain its importance in simplifying probabilistic models.
-*   Describe exact inference methods like variable elimination and their limitations.
-*   Explain the concept of approximate inference through sampling and different sampling techniques (e.g., MCMC).
-*   Recognize when to apply exact versus approximate inference methods.
-
-**Related Concepts:**
-*   Bayesian Networks
-*   Probabilistic Graphical Models
-*   Joint Probability Distributions
-*   Law of Total Probability
-*   Markov Chains
-*   Monte Carlo Methods
+#### Relevant Formulas:
+*   **Conditional Independence**:
+    `P(A|B,C) = P(A|C)`
+    *   *Explanation*: The probability of A given B and C is the same as the probability of A given only C. This implies that B provides no additional information about A once C is known.
+*   **Bayesian Network Joint Probability**:
+    `P(X₁, ..., Xn) = Π P(Xi | Parents(Xi))` (from `i=1` to `n`)
+    *   *Explanation*: The joint probability distribution of all variables in a Bayesian network can be factored into a product of conditional probabilities, where each variable is conditioned only on its direct parents in the network. This factorization is enabled by conditional independence assumptions implied by the network structure.
+*   **Monte Carlo Estimation**:
+    `E[f(X)] ≈ (1/N) * Σ f(X_i)` (from `i=1` to `N`)
+    *   *Explanation*: The expected value of a function `f(X)` can be approximated by the average of `f` evaluated over `N` random samples `X_i` drawn from the distribution of `X`.
